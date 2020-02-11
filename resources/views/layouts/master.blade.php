@@ -92,14 +92,62 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column nav-compact nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-header">MENU</li>
-          <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                Gallery
-              </p>
-            </a>
-          </li>
+            <li class="nav-item">
+                <a href="pages/gallery.html" class="nav-link">
+                    <i class="nav-icon far fa-image"></i>
+                    <p>
+                    Beranda
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="pages/gallery.html" class="nav-link">
+                    <i class="nav-icon far fa-image"></i>
+                    <p>
+                    News
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="pages/gallery.html" class="nav-link">
+                    <i class="nav-icon far fa-image"></i>
+                    <p>
+                    Event
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="pages/gallery.html" class="nav-link">
+                    <i class="nav-icon far fa-image"></i>
+                    <p>
+                    User
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="pages/gallery.html" class="nav-link">
+                    <i class="nav-icon far fa-image"></i>
+                    <p>
+                    Contact Person
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="pages/gallery.html" class="nav-link">
+                    <i class="nav-icon far fa-image"></i>
+                    <p>
+                    Company Profile
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="pages/gallery.html" class="nav-link">
+                    <i class="nav-icon far fa-image"></i>
+                    <p>
+                    About
+                    </p>
+                </a>
+            </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

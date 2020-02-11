@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoryEventTable extends Migration
+class CreateCategoryNewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateCategoryEventTable extends Migration
      */
     public function up()
     {
-        Schema::create('category_event', function (Blueprint $table) {
+        Schema::create('category_news', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('event_id');
+            $table->unsignedBigInteger('news_id');
             $table->unsignedBigInteger('category_id');
-            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
+            $table->foreign('news_id')->references('id')->on('news')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class CreateCategoryEventTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_event');
+        Schema::dropIfExists('category_news');
     }
 }
