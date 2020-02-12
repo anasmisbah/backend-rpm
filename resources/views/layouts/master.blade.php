@@ -103,7 +103,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="pages/gallery.html" class="nav-link">
+                <a href="{{route('news.index')}}" class="nav-link {{ Request::segment(1) == 'news'?'active':'' }}">
                     <i class="nav-icon far fa-newspaper"></i>
                     <p>
                     News
@@ -119,7 +119,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{route('category.index')}}" class="nav-link {{ Request::segment(1) == 'category'?'active':'' }}"">
+                <a href="{{route('category.index')}}" class="nav-link {{ Request::segment(1) == 'category'?'active':'' }}">
                     <i class="nav-icon fas fa-tags"></i>
                     <p>
                     Category

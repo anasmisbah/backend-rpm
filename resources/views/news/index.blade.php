@@ -8,12 +8,12 @@
 @section('content-header')
 <div class="row mb-2">
     <div class="col-sm-6">
-      <h1 class="m-0 text-dark">Category</h1>
+      <h1 class="m-0 text-dark">News</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
       <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item active">Category</li>
+        <li class="breadcrumb-item active">News</li>
       </ol>
     </div><!-- /.col -->
   </div><!-- /.row -->
@@ -27,7 +27,7 @@
               <div class="card-tools">
                 <ul class="nav nav-pills ml-auto">
                   <li class="nav-item">
-                    <a class="nav-link active" href="{{route('category.create')}}"><i class="fas fa-plus"></i></a>
+                    <a class="nav-link active" href="{{route('news.create')}}"><i class="fas fa-plus"></i></a>
                   </li>
                 </ul>
               </div>
@@ -38,29 +38,31 @@
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Name</th>
+                  <th>Title</th>
+                  <th>Image</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                  @foreach ($categories as $category)
+                  @foreach ($news as $new)
                   <tr>
                     <td>{{$loop->iteration}}</td>
-                    <td>{{$category->name}}</td>
+                    <td>{{$new->title}}</td>
+                    <td><img class="img-thumbnail" width="50px" src="{{asset("/storage/".$new->image)}}" alt=""></td>
                     <td>
-                      <a href="{{route('category.edit',$category->id)}}" class="btn btn-warning btn-sm">
+                      <a href="{{route('news.edit',$new->id)}}" class="btn btn-warning btn-sm">
                         <i class="fas fa-edit"></i>
                       </a>
                       <form class="d-inline"
-                          onsubmit="return confirm('Apakah anda ingin menghapus Category secara permanen?')"
-                          action="{{route('category.destroy',$category->id)}}"
+                          onsubmit="return confirm('Apakah anda ingin menghapus News secara permanen?')"
+                          action="{{route('news.destroy',$new->id)}}"
                           method="POST">
                               @csrf
                               @method('DELETE')
                               <button type="submit" class="btn btn-danger btn-sm">
                                   <i class="fas fa-trash"></i></button>
                       </form>
-                      <a href="{{route('category.show',$category->id)}}" class="btn btn-info btn-sm">
+                      <a href="{{route('news.show',$new->id)}}" class="btn btn-info btn-sm">
                         <i class="fas fa-eye"></i>
                       </a>
                     </td>
