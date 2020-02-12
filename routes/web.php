@@ -17,3 +17,4 @@ Route::get('/', function () {
 
 Route::resource('category', 'CategoryController');
 Route::resource('news', 'NewsController');
+Route::resource('event', 'EventController');

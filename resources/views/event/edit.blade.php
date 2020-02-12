@@ -10,13 +10,13 @@
 @section('content-header')
 <div class="row mb-2">
     <div class="col-sm-6">
-      <h1 class="m-0 text-dark">News</h1>
+      <h1 class="m-0 text-dark">Event</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
       <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item">News</li>
-        <li class="breadcrumb-item active">create</li>
+        <li class="breadcrumb-item">Event</li>
+        <li class="breadcrumb-item active">Update</li>
       </ol>
     </div><!-- /.col -->
   </div><!-- /.row -->
@@ -27,24 +27,25 @@
             <!-- Horizontal Form -->
             <div class="card card-info">
                 <div class="card-header">
-                  <h3 class="card-title">Create News</h3>
+                  <h3 class="card-title">Update Event</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="form-horizontal" action="{{route('news.store')}}" method="POST" enctype="multipart/form-data">
+                <form class="form-horizontal" action="{{route('event.update',$event->id)}}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                   <div class="card-body">
                     <div class="form-group row">
                       <label for="title" class="col-sm-2 col-form-label">title</label>
                       <div class="col-sm-6 col-lg-6 col-md-6">
-                        <input type="text" class="form-control" id="title" name="title" placeholder="title">
+                        <input type="text" class="form-control" value="{{$event->title}}" id="title" name="title" placeholder="title">
                       </div>
                     </div>
                     <div class="form-group row">
                         <label for="image" class="col-sm-2 col-form-label">Image</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                            <img class="img-thumbnail" id="image_con" width="150px" src="{{asset('/storage/images/default.jpg')}}" alt="">
-                          <input type="file" class="form-control" id="image" name="image">
+                            <img class="img-thumbnail" id="image_con" width="150px" src="{{asset("/storage/".$event->image)}}" alt="">
+                          <input type="file" id="image" class="form-control" id="image" name="image">
                         </div>
                       </div>
                       <div class="form-group row">
@@ -60,7 +61,7 @@
                       <div class="form-group row">
                         <label for="description" class="col-sm-2 col-form-label">Description</label>
                         <div class="col-sm-12 col-lg-10 col-md-10">
-                          <textarea id="description" class="form-control" id="description" name="description"></textarea>
+                          <textarea id="description" class="form-control" id="description" name="description">{!! $event->description !!}</textarea>
                         </div>
                       </div>
                   </div>
@@ -68,7 +69,7 @@
                   <!-- /.card-body -->
                   <div class="card-footer">
                     <button type="submit" class="btn btn-info">Save</button>
-                    <a href="{{route('news.index')}}" class="btn btn-default">Back</a>
+                    <a href="{{route('category.index')}}" class="btn btn-default">Back</a>
                   </div>
                   <!-- /.card-footer -->
                 </form>
@@ -86,10 +87,8 @@
 <script>
   $(function () {
     //Initialize Select2 Elements
-    $('#select-category').select2()
+    $('#select-category').select2().val({!! json_encode($event->category()->allRelatedIds()) !!}).trigger('change')
     $('#description').summernote()
-
-
   });
 </script>
 <script>

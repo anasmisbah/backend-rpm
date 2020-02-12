@@ -69,7 +69,7 @@
                   <!-- /.card-body -->
                   <div class="card-footer">
                     <button type="submit" class="btn btn-info">Save</button>
-                    <a href="{{route('category.index')}}" class="btn btn-default">Back</a>
+                    <a href="{{route('news.index')}}" class="btn btn-default">Back</a>
                   </div>
                   <!-- /.card-footer -->
                 </form>

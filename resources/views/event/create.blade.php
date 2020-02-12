@@ -10,12 +10,12 @@
 @section('content-header')
 <div class="row mb-2">
     <div class="col-sm-6">
-      <h1 class="m-0 text-dark">News</h1>
+      <h1 class="m-0 text-dark">Event</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
       <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item">News</li>
+        <li class="breadcrumb-item">Event</li>
         <li class="breadcrumb-item active">create</li>
       </ol>
     </div><!-- /.col -->
@@ -27,11 +27,11 @@
             <!-- Horizontal Form -->
             <div class="card card-info">
                 <div class="card-header">
-                  <h3 class="card-title">Create News</h3>
+                  <h3 class="card-title">Create Event</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="form-horizontal" action="{{route('news.store')}}" method="POST" enctype="multipart/form-data">
+                <form class="form-horizontal" action="{{route('event.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                   <div class="card-body">
                     <div class="form-group row">
@@ -68,7 +68,7 @@
                   <!-- /.card-body -->
                   <div class="card-footer">
                     <button type="submit" class="btn btn-info">Save</button>
-                    <a href="{{route('news.index')}}" class="btn btn-default">Back</a>
+                    <a href="{{route('event.index')}}" class="btn btn-default">Back</a>
                   </div>
                   <!-- /.card-footer -->
                 </form>

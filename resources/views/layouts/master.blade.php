@@ -111,7 +111,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="pages/gallery.html" class="nav-link">
+                <a href="{{route('event.index')}}" class="nav-link {{ Request::segment(1) == 'event'?'active':'' }}">
                     <i class="nav-icon far fa-calendar"></i>
                     <p>
                     Event
