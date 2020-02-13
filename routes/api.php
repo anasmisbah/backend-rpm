@@ -15,6 +15,8 @@ use Illuminate\Http\Request;
 
 Route::post('login','API\AuthController@login');
 Route::middleware('auth:api')->post('logout','API\AuthController@logout');
+Route::get('news','API\NewsController@allnews');
+Route::get('event','API\EventController@allevents');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
