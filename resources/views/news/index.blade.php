@@ -39,6 +39,7 @@
                 <tr>
                   <th>No</th>
                   <th>Title</th>
+                  <th>Category</th>
                   <th>Image</th>
                   <th>Action</th>
                 </tr>
@@ -48,6 +49,11 @@
                   <tr>
                     <td>{{$loop->iteration}}</td>
                     <td>{{$new->title}}</td>
+                    <td>
+                        @foreach ($new->category as $category)
+                        <small class="badge badge-info"><i class="fas fa-tag"></i> {{$category->name}}</small><br>
+                        @endforeach
+                    </td>
                     <td><img class="img-thumbnail" width="50px" src="{{asset("/storage/".$new->image)}}" alt=""></td>
                     <td>
                       <a href="{{route('news.edit',$new->id)}}" class="btn btn-warning btn-sm">

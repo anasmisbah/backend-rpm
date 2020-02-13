@@ -1,6 +1,8 @@
 @extends('layouts.master')
 
 @push('css')
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="{{asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
 @endpush
 
 @section('content-header')
@@ -52,4 +54,24 @@
 @endsection
 
 @push('script')
+<!-- SweetAlert2 -->
+<script src="{{asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+<script>
+    $(function() {
+        const status = '{{ Session("status") }}'
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+        if (status) {
+            Toast.fire({
+                type: 'success',
+                title: status
+            })
+        }
+    });
+</script>
 @endpush

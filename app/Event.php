@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
-    
+
     protected $fillable = [
-        'title','description','image'
+        'title','description','image','slug'
     ];
 
     public function category()

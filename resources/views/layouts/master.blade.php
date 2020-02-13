@@ -93,7 +93,7 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
-            <li class="nav-header">MENU</li>
+            <li class="nav-header">Home</li>
             <li class="nav-item ">
                 <a href="pages/gallery.html" class="nav-link">
                     <i class="nav-icon fas fa-home"></i>
@@ -102,6 +102,7 @@
                     </p>
                 </a>
             </li>
+            <li class="nav-header">Menu</li>
             <li class="nav-item">
                 <a href="{{route('news.index')}}" class="nav-link {{ Request::segment(1) == 'news'?'active':'' }}">
                     <i class="nav-icon far fa-newspaper"></i>

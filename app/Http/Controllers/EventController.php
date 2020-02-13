@@ -6,6 +6,7 @@ use App\Category;
 use App\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class EventController extends Controller
 {
@@ -55,13 +56,14 @@ class EventController extends Controller
         $event = Event::create([
             'title'=>$request->title,
             'description'=>$request->description,
-            'image'=>$image
+            'image'=>$image,
+            'slug'=>Str::slug($request->title)
         ]);
 
         $event->category()->attach($request->category);
 
 
-        return redirect()->route('event.index');
+        return redirect()->back()->with('status','Successfully Added Event');
     }
 
     /**
@@ -118,12 +120,13 @@ class EventController extends Controller
 
         $event->update([
             'title'=>$request->title,
-            'description'=>$request->description
+            'description'=>$request->description,
+            'slug'=>Str::slug($request->title)
         ]);
 
         $event->category()->sync($request->category);
 
-        return redirect()->route('event.index');
+        return redirect()->back()->with('status','Successfully Updated Event');
     }
 
     /**

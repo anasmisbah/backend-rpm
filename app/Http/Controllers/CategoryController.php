@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class CategoryController extends Controller
 {
@@ -42,10 +44,11 @@ class CategoryController extends Controller
         ]);
 
         Category::create([
-            'name'=>$request->name
+            'name'=>$request->name,
+            'slug'=>Str::slug($request->name)
         ]);
 
-        return redirect()->route('category.index');
+        return redirect()->back()->with('status','Successfully Added Categories');
     }
 
     /**
@@ -90,10 +93,11 @@ class CategoryController extends Controller
         ]);
 
         $category->update([
-            'name'=>$request->name
+            'name'=>$request->name,
+            'slug'=>Str::slug($request->name)
         ]);
 
-        return redirect()->route('category.index');
+        return redirect()->back()->with('status','Successfully Updated Category');
     }
 
     /**
@@ -107,6 +111,6 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $category->delete();
 
-        return redirect()->route('category.index');
+        return redirect()->route('category.index')->with('status','Successfully Delete Categories');
     }
 }

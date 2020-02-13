@@ -6,6 +6,8 @@ use App\Category;
 use App\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
 
 class NewsController extends Controller
 {
@@ -57,13 +59,14 @@ class NewsController extends Controller
         $news = News::create([
             'title'=>$request->title,
             'description'=>$request->description,
-            'image'=>$image
+            'image'=>$image,
+            'slug'=>Str::slug($request->title)
         ]);
 
         $news->category()->attach($request->category);
 
 
-        return redirect()->route('news.index');
+        return redirect()->back()->with('status','Successfully Added News');
     }
 
     /**
@@ -120,12 +123,13 @@ class NewsController extends Controller
 
         $news->update([
             'title'=>$request->title,
-            'description'=>$request->description
+            'description'=>$request->description,
+            'slug'=>Str::slug($request->title)
         ]);
 
         $news->category()->sync($request->category);
 
-        return redirect()->route('news.index');
+        return redirect()->back()->with('status','Successfully Updated News');
 
 
     }

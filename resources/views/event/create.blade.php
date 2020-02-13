@@ -1,10 +1,12 @@
 @extends('layouts.master')
 
 @push('css')
-  <!-- Select2 -->
-  <link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
     <!-- summernote -->
     <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.css')}}">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="{{asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
 @endpush
 
 @section('content-header')
@@ -83,6 +85,8 @@
 <script src="{{asset('plugins/select2/js/select2.full.min.js')}}"></script>
 <!-- Summernote -->
 <script src="{{asset('plugins/summernote/summernote-bs4.min.js')}}"></script>
+<!-- SweetAlert2 -->
+<script src="{{asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 <script>
   $(function () {
     //Initialize Select2 Elements
@@ -94,19 +98,37 @@
 </script>
 <script>
     //menampilkan foto setiap ada perubahan pada modal tambah
-$('#image').on('change', function() {
-    readURL(this);
-});
-function readURL(input) {
-  if (input.files && input.files[0]) {
-      var reader = new FileReader();
+    $('#image').on('change', function() {
+        readURL(this);
+    });
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
-      reader.onload = function (e) {
-          $('#image_con').attr('src', e.target.result);
-      };
+            reader.onload = function (e) {
+                $('#image_con').attr('src', e.target.result);
+            };
 
-      reader.readAsDataURL(input.files[0]);
-  }
-}
-    </script>
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+<script>
+    $(function() {
+        const status = '{{ Session("status") }}'
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+        if (status) {
+            Toast.fire({
+                type: 'success',
+                title: status
+            })
+        }
+    });
+</script>
 @endpush
