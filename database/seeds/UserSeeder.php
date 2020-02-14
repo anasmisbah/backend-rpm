@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
                 'email' => 'admin@mail.com',
                 'password'=>Hash::make("123123"),
                 'role_id'=>1,
+                'member'=>'silver',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
@@ -24,6 +25,7 @@ class UserSeeder extends Seeder
                 'email' => 'employee@mail.com',
                 'password'=>Hash::make("123123"),
                 'role_id'=>2,
+                'member'=>'gold',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]

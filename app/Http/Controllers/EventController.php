@@ -110,7 +110,7 @@ class EventController extends Controller
             $request->validate([
                 'image'=>'mimes:jpeg,bmp,png,jpg,ico',
             ]);
-            if (!($event->foto == "images/default.jpg") && file_exists(storage_path('app/public/'.$event->image))) {
+            if (!($event->image == "images/default.jpg") && file_exists(storage_path('app/public/'.$event->image))) {
                 Storage::delete('public/'.$event->image);
             }
             $event->update([

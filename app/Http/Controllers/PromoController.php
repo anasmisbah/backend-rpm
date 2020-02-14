@@ -2,26 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\News;
 use Illuminate\Http\Request;
+use App\Promo;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-
-class NewsController extends Controller
+class PromoController extends Controller
 {
-    /**
+        /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $news = News::all();
+        $promos = Promo::all();
 
-        return view('news.index',compact('news'));
-    }
+        return view('promo.index',compact('promos'));    }
 
     /**
      * Show the form for creating a new resource.
@@ -30,10 +27,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-
-        return view('news.create',compact('categories'));
-    }
+        return view('promo.create');    }
 
     /**
      * Store a newly created resource in storage.
@@ -44,8 +38,11 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'=>'required',
-            'description'=>'required'
+            'name'=>'required',
+            'description'=>'required',
+            'point'=>'required',
+            'status'=>'required',
+            'total'=>'required'
         ]);
 
         $image='';
@@ -56,17 +53,18 @@ class NewsController extends Controller
             $image = $request->file('image')->store('images','public');
         }
 
-        $news = News::create([
-            'title'=>$request->title,
+        $promo = Promo::create([
+            'name'=>$request->name,
             'description'=>$request->description,
             'image'=>$image,
-            'slug'=>Str::slug($request->title)
+            'slug'=>Str::slug($request->title),
+            'point'=>$request->point,
+            'status'=>$request->status,
+            'total'=>$request->total
         ]);
 
-        $news->category()->attach($request->category);
 
-
-        return redirect()->back()->with('status','Successfully Added News');
+        return redirect()->back()->with('status','Successfully Added Promo');
     }
 
     /**
@@ -77,8 +75,8 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        $news = News::findOrFail($id);
-        return view('news.detail',compact('news'));
+        $promo = Promo::findOrFail($id);
+        return view('promo.detail',compact('promo'));
     }
 
     /**
@@ -89,10 +87,9 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        $news = News::findOrFail($id);
-        $categories = Category::all();
+        $promo = Promo::findOrFail($id);
 
-        return view('news.edit',compact('news','categories'));
+        return view('promo.edit',compact('promo'));
     }
 
     /**
@@ -104,34 +101,36 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $news = News::findOrFail($id);
+        $promo = Promo::findOrFail($id);
         $request->validate([
             'title'=>'required',
-            'description'=>'required'
+            'description'=>'required',
+            'point'=>'required',
+            'status'=>'required',
+            'total'=>'required'
         ]);
         if ($request->file('image')) {
             $request->validate([
                 'image'=>'mimes:jpeg,bmp,png,jpg,ico',
             ]);
-            if (!($news->image == "images/default.jpg") && file_exists(storage_path('app/public/'.$news->image))) {
-                Storage::delete('public/'.$news->image);
+            if (!($promo->image == "images/default.jpg") && file_exists(storage_path('app/public/'.$promo->image))) {
+                Storage::delete('public/'.$promo->image);
             }
-            $news->update([
+            $promo->update([
                 'image'=> $request->file('image')->store('images','public')
             ]);
         }
 
-        $news->update([
-            'title'=>$request->title,
+        $promo->update([
+            'name'=>$request->name,
             'description'=>$request->description,
-            'slug'=>Str::slug($request->title)
+            'slug'=>Str::slug($request->title),
+            'point'=>$request->point,
+            'status'=>$request->status,
+            'total'=>$request->total
         ]);
 
-        $news->category()->sync($request->category);
-
-        return redirect()->back()->with('status','Successfully Updated News');
-
-
+        return redirect()->back()->with('status','Successfully Updated Promo');
     }
 
     /**
@@ -142,10 +141,9 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        $news = News::findOrFail($id);
-        $news->delete();
+        $promo = Promo::findOrFail($id);
+        $promo->delete();
 
-        return redirect()->route('news.index');
-
+        return redirect()->route('promo.index');
     }
 }
