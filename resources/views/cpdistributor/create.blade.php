@@ -8,12 +8,12 @@
 @section('content-header')
 <div class="row mb-2">
     <div class="col-sm-6">
-      <h1 class="m-0 text-dark">Contact Person</h1>
+      <h1 class="m-0 text-dark">Contact Person Distributor</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
       <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item">Contact Person</li>
+        <li class="breadcrumb-item">Contact Person Distributor</li>
         <li class="breadcrumb-item active">create</li>
       </ol>
     </div><!-- /.col -->
@@ -25,30 +25,36 @@
             <!-- Horizontal Form -->
             <div class="card card-info">
                 <div class="card-header">
-                  <h3 class="card-title">Create Contact Person</h3>
+                  <h3 class="card-title">Create Contact Person Distributor</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="form-horizontal" action="{{route('contactperson.store')}}" method="POST">
+                <form class="form-horizontal" action="{{route('cpdistributor.store')}}" method="POST">
                     @csrf
                   <div class="card-body">
                     <div class="form-group row">
+                        <label for="name" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-6 col-lg-6 col-md-6">
+                          <input type="text" class="form-control" id="name" name="name" placeholder="Distributor Name">
+                        </div>
+                      </div>
+                    <div class="form-group row">
                       <label for="contact" class="col-sm-2 col-form-label">contact</label>
                       <div class="col-sm-6 col-lg-6 col-md-6">
-                        <input type="text" class="form-control" id="contact" name="contact" placeholder="Contact Person">
+                        <input type="text" class="form-control" id="contact" name="contact" placeholder="Contact Person Distributor">
                       </div>
                     </div>
                     <div class="form-group row">
                         <label for="url" class="col-sm-2 col-form-label">Url</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                          <input type="text" class="form-control" id="url" name="url" placeholder="Contact Person url">
+                          <input type="text" class="form-control" id="url" name="url" placeholder="Distributor url">
                         </div>
                       </div>
                   </div>
                   <!-- /.card-body -->
                   <div class="card-footer">
                     <button type="submit" class="btn btn-info">Save</button>
-                    <a href="{{route('contactperson.index')}}" class="btn btn-default">Back</a>
+                    <a href="{{route('cpdistributor.index')}}" class="btn btn-default">Back</a>
                   </div>
                   <!-- /.card-footer -->
                 </form>

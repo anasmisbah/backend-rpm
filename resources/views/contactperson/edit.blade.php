@@ -42,7 +42,7 @@
                     <div class="form-group row">
                         <label for="url" class="col-sm-2 col-form-label">Url</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                          <input type="text" class="form-control"  value="{{$contactperson->url}}" id="url" name="url" placeholder="company url">
+                          <input type="text" class="form-control"  value="{{$contactperson->url}}" id="url" name="url" placeholder="Contact Person url">
                         </div>
                       </div>
                   </div>

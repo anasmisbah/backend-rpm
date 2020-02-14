@@ -160,6 +160,14 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a href="{{route('cpdistributor.index')}}" class="nav-link {{ Request::segment(1) == 'cpdistributor'?'active':'' }}">
+                    <i class="nav-icon far fa-building"></i>
+                    <p>
+                    Contact Person Distributor
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="pages/gallery.html" class="nav-link">
                     <i class="nav-icon fas fa-info"></i>
                     <p>

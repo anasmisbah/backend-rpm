@@ -36,7 +36,7 @@
                     <div class="form-group row">
                       <label for="name" class="col-sm-2 col-form-label">Name</label>
                       <div class="col-sm-6 col-lg-6 col-md-6">
-                        <input type="text" class="form-control" value="{{$company->name}}" id="name" name="name" placeholder="Category Name">
+                        <input type="text" class="form-control" value="{{$company->name}}" id="name" name="name" placeholder="Company Name">
                       </div>
                     </div>
                     <div class="form-group row">
