@@ -103,7 +103,7 @@ class PromoController extends Controller
     {
         $promo = Promo::findOrFail($id);
         $request->validate([
-            'title'=>'required',
+            'name'=>'required',
             'description'=>'required',
             'point'=>'required',
             'status'=>'required',

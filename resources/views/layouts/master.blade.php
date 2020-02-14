@@ -104,6 +104,14 @@
             </li>
             <li class="nav-header">Menu</li>
             <li class="nav-item">
+                <a href="{{route('promo.index')}}" class="nav-link {{ Request::segment(1) == 'promo'?'active':'' }}">
+                    <i class="nav-icon far fa-coupon"></i>
+                    <p>
+                    Promo
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="{{route('news.index')}}" class="nav-link {{ Request::segment(1) == 'news'?'active':'' }}">
                     <i class="nav-icon far fa-newspaper"></i>
                     <p>

@@ -19,3 +19,6 @@ Route::resource('category', 'CategoryController');
 Route::resource('news', 'NewsController');
 Route::resource('event', 'EventController');
 Route::resource('promo', 'PromoController');
+Route::resource('company', 'CompanyprofileController');
+Route::resource('contactperson', 'ContactpersonController');
+Route::resource('cpdistributor', 'CpdistributorController');
