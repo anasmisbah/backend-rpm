@@ -105,7 +105,7 @@
             <li class="nav-header">Menu</li>
             <li class="nav-item">
                 <a href="{{route('promo.index')}}" class="nav-link {{ Request::segment(1) == 'promo'?'active':'' }}">
-                    <i class="nav-icon far fa-coupon"></i>
+                    <i class="nav-icon fa fa-ad"></i>
                     <p>
                     Promo
                     </p>
@@ -140,6 +140,14 @@
                     <i class="nav-icon far fa-user"></i>
                     <p>
                     User
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('company.index')}}" class="nav-link {{ Request::segment(1) == 'company'?'active':'' }}">
+                    <i class="nav-icon far fa-building"></i>
+                    <p>
+                    Company Profile
                     </p>
                 </a>
             </li>
