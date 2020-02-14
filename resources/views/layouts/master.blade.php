@@ -152,6 +152,14 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a href="{{route('contactperson.index')}}" class="nav-link {{ Request::segment(1) == 'contactperson'?'active':'' }}">
+                    <i class="nav-icon far fa-building"></i>
+                    <p>
+                    Contact Person
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="pages/gallery.html" class="nav-link">
                     <i class="nav-icon fas fa-info"></i>
                     <p>

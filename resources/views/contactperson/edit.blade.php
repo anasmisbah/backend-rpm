@@ -8,12 +8,12 @@
 @section('content-header')
 <div class="row mb-2">
     <div class="col-sm-6">
-      <h1 class="m-0 text-dark">Company Profile</h1>
+      <h1 class="m-0 text-dark">Contact Person</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
       <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item">Company Profile</li>
+        <li class="breadcrumb-item">Contact Person</li>
         <li class="breadcrumb-item active">Update</li>
       </ol>
     </div><!-- /.col -->
@@ -25,31 +25,31 @@
             <!-- Horizontal Form -->
             <div class="card card-info">
                 <div class="card-header">
-                  <h3 class="card-title">Update Company Profile</h3>
+                  <h3 class="card-title">Update Contact Person</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="form-horizontal" action="{{route('company.update',$company->id)}}" method="POST">
+                <form class="form-horizontal" action="{{route('contactperson.update',$contactperson->id)}}" method="POST">
                     @csrf
                     @method('PUT')
                   <div class="card-body">
                     <div class="form-group row">
-                      <label for="name" class="col-sm-2 col-form-label">Name</label>
+                      <label for="contact" class="col-sm-2 col-form-label">contact</label>
                       <div class="col-sm-6 col-lg-6 col-md-6">
-                        <input type="text" class="form-control" value="{{$company->name}}" id="name" name="name" placeholder="Category Name">
+                        <input type="text" class="form-control" value="{{$contactperson->contact}}" id="contact" name="contact" placeholder="Contact Person">
                       </div>
                     </div>
                     <div class="form-group row">
                         <label for="url" class="col-sm-2 col-form-label">Url</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                          <input type="text" class="form-control"  value="{{$company->url}}" id="url" name="url" placeholder="company url">
+                          <input type="text" class="form-control"  value="{{$contactperson->url}}" id="url" name="url" placeholder="company url">
                         </div>
                       </div>
                   </div>
                   <!-- /.card-body -->
                   <div class="card-footer">
                     <button type="submit" class="btn btn-info">Save</button>
-                    <a href="{{route('company.index')}}" class="btn btn-default">Back</a>
+                    <a href="{{route('contactperson.index')}}" class="btn btn-default">Back</a>
                   </div>
                   <!-- /.card-footer -->
                 </form>
