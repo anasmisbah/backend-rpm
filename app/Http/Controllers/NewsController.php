@@ -143,6 +143,9 @@ class NewsController extends Controller
     public function destroy($id)
     {
         $news = News::findOrFail($id);
+        if (!($news->image == "images/default.jpg") && file_exists(storage_path('app/public/'.$news->image))) {
+            Storage::delete('public/'.$news->image);
+        }
         $news->delete();
 
         return redirect()->route('news.index');

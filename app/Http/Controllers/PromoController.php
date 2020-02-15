@@ -142,6 +142,9 @@ class PromoController extends Controller
     public function destroy($id)
     {
         $promo = Promo::findOrFail($id);
+        if (!($promo->image == "images/default.jpg") && file_exists(storage_path('app/public/'.$promo->image))) {
+            Storage::delete('public/'.$promo->image);
+        }
         $promo->delete();
 
         return redirect()->route('promo.index');

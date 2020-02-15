@@ -138,6 +138,9 @@ class EventController extends Controller
     public function destroy($id)
     {
         $event = Event::findOrFail($id);
+        if (!($event->image == "images/default.jpg") && file_exists(storage_path('app/public/'.$event->image))) {
+            Storage::delete('public/'.$event->image);
+        }
         $event->delete();
 
         return redirect()->route('event.index');

@@ -15,8 +15,18 @@ use Illuminate\Http\Request;
 
 Route::post('login','API\AuthController@login');
 Route::middleware('auth:api')->post('logout','API\AuthController@logout');
+
 Route::get('news','API\NewsController@allnews');
+Route::get('news/{id}','API\NewsController@detail');
+
 Route::get('event','API\EventController@allevents');
+Route::get('event/{id}','API\EventController@detail');
+
+Route::get('promo','API\PromoController@allpromos');
+Route::get('promo/normal','API\PromoController@promonormal');
+Route::get('promo/hot','API\PromoController@promohot');
+Route::get('promo/{id}','API\PromoController@detail');
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
