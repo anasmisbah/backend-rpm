@@ -136,18 +136,18 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="pages/gallery.html" class="nav-link">
-                    <i class="nav-icon far fa-user"></i>
+                <a href="{{route('company.index')}}" class="nav-link {{ Request::segment(1) == 'corporate'?'active':'' }}">
+                    <i class="nav-icon far fa-building"></i>
                     <p>
-                    User
+                    Distributor
                     </p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{route('company.index')}}" class="nav-link {{ Request::segment(1) == 'corporate'?'active':'' }}">
-                    <i class="nav-icon far fa-building"></i>
+                <a href="pages/gallery.html" class="nav-link">
+                    <i class="nav-icon far fa-user"></i>
                     <p>
-                    Corporate
+                    User
                     </p>
                 </a>
             </li>
