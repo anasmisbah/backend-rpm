@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCompanyprofilesTable extends Migration
+class CreateDistributorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateCompanyprofilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('companyprofiles', function (Blueprint $table) {
+        Schema::create('distributors', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('url');
+            $table->enum('member',['gold','silver','platinum'])->nullable();
+            $table->text('address');
+            $table->text('contact');
             $table->timestamps();
-        });
+      });
     }
 
     /**
@@ -28,6 +30,6 @@ class CreateCompanyprofilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('companyprofiles');
+        Schema::dropIfExists('corporates');
     }
 }

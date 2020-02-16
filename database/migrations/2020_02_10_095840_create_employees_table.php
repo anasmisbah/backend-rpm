@@ -19,9 +19,11 @@ class CreateEmployeesTable extends Migration
             $table->text('address');
             $table->string('phone');
             $table->string('avatar')->default('avatars/default.jpg');
-
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->unsignedBigInteger('distributor_id');
+            $table->foreign('distributor_id')->references('id')->on('distributors')->onDelete('cascade');
 
             $table->timestamps();
         });

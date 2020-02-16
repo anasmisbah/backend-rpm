@@ -144,26 +144,18 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a href="{{route('company.index')}}" class="nav-link {{ Request::segment(1) == 'corporate'?'active':'' }}">
+                    <i class="nav-icon far fa-building"></i>
+                    <p>
+                    Corporate
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="{{route('company.index')}}" class="nav-link {{ Request::segment(1) == 'company'?'active':'' }}">
                     <i class="nav-icon far fa-building"></i>
                     <p>
-                    Company Profile
-                    </p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{route('contactperson.index')}}" class="nav-link {{ Request::segment(1) == 'contactperson'?'active':'' }}">
-                    <i class="nav-icon far fa-id-card"></i>
-                    <p>
-                    Contact Person
-                    </p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{route('cpdistributor.index')}}" class="nav-link {{ Request::segment(1) == 'cpdistributor'?'active':'' }}">
-                    <i class="nav-icon far fa-address-book"></i>
-                    <p>
-                    Contact Person Distributor
+                    Company
                     </p>
                 </a>
             </li>
