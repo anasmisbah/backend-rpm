@@ -4,17 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Event extends Model
+class Admin extends Model
 {
-
     protected $fillable = [
-        'title','description','image','slug','user_id'
+        'name','address','phone','avatar','user_id'
     ];
-
-    public function category()
-    {
-        return $this->belongsToMany('App\Category');
-    }
 
     public function user()
     {

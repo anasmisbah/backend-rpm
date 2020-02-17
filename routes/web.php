@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('home');
 });
 
+Auth::routes();
+
 Route::resource('category', 'CategoryController');
 Route::resource('news', 'NewsController');
 Route::resource('event', 'EventController');
