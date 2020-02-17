@@ -21,7 +21,7 @@ class CreateEmployeesTable extends Migration
             $table->string('avatar')->default('avatars/default.jpg');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
+            $table->enum('type',['owner','employee'])->nullable();
             $table->unsignedBigInteger('distributor_id');
             $table->foreign('distributor_id')->references('id')->on('distributors')->onDelete('cascade');
 

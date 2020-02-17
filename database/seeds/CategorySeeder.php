@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 
-class UserSeeder extends Seeder
+class CategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,64 +11,61 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        DB::table('categories')->insert([
             [
-                'email' => 'admin@mail.com',
-                'password'=>Hash::make("123123"),
-                'role_id'=>1,
+                'name' => 'sport',
+                'slug' =>'sport',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
-                'email' => 'subadmin@mail.com',
-                'password'=>Hash::make("123123"),
-                'role_id'=>2,
+                'name' => 'politic',
+                'slug' =>'politic',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
-                'email' => 'ownerpertamina@mail.com',
-                'password'=>Hash::make("123123"),
-                'role_id'=>3,
+                'name' => 'comedy',
+                'slug' =>'comedy',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
-                'email' => 'employeepertamina@mail.com',
-                'password'=>Hash::make("123123"),
-                'role_id'=>3,
+                'name' => 'love',
+                'slug' =>'love',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
-                'email' => 'ownerpupukkaltim@mail.com',
-                'password'=>Hash::make("123123"),
-                'role_id'=>3,
+                'name' => 'romance',
+                'slug' =>'romance',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
-                'email' => 'employeepupukkaltim@mail.com',
-                'password'=>Hash::make("123123"),
-                'role_id'=>3,
+                'name' => 'disaster',
+                'slug' =>'disaster',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
-                'email' => 'ownerbadaklng@mail.com',
-                'password'=>Hash::make("123123"),
-                'role_id'=>3,
+                'name' => 'religi',
+                'slug' =>'religi',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
-                'email' => 'employeebadaklng@mail.com',
-                'password'=>Hash::make("123123"),
-                'role_id'=>3,
+                'name' => 'food',
+                'slug' =>'food',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'name' => 'goverment',
+                'slug' =>'goverment',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]
-
         ]);
     }
 }

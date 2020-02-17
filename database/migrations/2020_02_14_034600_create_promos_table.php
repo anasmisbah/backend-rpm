@@ -22,6 +22,9 @@ class CreatePromosTable extends Migration
             $table->bigInteger('point');
             $table->bigInteger('total');
             $table->enum('status',['normal','hot']);
+
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

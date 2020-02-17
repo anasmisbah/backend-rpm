@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class RoleSeeder extends Seeder
+class AdminSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,19 +11,20 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('roles')->insert([
+        DB::table('admins')->insert([
             [
-                'name' => 'admin',
+                'name' => 'administrator',
+                'address'=>'jl perpasan',
+                'phone'=>'085746575',
+                'user_id'=>1,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
-                'name' => 'adminsub',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
-            ],
-            [
-                'name' => 'distributor',
+                'name' => 'sub administrator',
+                'address'=>'jl halimau',
+                'phone'=>'08522541236',
+                'user_id'=>2,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]
