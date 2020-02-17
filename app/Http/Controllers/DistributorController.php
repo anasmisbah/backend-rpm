@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Distributor;
 
 class DistributorController extends Controller
 {
@@ -13,7 +14,9 @@ class DistributorController extends Controller
      */
     public function index()
     {
-        //
+        $distributors = Distributor::all();
+
+        return view('distributor.index',compact('distributors'));
     }
 
     /**
@@ -23,7 +26,7 @@ class DistributorController extends Controller
      */
     public function create()
     {
-        //
+        return view('distributor.create');
     }
 
     /**
@@ -34,7 +37,25 @@ class DistributorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'address'=>'required',
+            'member'=>'required',
+            'phone'=>'required',
+            'email'=>'required',
+            'website'=>'required'
+        ]);
+
+        Distributor::create([
+            'name'=>$request->name,
+            'address'=>$request->address,
+            'member'=>$request->member,
+            'phone'=>$request->phone,
+            'email'=>$request->email,
+            'website'=>$request->website
+        ]);
+
+        return redirect()->back()->with('status','Successfully created Distributor');
     }
 
     /**
@@ -45,7 +66,9 @@ class DistributorController extends Controller
      */
     public function show($id)
     {
-        //
+        $distributor = Distributor::findOrFail($id);
+
+        return view('distributor.detail',compact('distributor'));
     }
 
     /**
@@ -56,7 +79,9 @@ class DistributorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $distributor = Distributor::findOrFail($id);
+
+        return view('distributor.edit',compact('distributor'));
     }
 
     /**
@@ -68,7 +93,27 @@ class DistributorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $distributor = Distributor::findOrFail($id);
+
+        $request->validate([
+            'name'=>'required',
+            'address'=>'required',
+            'member'=>'required',
+            'phone'=>'required',
+            'email'=>'required',
+            'website'=>'required'
+        ]);
+
+        $distributor->update([
+            'name'=>$request->name,
+            'address'=>$request->address,
+            'member'=>$request->member,
+            'phone'=>$request->phone,
+            'email'=>$request->email,
+            'website'=>$request->website
+        ]);
+
+        return redirect()->back()->with('status','Successfully updated Distributor');
     }
 
     /**
@@ -79,6 +124,9 @@ class DistributorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $distributor = Distributor::findOrFail($id);
+        $distributor->delete();
+
+        return redirect()->back()->with('status','Successfully deleted Distributor');
     }
 }
