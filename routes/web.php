@@ -27,7 +27,6 @@ Route::middleware(['auth'])->group(function (){
     Route::resource('news', 'NewsController');
     Route::resource('event', 'EventController');
     Route::resource('promo', 'PromoController');
-    Route::resource('company', 'CompanyprofileController');
     Route::resource('distributor', 'DistributorController');
 
     Route::get('employee/distributor/{id}','EmployeeController@index')->name('employee.distributor.index');
@@ -42,5 +41,11 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/user/{id}','UserController@show')->name('user.show');
 
     Route::resource('admin', 'AdminController');
+
+    Route::get('/company','CompanyController@index')->name('company.index');
+    Route::get('/company/edit','CompanyController@edit')->name('company.edit');
+    Route::put('/company/{id}','CompanyController@update')->name('company.update');
+    Route::get('/company/profile/download','CompanyController@download')->name('company.profile.download');
+
 
 });

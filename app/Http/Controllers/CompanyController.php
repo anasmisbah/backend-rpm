@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Company;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
 {
@@ -57,7 +58,7 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
         $company = Company::first();
 
@@ -107,10 +108,10 @@ class CompanyController extends Controller
         $company->update([
             'name'=>$request->name,
             'description'=>$request->description,
-            'contact'=>$request->contact
+            'contact'=>$request->contact,
         ]);
 
-        return redirect()->route('company.index');
+        return redirect()->route('company.index')->with('status','successfully update');
     }
 
     /**
@@ -122,5 +123,19 @@ class CompanyController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function download()
+    {
+        $company = Company::first();
+        // $url = Storage::url("$company->profile");
+        $url =public_path().'/storage/'.$company->profile;
+
+        // dd(asset($company->profile));
+        // response()->download($file, 'filename.pdf', $headers);
+        $headers = [
+            'Content-Type' => 'application/pdf',
+         ];
+        return response()->download($url, 'companyprofile.pdf', $headers);
     }
 }

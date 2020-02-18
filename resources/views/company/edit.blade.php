@@ -8,7 +8,7 @@
 @section('content-header')
 <div class="row mb-2">
     <div class="col-sm-6">
-      <h1 class="m-0 text-dark">Company Profile</h1>
+      <h1 class="m-0 text-dark">Company Profile {{$company->name}}</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
       <ol class="breadcrumb float-sm-right">
@@ -25,14 +25,21 @@
             <!-- Horizontal Form -->
             <div class="card card-info">
                 <div class="card-header">
-                  <h3 class="card-title">Update Company Profile</h3>
+                  <h3 class="card-title">Update Company Profile {{$company->name}}</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form class="form-horizontal" action="{{route('company.update',$company->id)}}" method="POST">
+                <form class="form-horizontal" action="{{route('company.update',$company->id)}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                   <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Logo</label>
+                        <div class="col-sm-6 col-lg-6 col-md-6">
+                            <img class="img-thumbnail" id="image_con" width="150px" src="{{asset('/storage/'.$company->logo)}}" alt="">
+                          <input type="file" class="form-control" id="image" name="logo">
+                        </div>
+                      </div>
                     <div class="form-group row">
                       <label for="name" class="col-sm-2 col-form-label">Name</label>
                       <div class="col-sm-6 col-lg-6 col-md-6">
@@ -40,11 +47,23 @@
                       </div>
                     </div>
                     <div class="form-group row">
-                        <label for="url" class="col-sm-2 col-form-label">Url</label>
+                        <label for="description" class="col-sm-2 col-form-label">Description</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                          <input type="text" class="form-control"  value="{{$company->url}}" id="url" name="url" placeholder="company url">
+                            <input type="text" class="form-control" value="{{$company->description}}" id="description" name="description" placeholder="Company description">
                         </div>
-                      </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="contact" class="col-sm-2 col-form-label">Contact</label>
+                        <div class="col-sm-6 col-lg-6 col-md-6">
+                            <input type="text" class="form-control" value="{{$company->contact}}" id="contact" name="contact" placeholder="Company contact">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="name" class="col-sm-2 col-form-label">Profile (Pdf)</label>
+                        <div class="col-sm-6 col-lg-6 col-md-6">
+                            <input type="file" class="form-control" id="image" name="profile">
+                        </div>
+                    </div>
                   </div>
                   <!-- /.card-body -->
                   <div class="card-footer">
@@ -79,5 +98,22 @@
             })
         }
     });
+</script>
+<script>
+    //menampilkan foto setiap ada perubahan pada modal tambah
+    $('#image').on('change', function() {
+        readURL(this);
+    });
+        function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#image_con').attr('src', e.target.result);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 </script>
 @endpush
