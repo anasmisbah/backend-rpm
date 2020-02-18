@@ -20,8 +20,8 @@ class CreateEventsTable extends Migration
             $table->string('image')->default('images/default.jpg');
             $table->string('slug');
 
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('created_by');
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

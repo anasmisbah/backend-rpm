@@ -7,6 +7,7 @@ use App\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -57,7 +58,8 @@ class EventController extends Controller
             'title'=>$request->title,
             'description'=>$request->description,
             'image'=>$image,
-            'slug'=>Str::slug($request->title)
+            'slug'=>Str::slug($request->title),
+            'created_by'=>Auth::user()->id
         ]);
 
         $event->category()->attach($request->category);
@@ -121,7 +123,8 @@ class EventController extends Controller
         $event->update([
             'title'=>$request->title,
             'description'=>$request->description,
-            'slug'=>Str::slug($request->title)
+            'slug'=>Str::slug($request->title),
+            'created_by'=>Auth::user()->id
         ]);
 
         $event->category()->sync($request->category);
@@ -143,6 +146,6 @@ class EventController extends Controller
         }
         $event->delete();
 
-        return redirect()->route('event.index');
+        return redirect()->back()->with('status','Successfully Deleted Event');
     }
 }
