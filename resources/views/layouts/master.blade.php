@@ -95,7 +95,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-header">Home</li>
             <li class="nav-item ">
-                <a href="pages/gallery.html" class="nav-link">
+                <a href="{{route('home.index')}}" class="nav-link">
                     <i class="nav-icon fas fa-home"></i>
                     <p>
                     Beranda

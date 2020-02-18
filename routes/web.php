@@ -21,7 +21,7 @@ Auth::routes();
 Route::middleware(['auth'])->group(function (){
     Route::get('/', function () {
         return view('home');
-    });
+    })->name('home.index');
 
     Route::resource('category', 'CategoryController');
     Route::resource('news', 'NewsController');
