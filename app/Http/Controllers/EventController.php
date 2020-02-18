@@ -148,4 +148,11 @@ class EventController extends Controller
 
         return redirect()->back()->with('status','Successfully Deleted Event');
     }
+
+    public function read($slug)
+    {
+        $event = Event::where('slug',$slug)->first();
+
+        return view('event.read',compact('event'));
+    }
 }
