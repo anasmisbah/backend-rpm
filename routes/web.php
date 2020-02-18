@@ -41,4 +41,6 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/user','UserController@index')->name('user.index');
     Route::get('/user/{id}','UserController@show')->name('user.show');
 
+    Route::resource('admin', 'AdminController');
+
 });

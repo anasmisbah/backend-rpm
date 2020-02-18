@@ -145,9 +145,17 @@
             </li>
             <li class="nav-item">
                 <a href="{{route('user.index')}}" class="nav-link {{ Request::segment(1) == 'user'?'active':'' }}">
-                    <i class="nav-icon far fa-user"></i>
+                    <i class="nav-icon fa fa-users"></i>
                     <p>
                     User
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('admin.index')}}" class="nav-link {{ Request::segment(1) == 'admin'?'active':'' }}">
+                    <i class="nav-icon far fa-user"></i>
+                    <p>
+                    Admin
                     </p>
                 </a>
             </li>
