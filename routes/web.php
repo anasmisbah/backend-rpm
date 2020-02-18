@@ -28,4 +28,5 @@ Route::middleware(['auth'])->group(function (){
     Route::resource('event', 'EventController');
     Route::resource('promo', 'PromoController');
     Route::resource('company', 'CompanyprofileController');
+    Route::resource('distributor', 'DistributorController');
 });

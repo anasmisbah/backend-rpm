@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Distributor;
-
+use Illuminate\Support\Facades\Storage;
 class DistributorController extends Controller
 {
     /**
@@ -37,14 +37,20 @@ class DistributorController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'name'=>'required',
             'address'=>'required',
             'member'=>'required',
-            'phone'=>'required',
-            'email'=>'required',
-            'website'=>'required'
+            'phone'=>'required'
         ]);
+        $logo='';
+        if ($request->file('logo')) {
+            $request->validate([
+                'logo'=>'mimes:jpeg,bmp,png,jpg,ico',
+            ]);
+            $logo = $request->file('logo')->store('logos','public');
+        }
 
         Distributor::create([
             'name'=>$request->name,
@@ -52,7 +58,8 @@ class DistributorController extends Controller
             'member'=>$request->member,
             'phone'=>$request->phone,
             'email'=>$request->email,
-            'website'=>$request->website
+            'website'=>$request->website,
+            'logo'=>$logo
         ]);
 
         return redirect()->back()->with('status','Successfully created Distributor');
@@ -99,10 +106,20 @@ class DistributorController extends Controller
             'name'=>'required',
             'address'=>'required',
             'member'=>'required',
-            'phone'=>'required',
-            'email'=>'required',
-            'website'=>'required'
+            'phone'=>'required'
         ]);
+
+        if ($request->file('logo')) {
+            $request->validate([
+                'logo'=>'mimes:jpeg,bmp,png,jpg,ico',
+            ]);
+            if (!($distributor->logo == "logos/default.jpg") && file_exists(storage_path('app/public/'.$distributor->logo))) {
+                Storage::delete('public/'.$distributor->logo);
+            }
+            $distributor->update([
+                'logo'=> $request->file('logo')->store('logos','public')
+            ]);
+        }
 
         $distributor->update([
             'name'=>$request->name,
@@ -125,6 +142,9 @@ class DistributorController extends Controller
     public function destroy($id)
     {
         $distributor = Distributor::findOrFail($id);
+        if (!($distributor->logo == "logos/default.jpg") && file_exists(storage_path('app/public/'.$distributor->logo))) {
+            Storage::delete('public/'.$distributor->logo);
+        }
         $distributor->delete();
 
         return redirect()->back()->with('status','Successfully deleted Distributor');

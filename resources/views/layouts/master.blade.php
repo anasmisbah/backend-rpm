@@ -136,7 +136,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{route('company.index')}}" class="nav-link {{ Request::segment(1) == 'corporate'?'active':'' }}">
+                <a href="{{route('distributor.index')}}" class="nav-link {{ Request::segment(1) == 'distributor'?'active':'' }}">
                     <i class="nav-icon far fa-building"></i>
                     <p>
                     Distributor
