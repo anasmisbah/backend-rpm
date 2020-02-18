@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Promo;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class PromoController extends Controller
 {
@@ -60,7 +61,8 @@ class PromoController extends Controller
             'slug'=>Str::slug($request->title),
             'point'=>$request->point,
             'status'=>$request->status,
-            'total'=>$request->total
+            'total'=>$request->total,
+            'created_by'=>Auth::user()->id
         ]);
 
 
@@ -127,7 +129,8 @@ class PromoController extends Controller
             'slug'=>Str::slug($request->title),
             'point'=>$request->point,
             'status'=>$request->status,
-            'total'=>$request->total
+            'total'=>$request->total,
+            'created_by'=>Auth::user()->id
         ]);
 
         return redirect()->back()->with('status','Successfully Updated Promo');
