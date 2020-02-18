@@ -73,6 +73,9 @@
                       <a href="{{route('news.show',$new->id)}}" class="btn btn-info btn-sm">
                         <i class="fas fa-eye"></i>
                       </a>
+                      <a href="{{route('news.read',$new->slug)}}" class="btn btn-info btn-sm">
+                        <i class="fas fa-book"></i>
+                      </a>
                     </td>
                   </tr>
                   @endforeach

@@ -153,4 +153,11 @@ class NewsController extends Controller
         return redirect()->back()->with('status','Successfully Deleted News');
 
     }
+
+    public function read($slug)
+    {
+        $news = News::where('slug',$slug)->first();
+
+        return view('news.read',compact('news'));
+    }
 }
