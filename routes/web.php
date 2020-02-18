@@ -11,16 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+
 
 Auth::routes();
 
-Route::resource('category', 'CategoryController');
-Route::resource('news', 'NewsController');
-Route::resource('event', 'EventController');
-Route::resource('promo', 'PromoController');
-Route::resource('company', 'CompanyprofileController');
-Route::resource('contactperson', 'ContactpersonController');
-Route::resource('cpdistributor', 'CpdistributorController');
+
+
+
+Route::middleware(['auth'])->group(function (){
+    Route::get('/', function () {
+        return view('home');
+    });
+
+    Route::resource('category', 'CategoryController');
+    Route::resource('news', 'NewsController');
+    Route::resource('event', 'EventController');
+    Route::resource('promo', 'PromoController');
+    Route::resource('company', 'CompanyprofileController');
+});
