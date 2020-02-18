@@ -144,7 +144,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="pages/gallery.html" class="nav-link">
+                <a href="{{route('user.index')}}" class="nav-link {{ Request::segment(1) == 'user'?'active':'' }}">
                     <i class="nav-icon far fa-user"></i>
                     <p>
                     User

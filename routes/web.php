@@ -38,4 +38,7 @@ Route::middleware(['auth'])->group(function (){
     Route::post('employee/distributor/store','EmployeeController@store')->name('employee.distributor.store');
     Route::put('employee/distributor/update/{id}','EmployeeController@update')->name('employee.distributor.update');
 
+    Route::get('/user','UserController@index')->name('user.index');
+    Route::get('/user/{id}','UserController@show')->name('user.show');
+
 });
