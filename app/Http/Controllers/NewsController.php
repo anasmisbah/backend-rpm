@@ -7,6 +7,7 @@ use App\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 
 class NewsController extends Controller
@@ -55,12 +56,12 @@ class NewsController extends Controller
             ]);
             $image = $request->file('image')->store('images','public');
         }
-
         $news = News::create([
             'title'=>$request->title,
             'description'=>$request->description,
             'image'=>$image,
-            'slug'=>Str::slug($request->title)
+            'slug'=>Str::slug($request->title),
+            'created_by'=>Auth::user()->id
         ]);
 
         $news->category()->attach($request->category);
@@ -124,7 +125,8 @@ class NewsController extends Controller
         $news->update([
             'title'=>$request->title,
             'description'=>$request->description,
-            'slug'=>Str::slug($request->title)
+            'slug'=>Str::slug($request->title),
+            'created_by'=>Auth::user()->id
         ]);
 
         $news->category()->sync($request->category);
@@ -148,7 +150,7 @@ class NewsController extends Controller
         }
         $news->delete();
 
-        return redirect()->route('news.index');
+        return redirect()->back()->with('status','Successfully Deleted News');
 
     }
 }

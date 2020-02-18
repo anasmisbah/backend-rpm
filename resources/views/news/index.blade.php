@@ -1,8 +1,10 @@
 @extends('layouts.master')
 
 @push('css')
-  <!-- DataTables -->
-  <link rel="stylesheet" href="{{asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="{{asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
 @endpush
 
 @section('content-header')
@@ -88,9 +90,29 @@
 <!-- DataTables -->
 <script src="{{asset('plugins/datatables/jquery.dataTables.js')}}"></script>
 <script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>
+<!-- SweetAlert2 -->
+<script src="{{asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 <script>
     $(function () {
       $("#example1").DataTable();
     });
   </script>
+<script>
+    $(function() {
+        const status = '{{ Session("status") }}'
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+        if (status) {
+            Toast.fire({
+                type: 'success',
+                title: status
+            })
+        }
+    });
+</script>
 @endpush
