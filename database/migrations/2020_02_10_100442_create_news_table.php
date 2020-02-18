@@ -19,7 +19,7 @@ class CreateNewsTable extends Migration
             $table->longText('description');
             $table->string('image')->default('images/default.jpg');
             $table->string('slug');
-
+            $table->bigInteger('view')->default(0);
             $table->unsignedBigInteger('created_by');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
