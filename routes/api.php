@@ -27,6 +27,7 @@ Route::get('promo/normal','API\PromoController@promonormal');
 Route::get('promo/hot','API\PromoController@promohot');
 Route::get('promo/{id}','API\PromoController@detail');
 
+Route::get('home','API\HomeController@home');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

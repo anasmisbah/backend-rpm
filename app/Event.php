@@ -16,8 +16,8 @@ class Event extends Model
         return $this->belongsToMany('App\Category');
     }
 
-    public function user()
+    public function createdby()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'created_by','id');
     }
 }
