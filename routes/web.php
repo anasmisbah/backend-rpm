@@ -15,7 +15,9 @@
 
 Auth::routes();
 
-
+Route::get('/link', function () {
+    Artisan::call('storage:link');
+});
 
 
 Route::middleware(['auth'])->group(function (){
