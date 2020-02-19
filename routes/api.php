@@ -29,6 +29,14 @@ Route::get('promo/{id}','API\PromoController@detail');
 
 Route::get('home','API\HomeController@home');
 
+Route::get('company/profile','API\CompanyController@profile');
+Route::get('company/contact','API\CompanyController@contact');
+
+Route::group(['middleware' => ['auth:api']], function () {
+    Route::get('/me','API\UserController@me');
+
+});
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
