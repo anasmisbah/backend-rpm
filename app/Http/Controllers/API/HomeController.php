@@ -51,6 +51,7 @@ class HomeController extends Controller
                 'point'=>$promo->point,
                 'total'=>$promo->total,
                 'view'=>$promo->view,
+                'status'=>$promo->status,
                 'created_at'=>$promo->created_at->format('d F Y'),
                 'created_by'=>$promo->createdby->admin->name,
 

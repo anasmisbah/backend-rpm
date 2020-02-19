@@ -15,10 +15,15 @@ class PromoController extends Controller
         foreach ($promos as $key => $promo) {
             $data[]=[
                 'id'=> $promo->id,
-                'name'=> $promo->name,
-                'status'=>$promo->status,
+                'title'=> $promo->name,
                 'image'=> url('/storage/' . $promo->image),
-                'point'=> $promo->point
+                'description'=> $promo->description,
+                'point'=>$promo->point,
+                'total'=>$promo->total,
+                'view'=>$promo->view,
+                'status'=>$promo->status,
+                'created_at'=>$promo->created_at->format('d F Y'),
+                'created_by'=>$promo->createdby->admin->name,
             ];
         }
         return response()->json($data,200);
@@ -31,9 +36,15 @@ class PromoController extends Controller
         foreach ($promo as $key => $promo) {
             $data[]=[
                 'id'=> $promo->id,
-                'name'=> $promo->name,
+                'title'=> $promo->name,
                 'image'=> url('/storage/' . $promo->image),
-                'point'=> $promo->point
+                'description'=> $promo->description,
+                'point'=>$promo->point,
+                'total'=>$promo->total,
+                'view'=>$promo->view,
+                'status'=>$promo->status,
+                'created_at'=>$promo->created_at->format('d F Y'),
+                'created_by'=>$promo->createdby->admin->name,
             ];
         }
         return response()->json($data,200);
@@ -46,9 +57,15 @@ class PromoController extends Controller
         foreach ($promo as $key => $promo) {
             $data[]=[
                 'id'=> $promo->id,
-                'name'=> $promo->name,
+                'title'=> $promo->name,
                 'image'=> url('/storage/' . $promo->image),
-                'point'=> $promo->point
+                'description'=> $promo->description,
+                'point'=>$promo->point,
+                'total'=>$promo->total,
+                'view'=>$promo->view,
+                'status'=>$promo->status,
+                'created_at'=>$promo->created_at->format('d F Y'),
+                'created_by'=>$promo->createdby->admin->name,
             ];
         }
         return response()->json($data,200);
@@ -65,13 +82,15 @@ class PromoController extends Controller
         }
         $data=[
             'id'=> $promo->id,
-            'name'=> $promo->name,
-            'description'=>$promo->description,
-            'status'=>$promo->status,
+            'title'=> $promo->name,
             'image'=> url('/storage/' . $promo->image),
-            'point'=> $promo->point,
+            'description'=> $promo->description,
+            'point'=>$promo->point,
             'total'=>$promo->total,
+            'view'=>$promo->view,
+            'status'=>$promo->status,
             'created_at'=>$promo->created_at->format('d F Y'),
+            'created_by'=>$promo->createdby->admin->name,
         ];
         return response()->json($data,200);
     }
