@@ -18,7 +18,9 @@ class EventController extends Controller
                 'title'=> $event->title,
                 'image'=> url('/storage/' . $event->image),
                 'url'=> url('/event/read/'.$event->slug),
+                'view'=>$event->view,
                 'created_at'=>$event->created_at->format('d F Y'),
+                'created_by'=>$event->createdby->admin->name,
                 'category'=>$event->category->makeHidden(['created_at','updated_at','pivot','slug'])
             ];
         }
@@ -35,12 +37,18 @@ class EventController extends Controller
                     'message'=>'Event not found'
                 ],404);
         }
+        $view = $event->view;
+        $event->update([
+            'view'=>$view+1
+        ]);
         $data=[
             'id'=> $event->id,
             'title'=> $event->title,
             'image'=> url('/storage/' . $event->image),
             'url'=> url('/event/read/'.$event->slug),
+            'view'=>$event->view,
             'created_at'=>$event->created_at->format('d F Y'),
+            'created_by'=>$event->createdby->admin->name,
             'category'=>$event->category->makeHidden(['created_at','updated_at','pivot','slug'])
         ];
         return response()->json($data,200);

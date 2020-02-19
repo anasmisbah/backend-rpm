@@ -18,7 +18,9 @@ class NewsController extends Controller
                 'title'=> $new->title,
                 'image'=> url('/storage/' . $new->image),
                 'url'=> url('/news/read/'.$new->slug),
+                'view'=>$new->view,
                 'created_at'=>$new->created_at->format('d F Y'),
+                'created_by'=>$new->createdby->admin->name,
                 'category'=>$new->category->makeHidden(['created_at','updated_at','pivot','slug'])
             ];
         }
@@ -34,12 +36,18 @@ class NewsController extends Controller
                     'message'=>'news not found'
                 ],404);
         }
+        $view = $news->view;
+        $news->update([
+            'view'=>$view+1
+        ]);
         $data=[
             'id'=> $news->id,
             'title'=> $news->title,
             'image'=> url('/storage/' . $news->image),
             'url'=> url('/news/read/'.$news->slug),
+            'view'=>$news->view,
             'created_at'=>$news->created_at->format('d F Y'),
+            'created_by'=>$news->createdby->admin->name,
             'category'=>$news->category->makeHidden(['created_at','updated_at','pivot','slug'])
         ];
         return response()->json($data,200);
