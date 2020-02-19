@@ -3,6 +3,8 @@
 <html>
 @include('layouts.partials.head')
 <body class="hold-transition sidebar-mini layout-fixed  accent-warning">
+<div class="se-pre-con"></div>
+
 <div class="wrapper">
 
   <!-- Navbar -->
