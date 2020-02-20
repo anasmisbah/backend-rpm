@@ -25,6 +25,11 @@ Route::middleware(['auth'])->group(function (){
         return view('home');
     })->name('home.index');
 
+    Route::get('/user/profile','UserController@profile')->name('profile.user');
+    Route::get('/user/profile/edit','UserController@profileedit')->name('profile.edit');
+    Route::put('/user/profile','UserController@profileupdate')->name('profile.update');
+
+
     Route::resource('category', 'CategoryController');
     Route::resource('news', 'NewsController');
     Route::resource('event', 'EventController');

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
+
 class UserController extends Controller
 {
     /**
@@ -84,5 +86,59 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function profile()
+    {
+        $user = Auth::user();
+
+        return view('auth.profile',compact('user'));
+    }
+
+    public function profileedit()
+    {
+        $user = Auth::user();
+
+        return view('auth.edit',compact('user'));
+    }
+
+    public function profileupdate(Request $request)
+    {
+        $admin = Auth::user()->admin;
+        $request->validate([
+            'name'=>'required',
+            'address'=>'required',
+            'phone'=>'required',
+            'email'=>'required',
+        ]);
+
+        if ($request->file('avatar')) {
+            $request->validate([
+                'avatar'=>'mimes:jpeg,bmp,png,jpg,ico',
+            ]);
+            if (!($admin->avatar == "avatars/default.jpg") && file_exists(storage_path('app/public/'.$admin->avatar))) {
+                Storage::delete('public/'.$admin->avatar);
+            }
+            $admin->update([
+                'avatar'=> $request->file('avatar')->store('avatars','public')
+            ]);
+        }
+
+        $admin->update([
+            'name'=>$request->name,
+            'address'=>$request->address,
+            'phone'=>$request->phone,
+        ]);
+
+        $admin->user()->update([
+            'email'=>$request->email,
+        ]);
+
+        if ($request->password) {
+            $admin->user()->update([
+                'password'=>Hash::make($request->password),
+            ]);
+        }
+        return redirect()->route('profile.user')->with('status','successfully Updated Admin');
     }
 }
