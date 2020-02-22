@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="{{asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="{{asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+
 @endpush
 
 @section('content-header')
@@ -22,14 +24,14 @@
 @endsection
 @section('content')
 <div class="row">
-    <div class="col-12">
+    <div class="col-md-12">
         <div class="card">
             <div class="card-header">
               <h3 class="card-title">Data User</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table style="width:100%" id="example1" class="table table-bordered table-striped dt-responsive nowrap">
                 <thead>
                 <tr>
                   <th>No</th>
@@ -69,6 +71,9 @@
 <script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>
 <!-- SweetAlert2 -->
 <script src="{{asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+
 <script>
     $(function () {
       $("#example1").DataTable();
