@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\News;
 use App\Event;
 use App\Promo;
+use App\Company;
 class HomeController extends Controller
 {
     public function home()
@@ -41,9 +42,9 @@ class HomeController extends Controller
             ];
         }
 
-        $promos = Promo::limit(8)->get();
+        $promos = Promo::where('status','hot')->limit(8)->get();
         foreach ($promos as $key => $promo) {
-            $data['promo'][]=[
+            $data['hot'][]=[
                 'id'=> $promo->id,
                 'title'=> $promo->name,
                 'image'=> url('/storage/' . $promo->image),
@@ -54,9 +55,28 @@ class HomeController extends Controller
                 'status'=>$promo->status,
                 'created_at'=>$promo->created_at->format('d F Y'),
                 'created_by'=>$promo->createdby->admin->name,
-
             ];
         }
+
+        $promos = Promo::where('status','normal')->limit(8)->get();
+        foreach ($promos as $key => $promo) {
+            $data['normal'][]=[
+                'id'=> $promo->id,
+                'title'=> $promo->name,
+                'image'=> url('/storage/' . $promo->image),
+                'description'=> $promo->description,
+                'point'=>$promo->point,
+                'total'=>$promo->total,
+                'view'=>$promo->view,
+                'status'=>$promo->status,
+                'created_at'=>$promo->created_at->format('d F Y'),
+                'created_by'=>$promo->createdby->admin->name,
+            ];
+        }
+        $company = Company::first();
+        $company->logo = url('/storage/' . $company->logo );
+        $company->profile =  url('/storage/' . $company->profile );
+        $data['company'] = $company;
         return response()->json($data, 200);
 
     }
