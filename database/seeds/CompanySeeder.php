@@ -14,6 +14,7 @@ class CompanySeeder extends Seeder
         DB::table('company')->insert([
             [
                 'name' => 'PT Pertamina',
+                'email'=>'company@mail.com',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ]

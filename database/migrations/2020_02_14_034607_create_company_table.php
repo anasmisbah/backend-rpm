@@ -19,8 +19,9 @@ class CreateCompanyTable extends Migration
             $table->string('logo')->default('logos/default.jpg');
             $table->longText('description')->nullable();
             $table->string('profile')->nullable();
-            $table->string('contact')->nullable();
-            $table->string('contact_detail')->nullable();
+            $table->string('email');
+            $table->string('phone')->nullable();
+            $table->string('website')->nullable();
             $table->timestamps();
         });
     }

@@ -53,9 +53,21 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="contact" class="col-sm-2 col-form-label">Contact</label>
+                        <label for="email" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                            <input type="text" class="form-control" value="{{$company->contact}}" id="contact" name="contact" placeholder="Company contact">
+                            <input type="email" class="form-control" value="{{$company->email}}" id="email" name="email" placeholder="Company email">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="phone" class="col-sm-2 col-form-label">Phone Number</label>
+                        <div class="col-sm-6 col-lg-6 col-md-6">
+                            <input type="text" class="form-control" value="{{$company->phone}}" id="phone" name="phone" placeholder="Company phone number">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="website" class="col-sm-2 col-form-label">Website</label>
+                        <div class="col-sm-6 col-lg-6 col-md-6">
+                            <input type="text" class="form-control" value="{{$company->website}}" id="website" name="website" placeholder="Company website">
                         </div>
                     </div>
                     <div class="form-group row">

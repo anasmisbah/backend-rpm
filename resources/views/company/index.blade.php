@@ -45,8 +45,16 @@
                     <td>{{$company->description}}</td>
                 </tr>
                 <tr>
-                    <td style="width:10%">Contact</td>
-                    <td>{{$company->contact}}</td>
+                    <td style="width:10%">Email</td>
+                    <td>{{$company->email}}</td>
+                </tr>
+                <tr>
+                    <td style="width:10%">Phone Number</td>
+                    <td>{{$company->phone}}</td>
+                </tr>
+                <tr>
+                    <td style="width:10%">Website</td>
+                    <td>{{$company->website}}</td>
                 </tr>
                 <tr>
                     <td style="width:10%">Unduh</td>

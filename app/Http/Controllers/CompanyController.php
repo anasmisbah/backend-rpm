@@ -77,7 +77,8 @@ class CompanyController extends Controller
         $company = Company::findOrFail($id);
 
         $request->validate([
-            'name'=>'required'
+            'name'=>'required',
+            'email'=>'required'
         ]);
 
         if ($request->file('logo')) {
@@ -108,7 +109,9 @@ class CompanyController extends Controller
         $company->update([
             'name'=>$request->name,
             'description'=>$request->description,
-            'contact'=>$request->contact,
+            'email'=>$request->email,
+            'phone'=>$request->phone,
+            'website'=>$request->website
         ]);
 
         return redirect()->route('company.index')->with('status','successfully update');

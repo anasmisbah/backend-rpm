@@ -91,12 +91,6 @@
 <!-- SweetAlert2 -->
 <script src="{{asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 <script>
-  $(function () {
-    //Initialize Select2 Elements
-    $('#select-category').select2()
-  });
-</script>
-<script>
     //menampilkan foto setiap ada perubahan pada modal tambah
     $('#image').on('change', function() {
         readURL(this);
