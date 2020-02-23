@@ -7,6 +7,7 @@ use App\Promo;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use File;
 
 class PromoController extends Controller
 {
@@ -51,7 +52,8 @@ class PromoController extends Controller
             $request->validate([
                 'image'=>'mimes:jpeg,bmp,png,jpg,ico',
             ]);
-            $image = $request->file('image')->store('images','public');
+            $image = 'images/'.time().$request->file('image')->getClientOriginalName();
+            $request->file('image')->move('uploads/images', $image);
         }
 
         $promo = Promo::create([
@@ -115,11 +117,13 @@ class PromoController extends Controller
             $request->validate([
                 'image'=>'mimes:jpeg,bmp,png,jpg,ico',
             ]);
-            if (!($promo->image == "images/default.jpg") && file_exists(storage_path('app/public/'.$promo->image))) {
-                Storage::delete('public/'.$promo->image);
+            if (!($promo->image == "images/default.jpg") && file_exists('uploads/'.$promo->image)) {
+                File::delete('uploads/'.$promo->image);
             }
+            $image = 'images/'.time().$request->file('image')->getClientOriginalName();
+            $request->file('image')->move('uploads/images', $image);
             $promo->update([
-                'image'=> $request->file('image')->store('images','public')
+                'image'=> $image
             ]);
         }
 
@@ -145,8 +149,8 @@ class PromoController extends Controller
     public function destroy($id)
     {
         $promo = Promo::findOrFail($id);
-        if (!($promo->image == "images/default.jpg") && file_exists(storage_path('app/public/'.$promo->image))) {
-            Storage::delete('public/'.$promo->image);
+        if (!($promo->image == "images/default.jpg") && file_exists('uploads/'.$promo->image)) {
+            File::delete('uploads/'.$promo->image);
         }
         $promo->delete();
 

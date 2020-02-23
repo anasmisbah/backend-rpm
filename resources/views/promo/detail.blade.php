@@ -57,7 +57,7 @@
               </tr>
               <tr>
                 <td style="width:10%">Image</td>
-                <td><img class="img-thumbnail" width="150px" src="{{asset("/storage/".$promo->image)}}" alt=""></td>
+                <td><img class="img-thumbnail" width="150px" src="{{asset("/uploads/".$promo->image)}}" alt=""></td>
               </tr>
             </tbody>
           </table>
