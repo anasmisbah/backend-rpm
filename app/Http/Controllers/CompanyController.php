@@ -88,10 +88,10 @@ class CompanyController extends Controller
             if (!($company->logo == "logos/default.jpg") && file_exists('uploads/'.$company->logo)) {
                 File::delete('uploads/'.$company->logo);
             }
-            $new_gambar = 'logos/'.time().$request->file('logo')->getClientOriginalName();
-            $request->file('logo')->move('uploads/logos', $new_gambar);
+            $logo = 'logos/'.time().$request->file('logo')->getClientOriginalName();
+            $request->file('logo')->move('uploads/logos', $logo);
             $company->update([
-                'logo'=> $new_gambar
+                'logo'=> $logo
             ]);
         }
 
@@ -99,11 +99,13 @@ class CompanyController extends Controller
             $request->validate([
                 'profile'=>'mimes:pdf',
             ]);
-            if ($company->profile && file_exists(storage_path('app/public/'.$company->profile))) {
-                Storage::delete('public/'.$company->profile);
+            if ($company->profile && file_exists('uploads/'.$company->profile)) {
+                File::delete('uploads/'.$company->logo);
             }
+            $profile = 'profile/'.time().$request->file('profile')->getClientOriginalName();
+            $request->file('profile')->move('uploads/profile', $profile);
             $company->update([
-                'profile'=> $request->file('profile')->store('profiles','public')
+                'profile'=> $profile
             ]);
         }
 
@@ -134,7 +136,7 @@ class CompanyController extends Controller
     {
         $company = Company::first();
         // $url = Storage::url("$company->profile");
-        $url =public_path().'/storage/'.$company->profile;
+        $url =public_path().'/uploads/'.$company->profile;
 
         // dd(asset($company->profile));
         // response()->download($file, 'filename.pdf', $headers);
