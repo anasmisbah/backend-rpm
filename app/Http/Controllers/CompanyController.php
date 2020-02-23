@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Company;
 use Illuminate\Support\Facades\Storage;
-
+use File;
 class CompanyController extends Controller
 {
     /**
@@ -85,11 +85,13 @@ class CompanyController extends Controller
             $request->validate([
                 'logo'=>'mimes:jpeg,bmp,png,jpg,ico',
             ]);
-            if (!($company->logo == "logos/default.jpg") && file_exists(storage_path('app/public/'.$company->logo))) {
-                Storage::delete('public/'.$company->logo);
+            if (!($company->logo == "logos/default.jpg") && file_exists('uploads/'.$company->logo)) {
+                File::delete('uploads/'.$company->logo);
             }
+            $new_gambar = 'logos/'.time().$request->file('logo')->getClientOriginalName();
+            $request->file('logo')->move('uploads/logos', $new_gambar);
             $company->update([
-                'logo'=> $request->file('logo')->store('logos','public')
+                'logo'=> $new_gambar
             ]);
         }
 
