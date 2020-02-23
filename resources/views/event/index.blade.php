@@ -58,7 +58,7 @@
                         <small class="badge badge-info"><i class="fas fa-tag"></i> {{$category->name}}</small>
                         @endforeach
                     </td>
-                    <td><img class="img-thumbnail" width="50px" src="{{asset("/storage/".$event->image)}}" alt=""></td>
+                    <td><img class="img-thumbnail" width="50px" src="{{asset("/uploads/".$event->image)}}" alt=""></td>
                     <td>
                       <a href="{{route('event.edit',$event->id)}}" class="btn btn-warning btn-sm">
                         <i class="fas fa-edit"></i>

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use File;
 
 class EventController extends Controller
 {
@@ -51,7 +52,8 @@ class EventController extends Controller
             $request->validate([
                 'image'=>'mimes:jpeg,bmp,png,jpg,ico',
             ]);
-            $image = $request->file('image')->store('images','public');
+            $image = 'images/'.time().$request->file('image')->getClientOriginalName();
+            $request->file('image')->move('uploads/images', $image);
         }
 
         $event = Event::create([
@@ -112,11 +114,13 @@ class EventController extends Controller
             $request->validate([
                 'image'=>'mimes:jpeg,bmp,png,jpg,ico',
             ]);
-            if (!($event->image == "images/default.jpg") && file_exists(storage_path('app/public/'.$event->image))) {
-                Storage::delete('public/'.$event->image);
+            if (!($event->image == "images/default.jpg") && file_exists('uploads/'.$event->image)) {
+                File::delete('uploads/'.$event->image);
             }
+            $image = 'images/'.time().$request->file('image')->getClientOriginalName();
+            $request->file('image')->move('uploads/images', $image);
             $event->update([
-                'image'=> $request->file('image')->store('images','public')
+                'image'=> $image
             ]);
         }
 
@@ -141,8 +145,8 @@ class EventController extends Controller
     public function destroy($id)
     {
         $event = Event::findOrFail($id);
-        if (!($event->image == "images/default.jpg") && file_exists(storage_path('app/public/'.$event->image))) {
-            Storage::delete('public/'.$event->image);
+        if (!($event->image == "images/default.jpg") && file_exists('uploads/'.$event->image)) {
+            File::delete('uploads/'.$event->image);
         }
         $event->delete();
 
