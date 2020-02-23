@@ -77,6 +77,7 @@ class HomeController extends Controller
         $company->logo = url('/storage/' . $company->logo );
         $company->profile =  url('/storage/' . $company->profile );
         $data['company'] = $company;
+        $data['contact'] = $company;
         return response()->json($data, 200);
 
     }
