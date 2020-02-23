@@ -62,7 +62,7 @@
                             <small class="badge badge-danger"> {{$distributor->member}}</small>
                         @endif
                     </td>
-                    <td><img class="img-thumbnail" width="50px" src="{{asset("/storage/".$distributor->logo)}}" alt=""></td>
+                    <td><img class="img-thumbnail" width="50px" src="{{asset("/uploads/".$distributor->logo)}}" alt=""></td>
                     <td>
                         <a href="{{route('employee.distributor.index',$distributor->id)}}" class="btn btn-primary btn-sm">
                         <i class="fa fa-users"></i>

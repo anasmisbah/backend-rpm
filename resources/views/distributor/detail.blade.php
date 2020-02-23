@@ -35,7 +35,7 @@
             <tbody>
                 <tr>
                     <td style="width:15%">Logo</td>
-                    <td><img class="img-thumbnail" width="150px" src="{{asset("/storage/".$distributor->logo)}}" alt=""></td>
+                    <td><img class="img-thumbnail" width="150px" src="{{asset("/uploads/".$distributor->logo)}}" alt=""></td>
                 </tr>
               <tr>
                 <td style="width:15%">Name</td>

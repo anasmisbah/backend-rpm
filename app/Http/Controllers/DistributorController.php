@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Distributor;
 use Illuminate\Support\Facades\Storage;
+use File;
+
 class DistributorController extends Controller
 {
     /**
@@ -49,7 +51,8 @@ class DistributorController extends Controller
             $request->validate([
                 'logo'=>'mimes:jpeg,bmp,png,jpg,ico',
             ]);
-            $logo = $request->file('logo')->store('logos','public');
+            $logo = 'logos/'.time().$request->file('logo')->getClientOriginalName();
+            $request->file('logo')->move('uploads/logos', $logo);
         }
 
         Distributor::create([
@@ -113,11 +116,13 @@ class DistributorController extends Controller
             $request->validate([
                 'logo'=>'mimes:jpeg,bmp,png,jpg,ico',
             ]);
-            if (!($distributor->logo == "logos/default.jpg") && file_exists(storage_path('app/public/'.$distributor->logo))) {
-                Storage::delete('public/'.$distributor->logo);
+            if (!($distributor->logo == "logos/default.jpg") && file_exists('uploads/'.$distributor->logo)) {
+                File::delete('uploads/'.$distributor->logo);
             }
+            $logo = 'logos/'.time().$request->file('logo')->getClientOriginalName();
+            $request->file('logo')->move('uploads/logos', $logo);
             $distributor->update([
-                'logo'=> $request->file('logo')->store('logos','public')
+                'logo'=> $logo
             ]);
         }
 
@@ -142,8 +147,8 @@ class DistributorController extends Controller
     public function destroy($id)
     {
         $distributor = Distributor::findOrFail($id);
-        if (!($distributor->logo == "logos/default.jpg") && file_exists(storage_path('app/public/'.$distributor->logo))) {
-            Storage::delete('public/'.$distributor->logo);
+        if (!($distributor->logo == "logos/default.jpg") && file_exists('uploads/'.$distributor->logo)) {
+            File::delete('uploads/'.$distributor->logo);
         }
         $distributor->delete();
 

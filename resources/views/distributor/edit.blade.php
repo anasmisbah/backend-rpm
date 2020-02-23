@@ -80,7 +80,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Logo</label>
                             <div class="col-sm-6 col-lg-6 col-md-6">
-                                <img class="img-thumbnail" id="image_con" width="150px" src="{{asset('/storage/'.$distributor->logo)}}" alt="">
+                                <img class="img-thumbnail" id="image_con" width="150px" src="{{asset('/uploads/'.$distributor->logo)}}" alt="">
                               <input type="file" class="form-control" id="image" name="logo">
                             </div>
                           </div>
