@@ -7,6 +7,8 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Admin;
+use File;
+
 class AdminController extends Controller
 {
     /**
@@ -59,7 +61,8 @@ class AdminController extends Controller
             $request->validate([
                 'avatar'=>'mimes:jpeg,bmp,png,jpg,ico',
             ]);
-            $avatar = $request->file('avatar')->store('avatars','public');
+            $avatar = 'avatars/'.time().$request->file('avatar')->getClientOriginalName();
+            $request->file('avatar')->move('uploads/avatars', $avatar);
         }
 
         $user->admin()->create([
@@ -120,11 +123,13 @@ class AdminController extends Controller
             $request->validate([
                 'avatar'=>'mimes:jpeg,bmp,png,jpg,ico',
             ]);
-            if (!($admin->avatar == "avatars/default.jpg") && file_exists(storage_path('app/public/'.$admin->avatar))) {
-                Storage::delete('public/'.$admin->avatar);
+            if (!($admin->avatar == "avatars/default.jpg") && file_exists('uploads/'.$admin->avatar)) {
+                File::delete('uploads/'.$admin->avatar);
             }
+            $avatar = 'avatars/'.time().$request->file('avatar')->getClientOriginalName();
+            $request->file('avatar')->move('uploads/avatars', $avatar);
             $admin->update([
-                'avatar'=> $request->file('avatar')->store('avatars','public')
+                'avatar'=> $avatar
             ]);
         }
 
@@ -157,8 +162,8 @@ class AdminController extends Controller
     {
         $admin = Admin::findOrFail($id);
         $user = $admin->user;
-        if (!($admin->avatar == "avatars/default.jpg") && file_exists(storage_path('app/public/'.$admin->avatar))) {
-            Storage::delete('public/'.$admin->avatar);
+        if (!($admin->avatar == "avatars/default.jpg") && file_exists('uploads/'.$admin->avatar)) {
+            File::delete('uploads/'.$admin->avatar);
         }
         $admin->delete();
         $user->delete();

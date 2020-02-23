@@ -56,7 +56,7 @@
                     <td>
                         <small class="badge {{$admin->user->role->id == 1?'badge-danger':'badge-info'}}"> {{$admin->user->role->name}}</small>
                     </td>
-                    <td><img class="img-thumbnail" width="50px" src="{{asset("/storage/".$admin->avatar)}}" alt=""></td>
+                    <td><img class="img-thumbnail" width="50px" src="{{asset("/uploads/".$admin->avatar)}}" alt=""></td>
                     <td>
                         <a href="{{route('admin.edit',$admin->id)}}" class="btn btn-warning btn-sm">
                             <i class="fas fa-edit"></i>
