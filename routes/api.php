@@ -34,6 +34,7 @@ Route::get('company/contact','API\CompanyController@contact');
 
 Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/me','API\UserController@me');
+    Route::post('promo/take','API\PromoController@takepromo');
 
 });
 

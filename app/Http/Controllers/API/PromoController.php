@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Promo;
+use Illuminate\Support\Facades\Auth;
+
 
 class PromoController extends Controller
 {
@@ -93,5 +95,40 @@ class PromoController extends Controller
             'created_by'=>$promo->createdby->admin->name,
         ];
         return response()->json($data,200);
+    }
+
+    public function takepromo(Request $request)
+    {
+        $employee = Auth::user()->employee;
+        $distributor = $employee->distributor;
+        if ($employee->type == 'employee') {
+            return response()->json([
+                'status'=>false,
+                'message'=>'incorrect access'
+            ],400);
+        }
+        $promo = Promo::where('id',$request->promo_id)->first();
+
+        if (!$promo) {
+            return response()->json([
+                'status'=>false,
+                'message'=>'promo not found'
+            ], 404);
+        }
+        if ($distributor->loyalty < $promo->point) {
+            return response()->json([
+                'status'=>false,
+                'message'=>'you dont have enough point to take this promo'
+            ], 400);
+        }
+
+        $distributor->update([
+            'loyalty'=>($distributor->loyalty) - ($promo->point),
+            'coupon'=>$distributor->coupon + 1
+        ]);
+         return response()->json([
+            'status'=>true,
+            'message'=>'Successfully take promo'
+        ], 200);
     }
 }
