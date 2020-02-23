@@ -8,6 +8,8 @@ use App\Employee;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use File;
+
 
 class EmployeeController extends Controller
 {
@@ -64,7 +66,8 @@ class EmployeeController extends Controller
             $request->validate([
                 'avatar'=>'mimes:jpeg,bmp,png,jpg,ico',
             ]);
-            $avatar = $request->file('avatar')->store('avatars','public');
+            $avatar = 'avatars/'.time().$request->file('avatar')->getClientOriginalName();
+            $request->file('avatar')->move('uploads/avatars', $avatar);
         }
 
         $user->employee()->create([
@@ -128,11 +131,14 @@ class EmployeeController extends Controller
             $request->validate([
                 'avatar'=>'mimes:jpeg,bmp,png,jpg,ico',
             ]);
-            if (!($employee->avatar == "avatars/default.jpg") && file_exists(storage_path('app/public/'.$employee->avatar))) {
-                Storage::delete('public/'.$employee->avatar);
+            if (!($employee->avatar == "avatars/default.jpg") && file_exists('uploads/'.$employee->avatar)) {
+                File::delete('uploads/'.$employee->avatar);
             }
+            $avatar = 'avatars/'.time().$request->file('avatar')->getClientOriginalName();
+            $request->file('avatar')->move('uploads/avatars', $avatar);
+
             $employee->update([
-                'avatar'=> $request->file('avatar')->store('avatars','public')
+                'avatar'=> $avatar
             ]);
         }
 
@@ -165,8 +171,8 @@ class EmployeeController extends Controller
     {
         $employee = Employee::findOrFail($id);
         $user = $employee->user;
-        if (!($employee->avatar == "avatars/default.jpg") && file_exists(storage_path('app/public/'.$employee->avatar))) {
-            Storage::delete('public/'.$employee->avatar);
+        if (!($employee->avatar == "avatars/default.jpg") && file_exists('uploads/'.$employee->avatar)) {
+            File::delete('uploads/'.$employee->avatar);
         }
         $employee->delete();
         $user->delete();

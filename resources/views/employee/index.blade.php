@@ -57,7 +57,7 @@
                     <td>
                         <small class="badge {{$employee->type == 'owner'?'badge-danger':'badge-info'}}"> {{$employee->type}}</small>
                     </td>
-                    <td><img class="img-thumbnail" width="50px" src="{{asset("/storage/".$employee->avatar)}}" alt=""></td>
+                    <td><img class="img-thumbnail" width="50px" src="{{asset("/uploads/".$employee->avatar)}}" alt=""></td>
                     <td>
                         <a href="{{route('employee.distributor.edit',$employee->id)}}" class="btn btn-warning btn-sm">
                             <i class="fas fa-edit"></i>
