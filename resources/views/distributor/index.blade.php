@@ -82,6 +82,9 @@
                         <a href="{{route('distributor.show',$distributor->id)}}" class="btn btn-info btn-sm">
                             <i class="fas fa-eye"></i>
                         </a>
+                        <a href="{{route('distributor.point',$distributor->id)}}" class="btn btn-info btn-sm">
+                            <i class="fas fa-coins"></i>
+                        </a>
                     </td>
                   </tr>
                   @endforeach

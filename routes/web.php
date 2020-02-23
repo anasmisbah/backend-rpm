@@ -36,6 +36,9 @@ Route::middleware(['auth'])->group(function (){
     Route::resource('promo', 'PromoController');
     Route::resource('distributor', 'DistributorController');
 
+    Route::get('distributor/point/{id}','DistributorController@point')->name('distributor.point');
+    Route::put('distributor/point/update/{id}','DistributorController@updatePoint')->name('distributor.point.update');
+
     Route::get('employee/distributor/{id}','EmployeeController@index')->name('employee.distributor.index');
     Route::get('employee/distributor/create/{id}','EmployeeController@create')->name('employee.distributor.create');
     Route::get('employee/distributor/detail/{id}','EmployeeController@show')->name('employee.distributor.show');

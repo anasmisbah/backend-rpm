@@ -15,6 +15,10 @@ class AddLoyaltyColumn extends Migration
     {
         Schema::table('distributors', function (Blueprint $table) {
             $table->bigInteger('loyalty')->default(0);
+            $table->bigInteger('reward')->default(0);
+            $table->bigInteger('coupon')->default(0);
+            $table->bigInteger('transaction')->default(0);
+
         });
     }
 
@@ -27,6 +31,10 @@ class AddLoyaltyColumn extends Migration
     {
         Schema::table('distributors', function (Blueprint $table) {
             $table->dropColumn('loyalty');
+            $table->dropColumn('reward');
+            $table->dropColumn('coupon');
+            $table->dropColumn('transaction');
+
         });
     }
 }

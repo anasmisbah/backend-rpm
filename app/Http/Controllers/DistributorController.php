@@ -149,4 +149,33 @@ class DistributorController extends Controller
 
         return redirect()->back()->with('status','Successfully deleted Distributor');
     }
+
+
+
+    public function point($id)
+    {
+        $distributor = Distributor::findOrFail($id);
+
+        return view('distributor.point',compact('distributor'));
+    }
+
+    public function updatePoint(Request $request,$id)
+    {
+        $distributor = Distributor::findOrFail($id);
+        $request->validate([
+            'reward'=>'required',
+            'coupon'=>'required',
+            'transaction'=>'required',
+            'loyalty'=>'required'
+        ]);
+
+        $distributor->update([
+            'reward'=>$request->reward,
+            'coupon'=>$request->coupon,
+            'transaction'=>$request->transaction,
+            'loyalty'=>$request->loyalty
+        ]);
+
+        return redirect()->back()->with('status','successfully update point');
+    }
 }

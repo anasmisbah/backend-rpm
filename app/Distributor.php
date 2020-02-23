@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Distributor extends Model
 {
     protected $fillable = [
-        'name','address','member','phone','email','website','logo','loyalty'
+        'name','address','member','phone','email','website','logo','loyalty','reward','coupon','transaction'
     ];
 
     public function employees()
