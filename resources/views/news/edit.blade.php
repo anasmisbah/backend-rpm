@@ -46,7 +46,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Image</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                            <img class="img-thumbnail" id="image_con" width="150px" src="{{asset("/storage/".$news->image)}}" alt="">
+                            <img class="img-thumbnail" id="image_con" width="150px" src="{{asset("/uploads/".$news->image)}}" alt="">
                           <input type="file" id="image" class="form-control" id="image" name="image">
                         </div>
                       </div>

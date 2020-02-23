@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use File;
 
 
 class NewsController extends Controller
@@ -54,7 +55,8 @@ class NewsController extends Controller
             $request->validate([
                 'image'=>'mimes:jpeg,bmp,png,jpg,ico',
             ]);
-            $image = $request->file('image')->store('images','public');
+            $image = 'images/'.time().$request->file('image')->getClientOriginalName();
+            $request->file('image')->move('uploads/images', $image);
         }
         $news = News::create([
             'title'=>$request->title,
@@ -114,11 +116,13 @@ class NewsController extends Controller
             $request->validate([
                 'image'=>'mimes:jpeg,bmp,png,jpg,ico',
             ]);
-            if (!($news->image == "images/default.jpg") && file_exists(storage_path('app/public/'.$news->image))) {
-                Storage::delete('public/'.$news->image);
+            if (!($news->image == "images/default.jpg") && file_exists('uploads/'.$news->image)) {
+                File::delete('uploads/'.$news->image);
             }
+            $image = 'images/'.time().$request->file('image')->getClientOriginalName();
+            $request->file('image')->move('uploads/images', $image);
             $news->update([
-                'image'=> $request->file('image')->store('images','public')
+                'image'=> $image
             ]);
         }
 
@@ -145,8 +149,8 @@ class NewsController extends Controller
     public function destroy($id)
     {
         $news = News::findOrFail($id);
-        if (!($news->image == "images/default.jpg") && file_exists(storage_path('app/public/'.$news->image))) {
-            Storage::delete('public/'.$news->image);
+        if (!($news->image == "images/default.jpg") && file_exists('uploads/'.$news->image)) {
+            File::delete('uploads/'.$news->image);
         }
         $news->delete();
 
