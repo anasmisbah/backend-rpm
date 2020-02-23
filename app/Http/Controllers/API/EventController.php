@@ -16,7 +16,7 @@ class EventController extends Controller
             $data[]=[
                 'id'=> $event->id,
                 'title'=> $event->title,
-                'image'=> url('/storage/' . $event->image),
+                'image'=> url('/uploads/' . $event->image),
                 'url'=> url('/event/read/'.$event->slug),
                 'view'=>$event->view,
                 'created_at'=>$event->created_at->format('d F Y'),
@@ -44,7 +44,7 @@ class EventController extends Controller
         $data=[
             'id'=> $event->id,
             'title'=> $event->title,
-            'image'=> url('/storage/' . $event->image),
+            'image'=> url('/uploads/' . $event->image),
             'url'=> url('/event/read/'.$event->slug),
             'view'=>$event->view,
             'created_at'=>$event->created_at->format('d F Y'),

@@ -18,7 +18,7 @@ class PromoController extends Controller
             $data[]=[
                 'id'=> $promo->id,
                 'title'=> $promo->name,
-                'image'=> url('/storage/' . $promo->image),
+                'image'=> url('/uploads/' . $promo->image),
                 'description'=> $promo->description,
                 'point'=>$promo->point,
                 'total'=>$promo->total,
@@ -39,7 +39,7 @@ class PromoController extends Controller
             $data[]=[
                 'id'=> $promo->id,
                 'title'=> $promo->name,
-                'image'=> url('/storage/' . $promo->image),
+                'image'=> url('/uploads/' . $promo->image),
                 'description'=> $promo->description,
                 'point'=>$promo->point,
                 'total'=>$promo->total,
@@ -60,7 +60,7 @@ class PromoController extends Controller
             $data[]=[
                 'id'=> $promo->id,
                 'title'=> $promo->name,
-                'image'=> url('/storage/' . $promo->image),
+                'image'=> url('/uploads/' . $promo->image),
                 'description'=> $promo->description,
                 'point'=>$promo->point,
                 'total'=>$promo->total,
@@ -85,7 +85,7 @@ class PromoController extends Controller
         $data=[
             'id'=> $promo->id,
             'title'=> $promo->name,
-            'image'=> url('/storage/' . $promo->image),
+            'image'=> url('/uploads/' . $promo->image),
             'description'=> $promo->description,
             'point'=>$promo->point,
             'total'=>$promo->total,

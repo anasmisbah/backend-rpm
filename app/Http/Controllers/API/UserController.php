@@ -16,14 +16,14 @@ class UserController extends Controller
         //     'id'=>$user->id,
         //     'name'=>$user->employee->name,
         //     'email'=>$user->email,
-        //     'avatar'=>url('/storage/' . $user->employee->avatar),
+        //     'avatar'=>url('/uploads/' . $user->employee->avatar),
         //     'address'=>$user->employee->address,
         //     'role'=>$user->role->name,
         //     'type'=>$user->employee->type
         // ];
-        $user->employee->avatar = url('/storage/' . $user->employee->avatar);
+        $user->employee->avatar = url('/uploads/' . $user->employee->avatar);
         $user->role;
-        $user->employee->distributor->logo= url('/storage/' . $user->employee->distributor->logo);
+        $user->employee->distributor->logo= url('/uploads/' . $user->employee->distributor->logo);
         return response()->json($user, 200);
     }
 }

@@ -14,11 +14,12 @@ class HomeController extends Controller
     {
         $news = News::limit(8)->get();
         $data = [];
+        $data['news']=[];
         foreach ($news as $key => $new) {
             $data['news'][]=[
                 'id'=> $new->id,
                 'title'=> $new->title,
-                'image'=> url('/storage/' . $new->image),
+                'image'=> url('/uploads/' . $new->image),
                 'url'=> url('/news/read/'.$new->slug),
                 'view'=>$new->view,
                 'created_at'=>$new->created_at->format('d F Y'),
@@ -29,11 +30,12 @@ class HomeController extends Controller
         }
 
         $events = Event::limit(8)->get();
+        $data['event']=[];
         foreach ($events as $key => $event) {
             $data['event'][]=[
                 'id'=> $event->id,
                 'title'=> $event->title,
-                'image'=> url('/storage/' . $event->image),
+                'image'=> url('/uploads/' . $event->image),
                 'url'=> url('/event/read/'.$event->slug),
                 'view'=>$event->view,
                 'created_at'=>$event->created_at->format('d F Y'),
@@ -43,11 +45,12 @@ class HomeController extends Controller
         }
 
         $promos = Promo::where('status','hot')->limit(8)->get();
+        $data['hot']=[];
         foreach ($promos as $key => $promo) {
             $data['hot'][]=[
                 'id'=> $promo->id,
                 'title'=> $promo->name,
-                'image'=> url('/storage/' . $promo->image),
+                'image'=> url('/uploads/' . $promo->image),
                 'description'=> $promo->description,
                 'point'=>$promo->point,
                 'total'=>$promo->total,
@@ -59,11 +62,12 @@ class HomeController extends Controller
         }
 
         $promos = Promo::where('status','normal')->limit(8)->get();
+        $data['normal']=[];
         foreach ($promos as $key => $promo) {
             $data['normal'][]=[
                 'id'=> $promo->id,
                 'title'=> $promo->name,
-                'image'=> url('/storage/' . $promo->image),
+                'image'=> url('/uploads/' . $promo->image),
                 'description'=> $promo->description,
                 'point'=>$promo->point,
                 'total'=>$promo->total,
@@ -74,8 +78,8 @@ class HomeController extends Controller
             ];
         }
         $company = Company::first();
-        $company->logo = url('/storage/' . $company->logo );
-        $company->profile =  url('/storage/' . $company->profile );
+        $company->logo = url('/uploads/' . $company->logo );
+        $company->profile =  url('/uploads/' . $company->profile );
         $data['company'] = $company;
         $data['contact'] = $company;
         return response()->json($data, 200);

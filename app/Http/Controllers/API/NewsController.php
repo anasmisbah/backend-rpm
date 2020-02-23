@@ -16,7 +16,7 @@ class NewsController extends Controller
             $data[]=[
                 'id'=> $new->id,
                 'title'=> $new->title,
-                'image'=> url('/storage/' . $new->image),
+                'image'=> url('/uploads/' . $new->image),
                 'url'=> url('/news/read/'.$new->slug),
                 'view'=>$new->view,
                 'created_at'=>$new->created_at->format('d F Y'),
@@ -43,7 +43,7 @@ class NewsController extends Controller
         $data=[
             'id'=> $news->id,
             'title'=> $news->title,
-            'image'=> url('/storage/' . $news->image),
+            'image'=> url('/uploads/' . $news->image),
             'url'=> url('/news/read/'.$news->slug),
             'view'=>$news->view,
             'created_at'=>$news->created_at->format('d F Y'),

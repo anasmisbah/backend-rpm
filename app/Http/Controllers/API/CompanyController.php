@@ -12,16 +12,16 @@ class CompanyController extends Controller
     public function profile()
     {
         $company = Company::first();
-        $company->logo = url('/storage/' . $company->logo );
-        $company->profile =  url('/storage/' . $company->profile );
+        $company->logo = url('/uploads/' . $company->logo );
+        $company->profile =  url('/uploads/' . $company->profile );
         return response()->json($company, 200);
     }
 
     public function contact()
     {
         $company = Company::first();
-        $company->logo = url('/storage/' . $company->logo );
-        $company->profile =  url('/storage/' . $company->profile );
+        $company->logo = url('/uploads/' . $company->logo );
+        $company->profile =  url('/uploads/' . $company->profile );
         return response()->json($company, 200);
     }
 }
