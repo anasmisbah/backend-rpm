@@ -33,6 +33,7 @@ Route::get('company/profile','API\CompanyController@profile');
 Route::get('company/contact','API\CompanyController@contact');
 
 Route::group(['middleware' => ['auth:api']], function () {
+    Route::get('user/home','API\HomeController@homelogin');
     Route::get('/me','API\UserController@me');
     Route::post('promo/take','API\PromoController@takepromo');
 

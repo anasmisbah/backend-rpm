@@ -19,6 +19,8 @@ Route::get('/link', function () {
     Artisan::call('storage:link');
 });
 
+Route::get('news/read/{slug}','NewsController@read')->name('news.read');
+Route::get('event/read/{slug}','EventController@read')->name('event.read');
 
 Route::middleware(['auth'])->group(function (){
     Route::get('/', function () {
@@ -57,7 +59,5 @@ Route::middleware(['auth'])->group(function (){
     Route::put('/company/{id}','CompanyController@update')->name('company.update');
     Route::get('/company/profile/download','CompanyController@download')->name('company.profile.download');
 
-    Route::get('news/read/{slug}','NewsController@read')->name('news.read');
-    Route::get('event/read/{slug}','EventController@read')->name('event.read');
 
 });

@@ -2,7 +2,7 @@
   <aside class="main-sidebar sidebar-dark-warning elevation-4">
     <!-- Brand Logo -->
     <a href="{{route('home.index')}}" class="brand-link">
-      <img src="{{asset('/storage/logos/default.jpg')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      <img src="{{asset('/uploads/logos/default.jpg')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">RPM</span>
     </a>

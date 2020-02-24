@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Promo;
 use Illuminate\Support\Facades\Auth;
-
+use Carbon\Carbon;
 
 class PromoController extends Controller
 {
@@ -101,11 +101,12 @@ class PromoController extends Controller
     {
         $employee = Auth::user()->employee;
         $distributor = $employee->distributor;
+        $date = Carbon::now();
         if ($employee->type == 'employee') {
             return response()->json([
                 'status'=>false,
                 'message'=>'incorrect access'
-            ],400);
+            ],401);
         }
         $promo = Promo::where('id',$request->promo_id)->first();
 
@@ -128,7 +129,16 @@ class PromoController extends Controller
         ]);
          return response()->json([
             'status'=>true,
-            'message'=>'Successfully take promo'
+            'message'=>'Successfully take promo',
+            'data'=>[
+                'title'=> $promo->name,
+                'image'=> url('/uploads/' . $promo->image),
+                'description'=> $promo->description,
+                'point'=>$promo->point,
+                'total'=>$promo->total,
+                'status'=>$promo->status,
+                'date'=>$date->format('d F Y')
+            ]
         ], 200);
     }
 }
