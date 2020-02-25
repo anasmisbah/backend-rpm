@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Promo;
 use App\Distributor;
-use App\news;
+use App\News;
 use App\Event;
 
 class HomeController extends Controller
