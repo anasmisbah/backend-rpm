@@ -144,5 +144,7 @@ class CompanyController extends Controller
             'Content-Type' => 'application/pdf',
          ];
         return response()->download($url, 'companyprofile.pdf', $headers);
+        // return response()->file($url, $headers);
+
     }
 }

@@ -82,6 +82,7 @@ class HomeController extends Controller
         $company = Company::first();
         $company->logo = url('/uploads/' . $company->logo );
         $company->profile =  url('/uploads/' . $company->profile );
+        $company->profiledownload = url('/company/profile/download');
         $data['company'] = $company;
         $data['contact'] = $company;
         return response()->json($data, 200);
@@ -163,6 +164,7 @@ class HomeController extends Controller
         $company = Company::first();
         $company->logo = url('/uploads/' . $company->logo );
         $company->profile =  url('/uploads/' . $company->profile );
+        $company->profiledownload = url('/company/profile/download');
         $data['company'] = $company;
         $data['contact'] = $company;
         return response()->json($data, 200);

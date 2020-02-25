@@ -20,6 +20,7 @@ Route::get('event/read/{slug}','EventController@read')->name('event.read');
 Route::get('401', function () {
     return view('auth.401');
 })->name('error.401');
+Route::get('/company/profile/download','CompanyController@download')->name('company.profile.download');
 
 Route::middleware(['auth','admin'])->group(function (){
     Route::get('/', 'HomeController@index')->name('home.index');
@@ -56,6 +57,5 @@ Route::middleware(['auth','admin'])->group(function (){
         Route::get('/company','CompanyController@index')->name('company.index');
         Route::get('/company/edit','CompanyController@edit')->name('company.edit');
         Route::put('/company/{id}','CompanyController@update')->name('company.update');
-        Route::get('/company/profile/download','CompanyController@download')->name('company.profile.download');
     });
 });
