@@ -23,9 +23,7 @@ Route::get('news/read/{slug}','NewsController@read')->name('news.read');
 Route::get('event/read/{slug}','EventController@read')->name('event.read');
 
 Route::middleware(['auth'])->group(function (){
-    Route::get('/', function () {
-        return view('home');
-    })->name('home.index');
+    Route::get('/', 'HomeController@index')->name('home.index');
 
     Route::get('/user/profile','UserController@profile')->name('profile.user');
     Route::get('/user/profile/edit','UserController@profileedit')->name('profile.edit');
