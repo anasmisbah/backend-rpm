@@ -32,7 +32,7 @@
             <tbody>
                 <tr>
                     <td style="width:15%">Avatar</td>
-                    <td><img class="img-thumbnail" width="150px" src="{{asset("/storage/".$user->admin->avatar)}}" alt=""></td>
+                    <td><img class="img-thumbnail" width="150px" src="{{asset("/uploads/".$user->admin->avatar)}}" alt=""></td>
                 </tr>
               <tr>
                 <td style="width:15%">Name</td>

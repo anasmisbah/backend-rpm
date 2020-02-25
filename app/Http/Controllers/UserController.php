@@ -116,11 +116,13 @@ class UserController extends Controller
             $request->validate([
                 'avatar'=>'mimes:jpeg,bmp,png,jpg,ico',
             ]);
-            if (!($admin->avatar == "avatars/default.jpg") && file_exists(storage_path('app/public/'.$admin->avatar))) {
-                Storage::delete('public/'.$admin->avatar);
+            if (!($admin->avatar == "avatars/default.jpg") && file_exists('uploads/'.$admin->avatar)) {
+                File::delete('uploads/'.$admin->avatar);
             }
+            $avatar = 'avatars/'.time().$request->file('avatar')->getClientOriginalName();
+            $request->file('avatar')->move('uploads/avatars', $avatar);
             $admin->update([
-                'avatar'=> $request->file('avatar')->store('avatars','public')
+                'avatar'=> $avatar
             ]);
         }
 

@@ -32,6 +32,24 @@
                 </a>
             </li>
             <li class="nav-header">Menu</li>
+            @if (auth()->user()->role_id == 2)
+            <li class="nav-item">
+                <a href="{{route('news.index')}}" class="nav-link {{ Request::segment(1) == 'news'?'active':'' }}">
+                    <i class="nav-icon far fa-newspaper"></i>
+                    <p>
+                    News
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('event.index')}}" class="nav-link {{ Request::segment(1) == 'event'?'active':'' }}">
+                    <i class="nav-icon far fa-calendar"></i>
+                    <p>
+                    Event
+                    </p>
+                </a>
+            </li>
+            @else
             <li class="nav-item">
                 <a href="{{route('promo.index')}}" class="nav-link {{ Request::segment(1) == 'promo'?'active':'' }}">
                     <i class="nav-icon fa fa-ad"></i>
@@ -96,6 +114,7 @@
                     </p>
                 </a>
             </li>
+            @endif
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
