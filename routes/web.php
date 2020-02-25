@@ -15,14 +15,13 @@
 
 Auth::routes();
 
-Route::get('/link', function () {
-    Artisan::call('storage:link');
-});
-
 Route::get('news/read/{slug}','NewsController@read')->name('news.read');
 Route::get('event/read/{slug}','EventController@read')->name('event.read');
+Route::get('401', function () {
+    return view('auth.401');
+})->name('error.401');
 
-Route::middleware(['auth'])->group(function (){
+Route::middleware(['auth','admin'])->group(function (){
     Route::get('/', 'HomeController@index')->name('home.index');
 
     Route::get('/user/profile','UserController@profile')->name('profile.user');
