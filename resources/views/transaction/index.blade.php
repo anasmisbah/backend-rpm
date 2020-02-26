@@ -12,12 +12,13 @@
 @section('content-header')
 <div class="row mb-2">
     <div class="col-sm-6">
-      <h1 class="m-0 text-dark">Distributor</h1>
+      <h1 class="m-0 text-dark">Distributor {{$distributor->name}}</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
       <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
         <li class="breadcrumb-item active">Distributor</li>
+        <li class="breadcrumb-item active">Transaction</li>
       </ol>
     </div><!-- /.col -->
   </div><!-- /.row -->
@@ -27,66 +28,49 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Data Distributor</h3>
+              <h3 class="card-title">Data Transaction {{$distributor->name}}</h3>
               <div class="card-tools">
                 <ul class="nav nav-pills ml-auto">
                   <li class="nav-item">
-                    <a class="nav-link active" href="{{route('distributor.create')}}"><i class="fas fa-plus"></i></a>
+                    <a class="nav-link active" href="{{route('transaction.distributor.create',$distributor->id)}}"><i class="fas fa-plus"></i></a>
                   </li>
                 </ul>
               </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table style="width:100%" id="example1" class="table table-bordered table-striped dt-responsive nowrap">
+              <table style="width:100%"  id="example1" class="table table-bordered table-striped dt-responsive nowrap">
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Name</th>
-                  <th>Member</th>
-                  <th>Logo</th>
+                  <th>Billing Date</th>
+                  <th>Quantity (KL)</th>
+                  <th>Total (IDR)</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                  @foreach ($distributors as $distributor)
+                  @foreach ($distributor->transactions as $transaction)
                   <tr>
                     <td>{{$loop->iteration}}</td>
-                    <td>{{$distributor->name}}</td>
+                    <td>{{$transaction->billing_date}}</td>
+                    <td>{{$transaction->quantity}}</td>
+                    <td>{{$transaction->total}}</td>
                     <td>
-                        @if ($distributor->member == 'silver')
-                            <small class="badge badge-info"> {{$distributor->member}}</small>
-                        @elseif($distributor->member == 'gold')
-                            <small class="badge badge-warning"> {{$distributor->member}}</small>
-                        @else
-                            <small class="badge badge-danger"> {{$distributor->member}}</small>
-                        @endif
-                    </td>
-                    <td><img class="img-thumbnail" width="50px" src="{{asset("/uploads/".$distributor->logo)}}" alt=""></td>
-                    <td>
-                        <a href="{{route('employee.distributor.index',$distributor->id)}}" class="btn btn-primary btn-sm">
-                        <i class="fa fa-users"></i>
-                        </a>
-                        <a href="{{route('distributor.edit',$distributor->id)}}" class="btn btn-warning btn-sm">
+                        <a href="{{route('transaction.distributor.edit',$transaction->id)}}" class="btn btn-warning btn-sm">
                             <i class="fas fa-edit"></i>
                         </a>
                         <form class="d-inline"
-                            onsubmit="return confirm('Apakah anda ingin menghapus distributors secara permanen?')"
-                            action="{{route('distributor.destroy',$distributor->id)}}"
+                            onsubmit="return confirm('Apakah anda ingin menghapus transactions secara permanen?')"
+                            action="{{route('transaction.distributor.destroy',$transaction->id)}}"
                             method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash"></i></button>
                         </form>
-                        <a href="{{route('distributor.show',$distributor->id)}}" class="btn btn-info btn-sm">
+                        <a href="{{route('transaction.distributor.show',$transaction->id)}}" class="btn btn-info btn-sm">
                             <i class="fas fa-eye"></i>
-                        </a>
-                        <a href="{{route('distributor.point',$distributor->id)}}" class="btn btn-info btn-sm">
-                            <i class="fas fa-coins"></i>
-                        </a>
-                        <a href="{{route('transaction.distributor.index',$distributor->id)}}" class="btn btn-info btn-sm">
-                            <i class="fas fa-chart-pie"></i>
                         </a>
                     </td>
                   </tr>

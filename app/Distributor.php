@@ -15,5 +15,8 @@ class Distributor extends Model
         return $this->hasMany('App\Employee');
     }
 
-
+    public function transactions()
+    {
+        return $this->hasMany('App\Transaction');
+    }
 }

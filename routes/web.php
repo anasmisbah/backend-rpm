@@ -49,6 +49,14 @@ Route::middleware(['auth','admin'])->group(function (){
         Route::post('employee/distributor/store','EmployeeController@store')->name('employee.distributor.store');
         Route::put('employee/distributor/update/{id}','EmployeeController@update')->name('employee.distributor.update');
 
+        Route::get('transaction/distributor/{id}','TransactionController@index')->name('transaction.distributor.index');
+        Route::get('transaction/distributor/create/{id}','TransactionController@create')->name('transaction.distributor.create');
+        Route::get('transaction/distributor/detail/{id}','TransactionController@show')->name('transaction.distributor.show');
+        Route::get('transaction/distributor/edit/{id}','TransactionController@edit')->name('transaction.distributor.edit');
+        Route::delete('transaction/distributor/{id}','TransactionController@destroy')->name('transaction.distributor.destroy');
+        Route::post('transaction/distributor/store','TransactionController@store')->name('transaction.distributor.store');
+        Route::put('transaction/distributor/update/{id}','TransactionController@update')->name('transaction.distributor.update');
+
         Route::get('/user','UserController@index')->name('user.index');
         Route::get('/user/{id}','UserController@show')->name('user.show');
 
