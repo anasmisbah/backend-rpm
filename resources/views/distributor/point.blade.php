@@ -38,25 +38,25 @@
                     @method('PUT')
                     <div class="card-body">
                         <div class="form-group row">
-                            <label for="loyalty" class="col-sm-2 col-form-label">Loyalty Point <span class="text-danger">*</span> </label>
+                            <label for="loyalty" class="col-sm-2 col-form-label">Loyalty <span class="text-danger">*</span> </label>
                             <div class="col-sm-6 col-lg-6 col-md-6">
                                 <input type="number" value="{{$distributor->loyalty}}" class="form-control" id="loyalty" name="loyalty" placeholder="loyalty">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="reward" class="col-sm-2 col-form-label">reward Point <span class="text-danger">*</span> </label>
+                            <label for="reward" class="col-sm-2 col-form-label">reward <span class="text-danger">*</span> </label>
                             <div class="col-sm-6 col-lg-6 col-md-6">
                                 <input type="number" value="{{$distributor->reward}}" class="form-control" id="reward" name="reward" placeholder="reward">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="coupon" class="col-sm-2 col-form-label">coupon Point <span class="text-danger">*</span> </label>
+                            <label for="coupon" class="col-sm-2 col-form-label">coupon <span class="text-danger">*</span> </label>
                             <div class="col-sm-6 col-lg-6 col-md-6">
                                 <input type="number" value="{{$distributor->coupon}}" class="form-control" id="coupon" name="coupon" placeholder="coupon">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="transaction" class="col-sm-2 col-form-label">transaction Point <span class="text-danger">*</span> </label>
+                            <label for="transaction" class="col-sm-2 col-form-label">transaction <span class="text-danger">*</span> </label>
                             <div class="col-sm-6 col-lg-6 col-md-6">
                                 <input type="number" value="{{$distributor->transaction}}" class="form-control" id="transaction" name="transaction" placeholder="transaction">
                             </div>

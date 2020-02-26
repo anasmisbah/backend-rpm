@@ -31,8 +31,11 @@
               <h3 class="card-title">Data Transaction {{$distributor->name}}</h3>
               <div class="card-tools">
                 <ul class="nav nav-pills ml-auto">
+                    <li class="nav-item pr-1">
+                    <a class="btn btn-info" href="{{route('transaction.distributor.chart',$distributor->id)}}"><i class="fas fa-chart-bar"></i></a>
+                    </li>
                   <li class="nav-item">
-                    <a class="nav-link active" href="{{route('transaction.distributor.create',$distributor->id)}}"><i class="fas fa-plus"></i></a>
+                    <a class="btn btn-primary" href="{{route('transaction.distributor.create',$distributor->id)}}"><i class="fas fa-plus"></i></a>
                   </li>
                 </ul>
               </div>
@@ -55,7 +58,7 @@
                     <td>{{$loop->iteration}}</td>
                     <td>{{$transaction->billing_date}}</td>
                     <td>{{$transaction->quantity}}</td>
-                    <td>{{$transaction->total}}</td>
+                    <td>Rp {{$transaction->total}}</td>
                     <td>
                         <a href="{{route('transaction.distributor.edit',$transaction->id)}}" class="btn btn-warning btn-sm">
                             <i class="fas fa-edit"></i>

@@ -64,7 +64,7 @@
                     </td>
                     <td><img class="img-thumbnail" width="50px" src="{{asset("/uploads/".$distributor->logo)}}" alt=""></td>
                     <td>
-                        <a href="{{route('employee.distributor.index',$distributor->id)}}" class="btn btn-primary btn-sm">
+                        <a data-toggle="tooltip" data-placement="top" title="Employee" href="{{route('employee.distributor.index',$distributor->id)}}" class="btn btn-primary btn-sm">
                         <i class="fa fa-users"></i>
                         </a>
                         <a href="{{route('distributor.edit',$distributor->id)}}" class="btn btn-warning btn-sm">
@@ -79,13 +79,13 @@
                                 <button type="submit" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash"></i></button>
                         </form>
-                        <a href="{{route('distributor.show',$distributor->id)}}" class="btn btn-info btn-sm">
+                        <a  href="{{route('distributor.show',$distributor->id)}}" class="btn btn-info btn-sm">
                             <i class="fas fa-eye"></i>
                         </a>
-                        <a href="{{route('distributor.point',$distributor->id)}}" class="btn btn-info btn-sm">
+                        <a data-toggle="tooltip" data-placement="top" title="Point" href="{{route('distributor.point',$distributor->id)}}" class="btn btn-info btn-sm">
                             <i class="fas fa-coins"></i>
                         </a>
-                        <a href="{{route('transaction.distributor.index',$distributor->id)}}" class="btn btn-info btn-sm">
+                        <a data-toggle="tooltip" data-placement="top" title="Transaction" href="{{route('transaction.distributor.index',$distributor->id)}}" class="btn btn-info btn-sm">
                             <i class="fas fa-chart-pie"></i>
                         </a>
                     </td>
@@ -113,6 +113,7 @@
 <script>
     $(function () {
       $("#example1").DataTable();
+      $('.btn').tooltip({ boundary: 'window' })
     });
   </script>
 <script>
