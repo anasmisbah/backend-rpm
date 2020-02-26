@@ -122,7 +122,7 @@
         </div>
         <!-- /.card -->
   </div>
-
+  </div>
 @endsection
 
 @push('script')

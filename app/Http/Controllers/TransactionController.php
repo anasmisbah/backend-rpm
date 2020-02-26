@@ -124,4 +124,9 @@ class TransactionController extends Controller
 
         return redirect()->back()->with('status','successfully Deleted transaction');
     }
+
+    public function chart($id)
+    {
+        return view('transaction.chart');
+    }
 }
