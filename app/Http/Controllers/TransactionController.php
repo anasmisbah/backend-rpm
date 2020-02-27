@@ -143,7 +143,7 @@ class TransactionController extends Controller
             $revenue = 0;
             foreach ($transaction as $item) {
                 $quantity += $item->quantity;
-                $revenue+=$item->total;
+                $revenue += $item->total;
             }
             $data['quantity'][]=$quantity;
             $data['revenue'][]=$revenue;

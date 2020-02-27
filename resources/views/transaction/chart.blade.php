@@ -58,10 +58,6 @@
             'id': id,
         },
         success: function(data) {
-            console.log(data);
-            data.label.sort();
-            data.quantity.sort();
-            data.revenue.sort();
             var $quantityChart = $('#quantity-chart')
             var quantityChart  = new Chart($quantityChart, {
                 type   : 'bar',

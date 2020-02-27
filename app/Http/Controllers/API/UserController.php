@@ -24,6 +24,8 @@ class UserController extends Controller
         $user->employee->avatar = url('/uploads/' . $user->employee->avatar);
         $user->role;
         $user->employee->distributor->logo= url('/uploads/' . $user->employee->distributor->logo);
+        $user->employee->distributor->chart= url('/transaction/distributor/chart/' . $user->employee->distributor->id);
+
         return response()->json($user, 200);
     }
 }
