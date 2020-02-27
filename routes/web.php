@@ -18,7 +18,7 @@ Auth::routes();
 Route::get('news/read/{slug}','NewsController@read')->name('news.read');
 Route::get('event/read/{slug}','EventController@read')->name('event.read');
 Route::get('transaction/distributor/chart/{id}','TransactionController@chart')->name('transaction.distributor.chart');
-
+Route::get('transaction/datachart','TransactionController@datachart')->name('transaction.datachart');
 Route::get('401', function () {
     return view('auth.401');
 })->name('error.401');

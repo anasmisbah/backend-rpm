@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Distributor;
 use App\Transaction;
-
+use Carbon\Carbon;
 class TransactionController extends Controller
 {
     /**
@@ -127,6 +127,28 @@ class TransactionController extends Controller
 
     public function chart($id)
     {
-        return view('transaction.chart');
+        $distributor = Distributor::findOrFail($id);
+        return view('transaction.chart',compact('distributor'));
+    }
+
+    public function datachart(Request $request)
+    {
+        $transactions = Transaction::where('distributor_id',$request->id)->get()->groupBy(function($val) {
+            return Carbon::parse($val->billing_date)->format('Y');
+        });
+        $data = [];
+        foreach ($transactions as $key => $transaction) {
+            $data['label'][] = $key;
+            $quantity = 0;
+            $revenue = 0;
+            foreach ($transaction as $item) {
+                $quantity += $item->quantity;
+                $revenue+=$item->total;
+            }
+            $data['quantity'][]=$quantity;
+            $data['revenue'][]=$revenue;
+        }
+    //   dd($data);
+        return response()->json($data, 200);
     }
 }
