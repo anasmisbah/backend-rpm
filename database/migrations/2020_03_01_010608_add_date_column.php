@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTermsColumn extends Migration
+class AddDateColumn extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddTermsColumn extends Migration
      */
     public function up()
     {
-        Schema::table('promos', function (Blueprint $table) {
-            $table->text('terms')->nullable();
+        Schema::table('events', function (Blueprint $table) {
+            $table->date('startdate')->nullable();
+            $table->date('enddate')->nullable();
         });
     }
 
@@ -25,8 +26,9 @@ class AddTermsColumn extends Migration
      */
     public function down()
     {
-        Schema::table('promos', function (Blueprint $table) {
-            $table->dropColumn('terms');
+        Schema::table('events', function (Blueprint $table) {
+            $table->dropColumn('startdate');
+            $table->dropColumn('enddate');
         });
     }
 }

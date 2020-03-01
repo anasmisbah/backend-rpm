@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.css')}}">
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="{{asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
 @endpush
 
 @section('content-header')
@@ -60,6 +61,28 @@
                         </div>
                       </div>
                       <div class="form-group row">
+                        <label for="startdate" class="col-sm-2 col-form-label">Start Date <span class="text-danger">*</span> </label>
+                        <div class="col-sm-6 col-lg-6 col-md-6">
+                            <div class="input-group date" id="startdate" data-target-input="nearest">
+                                <input type="text" class="form-control datetimepicker-input" data-target="#startdate" name="startdate"/>
+                                <div class="input-group-append" data-target="#startdate" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="enddate" class="col-sm-2 col-form-label">End Date <span class="text-danger">*</span> </label>
+                        <div class="col-sm-6 col-lg-6 col-md-6">
+                            <div class="input-group date" id="enddate" data-target-input="nearest">
+                                <input type="text" class="form-control datetimepicker-input" data-target="#enddate" name="enddate"/>
+                                <div class="input-group-append" data-target="#enddate" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="form-group row">
                         <label for="description" class="col-sm-2 col-form-label">Description</label>
                         <div class="col-sm-12 col-lg-10 col-md-10">
                           <textarea id="description" class="form-control" id="description" name="description"></textarea>
@@ -87,13 +110,21 @@
 <script src="{{asset('plugins/summernote/summernote-bs4.min.js')}}"></script>
 <!-- SweetAlert2 -->
 <script src="{{asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+<script src="{{asset('plugins/moment/moment.min.js')}}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
 <script>
   $(function () {
     //Initialize Select2 Elements
     $('#select-category').select2()
     $('#description').summernote()
-
-
+    $('#startdate').datetimepicker({
+            format: 'L',
+            format: 'YYYY-MM-D'
+    });
+    $('#enddate').datetimepicker({
+            format: 'L',
+            format: 'YYYY-MM-D'
+    });
   });
 </script>
 <script>

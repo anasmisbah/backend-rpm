@@ -44,7 +44,9 @@ class EventController extends Controller
     {
         $request->validate([
             'title'=>'required',
-            'description'=>'required'
+            'description'=>'required',
+            'startdate'=>'required',
+            'enddate'=>'required'
         ]);
 
         $image='';
@@ -59,6 +61,8 @@ class EventController extends Controller
         $event = Event::create([
             'title'=>$request->title,
             'description'=>$request->description,
+            'startdate'=>$request->startdate,
+            'enddate'=>$request->enddate,
             'image'=>$image,
             'slug'=>Str::slug($request->title),
             'created_by'=>Auth::user()->id
@@ -108,7 +112,9 @@ class EventController extends Controller
         $event = Event::findOrFail($id);
         $request->validate([
             'title'=>'required',
-            'description'=>'required'
+            'description'=>'required',
+            'startdate'=>'required',
+            'enddate'=>'required'
         ]);
         if ($request->file('image')) {
             $request->validate([
@@ -127,6 +133,8 @@ class EventController extends Controller
         $event->update([
             'title'=>$request->title,
             'description'=>$request->description,
+            'startdate'=>$request->startdate,
+            'enddate'=>$request->enddate,
             'slug'=>Str::slug($request->title),
             'created_by'=>Auth::user()->id
         ]);

@@ -50,6 +50,14 @@
                 </td>
               </tr>
               <tr>
+                <td style="width:10%">Start Date</td>
+                <td>{{$event->startdate->format('l, d F Y')}}</td>
+              </tr>
+              <tr>
+                <td style="width:10%">End Date</td>
+                <td>{{$event->enddate->format('l, d F Y')}}</td>
+              </tr>
+              <tr>
                 <td style="width:10%">Description</td>
                 <td>{!!$event->description!!}</td>
               </tr>
