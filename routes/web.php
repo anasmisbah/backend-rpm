@@ -36,6 +36,8 @@ Route::middleware(['auth','admin'])->group(function (){
 
     Route::middleware(['superadmin'])->group(function (){
 
+        Route::get('home/chart','HomeController@chart')->name('home.chart');
+
         Route::resource('category', 'CategoryController');
         Route::resource('promo', 'PromoController');
         Route::resource('distributor', 'DistributorController');

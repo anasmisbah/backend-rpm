@@ -31,10 +31,7 @@
               <h3 class="card-title">Data Transaction {{$distributor->name}}</h3>
               <div class="card-tools">
                 <ul class="nav nav-pills ml-auto">
-                    <li class="nav-item pr-1">
-                    <a class="btn btn-info" href="{{route('transaction.distributor.chart',$distributor->id)}}"><i class="fas fa-chart-bar"></i></a>
-                    </li>
-                  <li class="nav-item mr-5">
+                  <li class="nav-item mr-1">
                     <a class="btn btn-primary" href="{{route('transaction.distributor.create',$distributor->id)}}"><i class="fas fa-plus"></i></a>
                   </li>
                   <li class="nav-item">

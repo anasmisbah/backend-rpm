@@ -25,12 +25,11 @@
         <div class="inner">
           <h3>{{$promo}}</h3>
 
-          <p>New Promos</p>
+          <p>Promos</p>
         </div>
         <div class="icon">
           <i class="ion ion-bag"></i>
         </div>
-        <a href="{{route('promo.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->
@@ -45,7 +44,6 @@
         <div class="icon">
           <i class="ion ion-ios-paper"></i>
         </div>
-        <a href="{{route('news.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->
@@ -60,7 +58,6 @@
         <div class="icon">
           <i class="ion ion-android-calendar"></i>
         </div>
-        <a href="{{route('event.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->
@@ -73,61 +70,270 @@
           <p>Distributor</p>
         </div>
         <div class="icon">
-          <i class="ion ion-card"></i>
+          <i class="ion ion-ios-people"></i>
         </div>
-        <a href="{{route('distributor.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->
-  </div>
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-info">
+          <div class="inner">
+            <h3>{{$user}}</h3>
 
-  <div class="row">
-    <div class="col-lg-6">
-        <div class="card">
-          <div class="card-header border-0">
-            <div class="d-flex justify-content-between">
-              <h3 class="card-title">Sales</h3>
-              <a href="javascript:void(0);">View Report</a>
-            </div>
+            <p>Users</p>
           </div>
-          <div class="card-body">
-            <div class="d-flex">
-              <p class="d-flex flex-column">
-                <span class="text-bold text-lg">$18,230.00</span>
-                <span>Sales Over Time</span>
-              </p>
-              <p class="ml-auto d-flex flex-column text-right">
-                <span class="text-success">
-                  <i class="fas fa-arrow-up"></i> 33.1%
-                </span>
-                <span class="text-muted">Since last month</span>
-              </p>
-            </div>
-            <!-- /.d-flex -->
-
-            <div class="position-relative mb-4">
-              <canvas id="sales-chart" height="200"></canvas>
-            </div>
-
-            <div class="d-flex flex-row justify-content-end">
-              <span class="mr-2">
-                <i class="fas fa-square text-primary"></i> This year
-              </span>
-
-              <span>
-                <i class="fas fa-square text-gray"></i> Last year
-              </span>
-            </div>
+          <div class="icon">
+            <i class="ion ion-android-person"></i>
           </div>
         </div>
-        <!-- /.card -->
+      </div>
+      <!-- ./col -->
+      <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-success">
+          <div class="inner">
+            <h3>{{$transaction}}</h3>
+
+            <p>Transaction</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-stats-bars"></i>
+          </div>
+        </div>
+      </div>
+      <!-- ./col -->
+      <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-warning">
+          <div class="inner">
+            <h3>{{$coupon}}</h3>
+
+            <p>Coupons</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-ios-pricetag"></i>
+          </div>
+        </div>
+      </div>
+      <!-- ./col -->
+      <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-danger">
+          <div class="inner">
+            <h3>{{$distributor}}</h3>
+
+            <p>Voucher</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-card"></i>
+          </div>
+        </div>
+      </div>
+      <!-- ./col -->
   </div>
-  </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+            <div class="card-header border-0">
+                <div class="d-flex justify-content-between">
+                <h3 class="card-title">Sales Transaction</h3>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="d-flex">
+                <p class="d-flex flex-column">
+                    <span class="text-bold text-lg">{{$total}} KL</span>
+                    <span>Total Transaction</span>
+                </p>
+                </div>
+                <!-- /.d-flex -->
+
+                <div class="position-relative mb-4">
+                <canvas id="sales-chart" height="200"></canvas>
+                </div>
+
+                <div class="d-flex flex-row justify-content-end">
+                <span class="mr-2">
+                    <i class="fas fa-square text-primary"></i> This year
+                </span>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+            <div class="card-header border-0">
+                <div class="d-flex justify-content-between">
+                <h3 class="card-title">Revenue</h3>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="d-flex">
+                <p class="d-flex flex-column">
+                    <span class="text-bold text-lg">{{$revenue}} IDR</span>
+                    <span>Total Revenue</span>
+                </p>
+                </div>
+                <!-- /.d-flex -->
+
+                <div class="position-relative mb-4">
+                <canvas id="revenue-chart" height="200"></canvas>
+                </div>
+
+                <div class="d-flex flex-row justify-content-end">
+                <span class="mr-2">
+                    <i class="fas fa-square text-success"></i> This year
+                </span>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('script')
 <!-- ChartJS -->
 <script src="/plugins/chart.js/Chart.min.js"></script>
-<!-- PAGE SCRIPTS -->
-<script src="/dist/js/pages/dashboard3.js"></script>
+<script>
+    $(function () {
+  'use strict'
+
+  var ticksStyle = {
+    fontColor: '#495057',
+    fontStyle: 'bold'
+  }
+
+  var mode      = 'index'
+  var intersect = true
+
+    let url = "{{ route('home.chart') }}"
+    $.ajax({
+        type: 'get',
+        url: url,
+        success: function(data) {
+            var $salesChart = $('#sales-chart')
+            var salesChart  = new Chart($salesChart, {
+              type   : 'bar',
+              data   : {
+                labels  : data.label,
+                datasets: [
+                  {
+                    backgroundColor: '#007bff',
+                    borderColor    : '#007bff',
+                    data           : data.transaction
+                  }
+                ]
+              },
+              options: {
+                maintainAspectRatio: false,
+                tooltips           : {
+                  mode     : mode,
+                  intersect: intersect
+                },
+                hover              : {
+                  mode     : mode,
+                  intersect: intersect
+                },
+                legend             : {
+                  display: false
+                },
+                scales             : {
+                  yAxes: [{
+                    // display: false,
+                    gridLines: {
+                      display      : true,
+                      lineWidth    : '4px',
+                      color        : 'rgba(0, 0, 0, .2)',
+                      zeroLineColor: 'transparent'
+                    },
+                    ticks    : $.extend({
+                      beginAtZero: true,
+
+                      // Include a dollar sign in the ticks
+                      callback: function (value, index, values) {
+                        if (value >= 1000) {
+                          value /= 1000
+                          value += 'k'
+                        }
+                        return value
+                      }
+                    }, ticksStyle)
+                  }],
+                  xAxes: [{
+                    display  : true,
+                    gridLines: {
+                      display: false
+                    },
+                    ticks    : ticksStyle
+                  }]
+                }
+              }
+            })
+
+            var $revenueChart = $('#revenue-chart')
+            var revenueChart  = new Chart($revenueChart, {
+              type   : 'bar',
+              data   : {
+                labels  : data.label,
+                datasets: [
+                  {
+                    backgroundColor: '#28A745',
+                    borderColor    : '#28A745',
+                    data           : data.revenue
+                  }
+                ]
+              },
+              options: {
+                maintainAspectRatio: false,
+                tooltips           : {
+                  mode     : mode,
+                  intersect: intersect
+                },
+                hover              : {
+                  mode     : mode,
+                  intersect: intersect
+                },
+                legend             : {
+                  display: false
+                },
+                scales             : {
+                  yAxes: [{
+                    // display: false,
+                    gridLines: {
+                      display      : true,
+                      lineWidth    : '4px',
+                      color        : 'rgba(0, 0, 0, .2)',
+                      zeroLineColor: 'transparent'
+                    },
+                    ticks    : $.extend({
+                      beginAtZero: true,
+
+                      // Include a dollar sign in the ticks
+                      callback: function (value, index, values) {
+                        if (value >= 1000) {
+                          value /= 1000
+                          value += 'k'
+                        }
+                        return value + ' IDR'
+                      }
+                    }, ticksStyle)
+                  }],
+                  xAxes: [{
+                    display  : true,
+                    gridLines: {
+                      display: false
+                    },
+                    ticks    : ticksStyle
+                  }]
+                }
+              }
+            })
+        }
+    })
+
+})
+
+</script>
 @endpush
