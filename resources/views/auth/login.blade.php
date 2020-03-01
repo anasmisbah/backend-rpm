@@ -20,16 +20,15 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition login-page">
-<div class="login-box">
-  <div class="login-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
-  </div>
-  <!-- /.login-logo -->
-  <div class="card">
-    <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+<div class="login-box ">
+    <!-- /.login-logo -->
+    <div class="card rounded" style="border:4px solid">
+        <div class="card-body login-card-body">
+              <div class="login-logo">
+                <a href="#"><b>Admin</b> RPM</a>
+              </div>
 
-      <form action="{{route('login')}}" method="post">
+      <form class="mt-5" action="{{route('login')}}" method="post">
         @csrf
         <div class="input-group mb-3">
           <input name="email" type="email" class="form-control" placeholder="Email">
@@ -49,8 +48,8 @@
         </div>
         <div class="row">
           <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
           </div>
           <!-- /.col -->
         </div>
