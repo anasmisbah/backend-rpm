@@ -1,3 +1,7 @@
+@php
+    use App\Voucher;
+    $vouchers = Voucher::orderBy('id','desc')->limit(3)->get();
+@endphp
 <nav class="main-header navbar navbar-expand navbar-white navbar-light border-bottom-0">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -11,56 +15,24 @@
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
               <i class="far fa-bell"></i>
-              <span class="badge badge-danger navbar-badge">3</span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-              <a href="#" class="dropdown-item">
-                <!-- Message Start -->
-                <div class="media">
-                  <img src="{{asset('/uploads/'.Auth::user()->admin->avatar)}}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-                  <div class="media-body">
-                    <h3 class="dropdown-item-title">
-                      Brad Diesel
-                      <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                    </h3>
-                    <p class="text-sm">Call me whenever you can...</p>
-                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                @foreach ($vouchers as $voucher)
+                <a href="#" class="dropdown-item">
+                  <!-- Message Start -->
+                  <div class="media">
+                    <img src="{{asset('/uploads/'.$voucher->distributor->logo)}}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                    <div class="media-body">
+                      <h3 class="dropdown-item-title">
+                        {{$voucher->distributor->name}}
+                      </h3>
+                      <p class="text-sm">Distributor has been take promo {{$voucher->promo->name}}...</p>
+                      <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i>{{$voucher->created_at->format('l, d F Y')}}</p>
+                    </div>
                   </div>
-                </div>
-                <!-- Message End -->
-              </a>
-              <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item">
-                <!-- Message Start -->
-                <div class="media">
-                  <img src="{{asset('/uploads/'.Auth::user()->admin->avatar)}}" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                  <div class="media-body">
-                    <h3 class="dropdown-item-title">
-                      John Pierce
-                      <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                    </h3>
-                    <p class="text-sm">I got your message bro</p>
-                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                  </div>
-                </div>
-                <!-- Message End -->
-              </a>
-              <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item">
-                <!-- Message Start -->
-                <div class="media">
-                  <img src="{{asset('/uploads/'.Auth::user()->admin->avatar)}}" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                  <div class="media-body">
-                    <h3 class="dropdown-item-title">
-                      Nora Silvester
-                      <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                    </h3>
-                    <p class="text-sm">The subject goes here</p>
-                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                  </div>
-                </div>
-                <!-- Message End -->
-              </a>
+                  <!-- Message End -->
+                </a>
+                @endforeach
               <div class="dropdown-divider"></div>
               <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
             </div>

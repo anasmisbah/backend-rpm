@@ -44,6 +44,7 @@
                   <th>No</th>
                   <th>Name</th>
                   <th>Member</th>
+                  <th>Reward</th>
                   <th>Logo</th>
                   <th>Action</th>
                 </tr>
@@ -55,13 +56,14 @@
                     <td>{{$distributor->name}}</td>
                     <td>
                         @if ($distributor->member == 'silver')
-                            <small class="badge badge-info"> {{$distributor->member}}</small>
+                        <small class="badge badge-info"> {{$distributor->member}}</small>
                         @elseif($distributor->member == 'gold')
-                            <small class="badge badge-warning"> {{$distributor->member}}</small>
+                        <small class="badge badge-warning"> {{$distributor->member}}</small>
                         @else
-                            <small class="badge badge-danger"> {{$distributor->member}}</small>
+                        <small class="badge badge-danger"> {{$distributor->member}}</small>
                         @endif
                     </td>
+                    <td>{{$distributor->reward}}</td>
                     <td><img class="img-thumbnail" width="50px" src="{{asset("/uploads/".$distributor->logo)}}" alt=""></td>
                     <td>
                         <a data-toggle="tooltip" data-placement="top" title="Employee" href="{{route('employee.distributor.index',$distributor->id)}}" class="btn btn-primary btn-sm">

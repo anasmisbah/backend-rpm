@@ -20,6 +20,7 @@ class PromoController extends Controller
                 'title'=> $promo->name,
                 'image'=> url('/uploads/' . $promo->image),
                 'description'=> $promo->description,
+                'terms'=>$promo->terms,
                 'point'=>$promo->point,
                 'total'=>$promo->total,
                 'view'=>$promo->view,
@@ -41,6 +42,7 @@ class PromoController extends Controller
                 'title'=> $promo->name,
                 'image'=> url('/uploads/' . $promo->image),
                 'description'=> $promo->description,
+                'terms'=>$promo->terms,
                 'point'=>$promo->point,
                 'total'=>$promo->total,
                 'view'=>$promo->view,
@@ -62,6 +64,7 @@ class PromoController extends Controller
                 'title'=> $promo->name,
                 'image'=> url('/uploads/' . $promo->image),
                 'description'=> $promo->description,
+                'terms'=>$promo->terms,
                 'point'=>$promo->point,
                 'total'=>$promo->total,
                 'view'=>$promo->view,
@@ -87,6 +90,7 @@ class PromoController extends Controller
             'title'=> $promo->name,
             'image'=> url('/uploads/' . $promo->image),
             'description'=> $promo->description,
+            'terms'=>$promo->terms,
             'point'=>$promo->point,
             'total'=>$promo->total,
             'view'=>$promo->view,
@@ -116,16 +120,28 @@ class PromoController extends Controller
                 'message'=>'promo not found'
             ], 404);
         }
-        if ($distributor->loyalty < $promo->point) {
+        if ($promo->total == 0) {
+            return response()->json([
+                'status'=>false,
+                'message'=>'promo already sold'
+            ], 404);
+        }
+        if ($distributor->reward < $promo->point) {
             return response()->json([
                 'status'=>false,
                 'message'=>'you dont have enough point to take this promo'
             ], 400);
         }
 
+        $distributor->vouchers()->create([
+            'promo_id'=>$request->promo_id
+        ]);
+
         $distributor->update([
-            'loyalty'=>($distributor->loyalty) - ($promo->point),
-            'coupon'=>$distributor->coupon + 1
+            'reward'=>($distributor->reward) - ($promo->point)
+        ]);
+        $promo->update([
+            'total'=>($promo->total - 1)
         ]);
          return response()->json([
             'status'=>true,
@@ -134,10 +150,11 @@ class PromoController extends Controller
                 'title'=> $promo->name,
                 'image'=> url('/uploads/' . $promo->image),
                 'description'=> $promo->description,
+                'terms'=>$promo->terms,
                 'point'=>$promo->point,
                 'total'=>$promo->total,
                 'status'=>$promo->status,
-                'date'=>$date->format('d F Y')
+                'date'=>$date->format('l, d F Y')
             ]
         ], 200);
     }

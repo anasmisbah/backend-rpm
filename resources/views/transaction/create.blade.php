@@ -37,7 +37,7 @@
                     <div class="form-group row">
                         <label for="no_so" class="col-sm-2 col-form-label">No SO <span class="text-danger">*</span> </label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                          <input type="text" class="form-control" id="no_so" name="no_so" placeholder="no_so">
+                          <input type="text" class="form-control" id="no_so" name="no_so" placeholder="No SO">
                         </div>
                       </div>
                     <div class="form-group row">
