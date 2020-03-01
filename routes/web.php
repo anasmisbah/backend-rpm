@@ -40,10 +40,6 @@ Route::middleware(['auth','admin'])->group(function (){
         Route::resource('promo', 'PromoController');
         Route::resource('distributor', 'DistributorController');
 
-        //  TODO: DELETE
-        Route::get('distributor/point/{id}','DistributorController@point')->name('distributor.point');
-        Route::put('distributor/point/update/{id}','DistributorController@updatePoint')->name('distributor.point.update');
-
         Route::get('distributor/coupon/{id}','CouponController@index')->name('distributor.coupon.index');
         Route::get('distributor/coupon/create/{id}','CouponController@create')->name('distributor.coupon.create');
         Route::post('distributor/coupon/store','CouponController@store')->name('distributor.coupon.store');
