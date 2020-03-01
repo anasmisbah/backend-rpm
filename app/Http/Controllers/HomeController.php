@@ -46,4 +46,11 @@ class HomeController extends Controller
 
         return response()->json($data, 200);
     }
+
+    public function voucher()
+    {
+        $vouchers = Voucher::orderBy('created_at','desc')->get();
+
+        return view('voucher',compact('vouchers'));
+    }
 }

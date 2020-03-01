@@ -34,7 +34,7 @@
                 </a>
                 @endforeach
               <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+              <a href="{{route('home.voucher')}}" class="dropdown-item dropdown-footer">See All Taken Promo</a>
             </div>
           </li>
           <!-- Notifications Dropdown Menu -->
