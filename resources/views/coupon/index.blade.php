@@ -32,7 +32,7 @@
               <div class="card-tools">
                 <ul class="nav nav-pills ml-auto">
                     <li class="nav-item mr-1">
-                    <a class="btn btn-info" href="{{route('transaction.distributor.chart',$distributor->id)}}"><i class="fas fa-print"></i></a>
+                    <a class="btn btn-info" href="{{route('distributor.coupon.print',$distributor->id)}}"><i class="fas fa-print"></i></a>
                     </li>
                     <li class="nav-item mr-5">
                         <a class="btn btn-danger" href="{{route('distributor.coupon.deleteall',$distributor->id)}}"><i class="fas fa-trash"></i></a>

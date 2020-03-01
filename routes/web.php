@@ -45,8 +45,7 @@ Route::middleware(['auth','admin'])->group(function (){
         Route::post('distributor/coupon/store','CouponController@store')->name('distributor.coupon.store');
         Route::delete('distributor/coupon/delete/{id}','CouponController@destroy')->name('distributor.coupon.destroy');
         Route::get('distributor/coupon/deleteall/{id}','CouponController@deleteall')->name('distributor.coupon.deleteall');
-
-
+        Route::get('distributor/coupon/print/{id}','CouponController@print')->name('distributor.coupon.print');
 
         Route::get('employee/distributor/{id}','EmployeeController@index')->name('employee.distributor.index');
         Route::get('employee/distributor/create/{id}','EmployeeController@create')->name('employee.distributor.create');

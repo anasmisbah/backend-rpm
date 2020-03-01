@@ -116,4 +116,11 @@ class CouponController extends Controller
         $distributor->coupons()->delete();
         return redirect()->route('distributor.coupon.index',$distributor->id)->with('status',"successfully deleted All Coupon");
     }
+
+    public function print($id)
+    {
+        $distributor = Distributor::findOrFail($id);
+
+        return view('coupon.print',compact('distributor'));
+    }
 }
