@@ -168,17 +168,11 @@ class DistributorController extends Controller
     {
         $distributor = Distributor::findOrFail($id);
         $request->validate([
-            'reward'=>'required',
             'coupon'=>'required',
-            'transaction'=>'required',
-            'loyalty'=>'required'
         ]);
 
         $distributor->update([
-            'reward'=>$request->reward,
             'coupon'=>$request->coupon,
-            'transaction'=>$request->transaction,
-            'loyalty'=>$request->loyalty
         ]);
 
         return redirect()->back()->with('status','successfully update point');

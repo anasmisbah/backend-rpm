@@ -40,8 +40,17 @@ Route::middleware(['auth','admin'])->group(function (){
         Route::resource('promo', 'PromoController');
         Route::resource('distributor', 'DistributorController');
 
+        //  TODO: DELETE
         Route::get('distributor/point/{id}','DistributorController@point')->name('distributor.point');
         Route::put('distributor/point/update/{id}','DistributorController@updatePoint')->name('distributor.point.update');
+
+        Route::get('distributor/coupon/{id}','CouponController@index')->name('distributor.coupon.index');
+        Route::get('distributor/coupon/create/{id}','CouponController@create')->name('distributor.coupon.create');
+        Route::post('distributor/coupon/store','CouponController@store')->name('distributor.coupon.store');
+        Route::delete('distributor/coupon/delete/{id}','CouponController@destroy')->name('distributor.coupon.destroy');
+        Route::get('distributor/coupon/deleteall/{id}','CouponController@deleteall')->name('distributor.coupon.deleteall');
+
+
 
         Route::get('employee/distributor/{id}','EmployeeController@index')->name('employee.distributor.index');
         Route::get('employee/distributor/create/{id}','EmployeeController@create')->name('employee.distributor.create');

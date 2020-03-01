@@ -63,7 +63,7 @@
                 <td style="width:15%">Website</td>
                 <td>{{$distributor->website}}</td>
               </tr>
-
+              
             </tbody>
           </table>
         </div>
