@@ -34,17 +34,12 @@
                 <form class="form-horizontal" action="{{route('transaction.distributor.store')}}" method="POST">
                     @csrf
                   <div class="card-body">
-                     <div class="form-group row">
-                        <label for="pricing_date" class="col-sm-2 col-form-label">Pricing Date <span class="text-danger">*</span> </label>
+                    <div class="form-group row">
+                        <label for="no_so" class="col-sm-2 col-form-label">No SO <span class="text-danger">*</span> </label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                            <div class="input-group date" id="pricing_date" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input" data-target="#pricing_date" name="pricing_date"/>
-                                <div class="input-group-append" data-target="#pricing_date" data-toggle="datetimepicker">
-                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                </div>
-                            </div>
+                          <input type="text" class="form-control" id="no_so" name="no_so" placeholder="no_so">
                         </div>
-                    </div>
+                      </div>
                     <div class="form-group row">
                         <label for="billing_date" class="col-sm-2 col-form-label">Billing Date <span class="text-danger">*</span> </label>
                         <div class="col-sm-6 col-lg-6 col-md-6">

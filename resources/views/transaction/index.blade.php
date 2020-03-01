@@ -46,6 +46,7 @@
                 <thead>
                 <tr>
                   <th>No</th>
+                  <th>No So</th>
                   <th>Billing Date</th>
                   <th>Quantity (KL)</th>
                   <th>Total (IDR)</th>
@@ -56,13 +57,11 @@
                   @foreach ($distributor->transactions as $transaction)
                   <tr>
                     <td>{{$loop->iteration}}</td>
+                    <td>{{$transaction->no_so}}</td>
                     <td>{{$transaction->billing_date}}</td>
                     <td>{{$transaction->quantity}}</td>
                     <td>Rp {{$transaction->total}}</td>
                     <td>
-                        <a href="{{route('transaction.distributor.edit',$transaction->id)}}" class="btn btn-warning btn-sm">
-                            <i class="fas fa-edit"></i>
-                        </a>
                         <form class="d-inline"
                             onsubmit="return confirm('Apakah anda ingin menghapus transactions secara permanen?')"
                             action="{{route('transaction.distributor.destroy',$transaction->id)}}"
@@ -72,9 +71,6 @@
                                 <button type="submit" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash"></i></button>
                         </form>
-                        <a href="{{route('transaction.distributor.show',$transaction->id)}}" class="btn btn-info btn-sm">
-                            <i class="fas fa-eye"></i>
-                        </a>
                     </td>
                   </tr>
                   @endforeach

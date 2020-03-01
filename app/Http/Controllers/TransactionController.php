@@ -39,10 +39,11 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
+        $distributor = Distributor::findOrFail($request->distributor_id);
         $request->validate([
             'quantity'=>'required',
             'total'=>'required',
-            'pricing_date'=>'required',
+            'no_so'=>'required',
             'billing_date'=>'required',
             'distributor_id'=>'required',
         ]);
@@ -50,9 +51,14 @@ class TransactionController extends Controller
         $transaction = Transaction::create([
             'quantity'=>$request->quantity,
             'total'=>$request->total,
-            'pricing_date'=>$request->pricing_date,
+            'no_so'=>$request->no_so,
             'billing_date'=>$request->billing_date,
             'distributor_id'=>$request->distributor_id,
+        ]);
+
+        $point = round(($request->quantity)/5000);
+        $distributor->update([
+            'reward'=>($distributor->reward + $point)
         ]);
 
         return redirect()->back()->with('status','successfully created Transaction');
@@ -97,14 +103,14 @@ class TransactionController extends Controller
         $request->validate([
             'quantity'=>'required',
             'total'=>'required',
-            'pricing_date'=>'required',
+            'no_so'=>'required',
             'billing_date'=>'required',
         ]);
 
         $transaction->update([
             'quantity'=>$request->quantity,
             'total'=>$request->total,
-            'pricing_date'=>$request->pricing_date,
+            'no_so'=>$request->no_so,
             'billing_date'=>$request->billing_date,
         ]);
 
@@ -120,8 +126,12 @@ class TransactionController extends Controller
     public function destroy($id)
     {
         $transaction = Transaction::findOrFail($id);
+        $distributor = $transaction->distributor;
+        $point = round(($transaction->quantity)/5000);
+        $distributor->update([
+            'reward'=>($distributor->reward - $point)
+        ]);
         $transaction->delete();
-
         return redirect()->back()->with('status','successfully Deleted transaction');
     }
 
