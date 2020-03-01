@@ -33,10 +33,6 @@
     </section>
     <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
-  <footer class="main-footer text-sm text-center">
-    <strong>Copyright &copy; 2020 | Develop With &hearts; By &Icy;
-  </footer>
 </div>
 <!-- ./wrapper -->
 

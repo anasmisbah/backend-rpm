@@ -44,7 +44,8 @@ class PromoController extends Controller
             'description'=>'required',
             'point'=>'required',
             'status'=>'required',
-            'total'=>'required'
+            'total'=>'required',
+            'terms'=>'required'
         ]);
 
         $image='';
@@ -64,6 +65,7 @@ class PromoController extends Controller
             'point'=>$request->point,
             'status'=>$request->status,
             'total'=>$request->total,
+            'terms'=>$request->terms,
             'created_by'=>Auth::user()->id
         ]);
 
@@ -111,7 +113,8 @@ class PromoController extends Controller
             'description'=>'required',
             'point'=>'required',
             'status'=>'required',
-            'total'=>'required'
+            'total'=>'required',
+            'terms'=>'required'
         ]);
         if ($request->file('image')) {
             $request->validate([
@@ -134,6 +137,7 @@ class PromoController extends Controller
             'point'=>$request->point,
             'status'=>$request->status,
             'total'=>$request->total,
+            'terms'=>$request->terms,
             'created_by'=>Auth::user()->id
         ]);
 

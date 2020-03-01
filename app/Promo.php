@@ -9,7 +9,7 @@ class Promo extends Model
     protected $table = "promos";
 
     protected $fillable = [
-        'name','description','image','slug','point','total','status','view','created_by'
+        'name','description','image','slug','point','total','status','view','created_by','terms'
     ];
 
     public function createdby()

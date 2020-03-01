@@ -39,13 +39,13 @@
                       </div>
                     </div>
                     <div class="form-group row">
-                        <label for="point" class="col-sm-2 col-form-label">Point</label>
+                        <label for="point" class="col-sm-2 col-form-label">Point Required</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
                           <input type="number" class="form-control" id="point" name="point" placeholder="point">
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="total" class="col-sm-2 col-form-label">Total Promo</label>
+                        <label for="total" class="col-sm-2 col-form-label">Total Promo Available</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
                           <input type="number" class="form-control" id="total" name="total" placeholder="total">
                         </div>
@@ -54,6 +54,12 @@
                         <label for="description" class="col-sm-2 col-form-label">Description</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
                           <textarea id="description" class="form-control" id="description" name="description"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="terms" class="col-sm-2 col-form-label">Terms & Condition</label>
+                        <div class="col-sm-6 col-lg-6 col-md-6">
+                          <textarea id="terms" class="form-control" id="terms" name="terms"></textarea>
                         </div>
                       </div>
                       <div class="form-group row">
