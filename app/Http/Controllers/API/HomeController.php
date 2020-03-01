@@ -37,6 +37,8 @@ class HomeController extends Controller
             $data['event'][]=[
                 'id'=> $event->id,
                 'title'=> $event->title,
+                'start'=>$event->startdate->format('l, d F Y'),
+                'end'=>$event->enddate->format('l, d F Y'),
                 'image'=> url('/uploads/' . $event->image),
                 'url'=> url('/event/read/'.$event->slug),
                 'view'=>$event->view,
@@ -54,6 +56,7 @@ class HomeController extends Controller
                 'title'=> $promo->name,
                 'image'=> url('/uploads/' . $promo->image),
                 'description'=> $promo->description,
+                'terms'=> $promo->terms,
                 'point'=>$promo->point,
                 'total'=>$promo->total,
                 'view'=>$promo->view,
@@ -71,6 +74,7 @@ class HomeController extends Controller
                 'title'=> $promo->name,
                 'image'=> url('/uploads/' . $promo->image),
                 'description'=> $promo->description,
+                'terms'=> $promo->terms,
                 'point'=>$promo->point,
                 'total'=>$promo->total,
                 'view'=>$promo->view,
@@ -95,6 +99,11 @@ class HomeController extends Controller
         $user = Auth::user();
         $user->employee->avatar = url('/uploads/' . $user->employee->avatar);
         $user->role;
+        $user->employee->distributor->coupon = $user->employee->distributor->coupons()->count();
+        $user->employee->distributor->transaction = $user->employee->distributor->transactions()->sum('quantity');
+        $user->employee->distributor->transactions;
+        $user->employee->distributor->coupons;
+        $user->employee->distributor->vouchers;
         $user->employee->distributor->logo= url('/uploads/' . $user->employee->distributor->logo);
         $news = News::limit(8)->get();
         $data['user']=$user;
@@ -122,6 +131,8 @@ class HomeController extends Controller
                 'image'=> url('/uploads/' . $event->image),
                 'url'=> url('/event/read/'.$event->slug),
                 'view'=>$event->view,
+                'start'=>$event->startdate->format('l, d F Y'),
+                'end'=>$event->enddate->format('l, d F Y'),
                 'created_at'=>$event->created_at->format('d F Y'),
                 'created_by'=>$event->createdby->admin->name,
                 'category'=>$event->category->makeHidden(['created_at','updated_at','pivot','slug'])
@@ -136,6 +147,7 @@ class HomeController extends Controller
                 'title'=> $promo->name,
                 'image'=> url('/uploads/' . $promo->image),
                 'description'=> $promo->description,
+                'terms'=> $promo->terms,
                 'point'=>$promo->point,
                 'total'=>$promo->total,
                 'view'=>$promo->view,
@@ -153,6 +165,7 @@ class HomeController extends Controller
                 'title'=> $promo->name,
                 'image'=> url('/uploads/' . $promo->image),
                 'description'=> $promo->description,
+                'terms'=> $promo->terms,
                 'point'=>$promo->point,
                 'total'=>$promo->total,
                 'view'=>$promo->view,

@@ -37,6 +37,13 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/me','API\UserController@me');
     Route::post('promo/take','API\PromoController@takepromo');
 
+    Route::get('/transaction','API\TransactionController@index');
+    Route::get('/transaction/{id}','API\TransactionController@detail');
+
+    Route::get('/voucher','API\VoucherController@index');
+    Route::get('/voucher/{id}','API\VoucherController@detail');
+
+    Route::get('/coupon','API\CouponController@index');
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

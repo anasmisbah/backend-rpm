@@ -19,6 +19,8 @@ class EventController extends Controller
                 'image'=> url('/uploads/' . $event->image),
                 'url'=> url('/event/read/'.$event->slug),
                 'view'=>$event->view,
+                'start'=>$event->startdate->format('l, d F Y'),
+                'end'=>$event->enddate->format('l, d F Y'),
                 'created_at'=>$event->created_at->format('d F Y'),
                 'created_by'=>$event->createdby->admin->name,
                 'category'=>$event->category->makeHidden(['created_at','updated_at','pivot','slug'])
@@ -47,6 +49,8 @@ class EventController extends Controller
             'image'=> url('/uploads/' . $event->image),
             'url'=> url('/event/read/'.$event->slug),
             'view'=>$event->view,
+            'start'=>$event->startdate->format('l, d F Y'),
+            'end'=>$event->enddate->format('l, d F Y'),
             'created_at'=>$event->created_at->format('d F Y'),
             'created_by'=>$event->createdby->admin->name,
             'category'=>$event->category->makeHidden(['created_at','updated_at','pivot','slug'])

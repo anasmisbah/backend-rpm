@@ -34,8 +34,11 @@
                     <li class="nav-item pr-1">
                     <a class="btn btn-info" href="{{route('transaction.distributor.chart',$distributor->id)}}"><i class="fas fa-chart-bar"></i></a>
                     </li>
-                  <li class="nav-item">
+                  <li class="nav-item mr-5">
                     <a class="btn btn-primary" href="{{route('transaction.distributor.create',$distributor->id)}}"><i class="fas fa-plus"></i></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="btn btn-danger" href="{{ route('distributor.index') }}"><i class=" fas fa-times"></i></a>
                   </li>
                 </ul>
               </div>

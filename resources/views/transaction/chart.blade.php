@@ -119,8 +119,8 @@
                 labels  : data.label,
                 datasets: [
                     {
-                    backgroundColor: '#007bff',
-                    borderColor    : '#007bff',
+                    backgroundColor: '#17A2B8',
+                    borderColor    : '#17A2B8',
                     data           : data.revenue
                     }
                 ]
