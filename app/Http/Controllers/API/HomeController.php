@@ -105,6 +105,7 @@ class HomeController extends Controller
         $user->employee->distributor->coupons;
         $user->employee->distributor->vouchers;
         $user->employee->distributor->logo= url('/uploads/' . $user->employee->distributor->logo);
+        $user->employee->distributor->chart = url('/transaction/distributor/chart/'.$user->employee->distributor->id);
         $news = News::limit(8)->get();
         $data['user']=$user;
         $data['news']=[];
