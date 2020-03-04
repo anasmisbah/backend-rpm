@@ -12,7 +12,9 @@ class TransactionController extends Controller
     {
         $distributor = Auth::user()->employee->distributor;
         $transaction = $distributor->transactions()->get();
-
+        foreach ($transaction as $key => $tran) {
+            $transaction[$key]->date = $tran->billing_date->format('d/m/Y');
+        }
         return response()->json($transaction, 200);
     }
 
@@ -20,7 +22,7 @@ class TransactionController extends Controller
     {
         $distributor = Auth::user()->employee->distributor;
         $transaction = $distributor->transactions()->where('id',$id)->first();
-
+        $transaction->date = $transaction->billing_date->format('d/m/Y');
         return response()->json($transaction, 200);
     }
 }

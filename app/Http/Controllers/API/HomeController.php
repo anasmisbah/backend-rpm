@@ -102,6 +102,9 @@ class HomeController extends Controller
         $user->employee->distributor->coupon = $user->employee->distributor->coupons()->count();
         $user->employee->distributor->transaction = $user->employee->distributor->transactions()->sum('quantity');
         $user->employee->distributor->transactions;
+        foreach ($user->employee->distributor->transactions as $key => $tran) {
+            $user->employee->distributor->transactions[$key]->date = $tran->billing_date->format('d/m/Y');
+        }
         $user->employee->distributor->coupons;
         $user->employee->distributor->vouchers;
         $user->employee->distributor->logo= url('/uploads/' . $user->employee->distributor->logo);

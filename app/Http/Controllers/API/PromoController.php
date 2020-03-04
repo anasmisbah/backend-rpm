@@ -85,6 +85,7 @@ class PromoController extends Controller
                     'message'=>'Promo not found'
                 ],404);
         }
+        $view = $promo->view;
         $promo->update([
             'view'=>$view+1
         ]);

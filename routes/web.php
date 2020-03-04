@@ -15,6 +15,10 @@
 
 Auth::routes();
 
+Route::get('chat/us',function()
+{
+    return view('chat');
+});
 Route::get('news/read/{slug}','NewsController@read')->name('news.read');
 Route::get('event/read/{slug}','EventController@read')->name('event.read');
 Route::get('transaction/distributor/chart/{id}','TransactionController@chart')->name('transaction.distributor.chart');
