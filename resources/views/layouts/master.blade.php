@@ -1,6 +1,10 @@
 
 <!DOCTYPE html>
 <html>
+    @php
+    use App\Company;
+    $company = Company::first();
+  @endphp
 @include('layouts.partials.head')
 <body class="hold-transition sidebar-mini layout-fixed  accent-warning">
 <div class="se-pre-con"></div>
