@@ -23,16 +23,16 @@ $company = Company::first();
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="hold-transition login-page">
-<div class="login-box ">
+<body class="hold-transition login-page bg-dark">
+<div class="login-box">
     <!-- /.login-logo -->
-    <div class="card rounded">
-        <div class="card-body login-card-body">
+    <div class="card">
+        <div class="card-body login-card-body rounded">
             <div class="login-logo">
-                <a href="#"><img src="{{asset('/uploads/'.$company->logo)}}" class="brand-image elevation-2" alt="User Image" style="width:10rem"></a>
+                <img src="{{asset('/uploads/'.$company->logo)}}" class="brand-image elevation-2" alt="User Image" style="width:10rem">
               </div>
-              <div class="login-logo">
-                <a href="#"><b>Admin</b> RPM</a>
+              <div class="text-center mt-2">
+                <h3>Reward Point Management</h3>
               </div>
 
       <form class="mt-5" action="{{route('login')}}" method="post">
@@ -56,7 +56,7 @@ $company = Company::first();
         <div class="row">
           <!-- /.col -->
           <div class="col-12">
-            <button type="submit" class="btn btn-primary btn-block">Login</button>
+            <button type="submit" class="btn btn-warning btn-block text-white">Login</button>
           </div>
           <!-- /.col -->
         </div>
