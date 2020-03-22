@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Admin');
     }
+
+    public function driver()
+    {
+        return $this->hasOne('App\Driver');
+    }
 }
