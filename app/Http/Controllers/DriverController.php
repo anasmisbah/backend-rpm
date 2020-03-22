@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Driver;
 use Illuminate\Http\Request;
-
+use App\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use File;
 class DriverController extends Controller
 {
     /**
@@ -43,13 +46,12 @@ class DriverController extends Controller
             'phone'=>'required',
             'email'=>'required',
             'password'=>'required',
-            'role_id'=>'required'
         ]);
 
         $user = User::create([
             'email'=>$request->email,
             'password'=>Hash::make($request->password),
-            'role_id'=>$request->role_id
+            'role_id'=>4
         ]);
 
         $avatar='';
@@ -112,7 +114,6 @@ class DriverController extends Controller
             'address'=>'required',
             'phone'=>'required',
             'email'=>'required',
-            'role_id'=>'required'
         ]);
 
         if ($request->file('avatar')) {
@@ -137,7 +138,6 @@ class DriverController extends Controller
 
         $driver->user()->update([
             'email'=>$request->email,
-            'role_id'=>$request->role_id
         ]);
 
         if ($request->password) {

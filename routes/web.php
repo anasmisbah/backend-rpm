@@ -74,6 +74,7 @@ Route::middleware(['auth','admin'])->group(function (){
         Route::get('/user/{id}','UserController@show')->name('user.show');
 
         Route::resource('admin', 'AdminController');
+        Route::resource('driver', 'DriverController');
 
         Route::get('/company','CompanyController@index')->name('company.index');
         Route::get('/company/edit','CompanyController@edit')->name('company.edit');

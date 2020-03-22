@@ -105,6 +105,14 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a href="{{route('driver.index')}}" class="nav-link {{ Request::segment(1) == 'driver'?'active':'' }}">
+                    <i class="nav-icon fa fa-truck-moving"></i>
+                    <p>
+                    Driver
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="{{route('admin.index')}}" class="nav-link {{ Request::segment(1) == 'admin'?'active':'' }}">
                     <i class="nav-icon far fa-user"></i>
                     <p>
