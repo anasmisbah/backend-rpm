@@ -29,4 +29,9 @@ class Distributor extends Model
     {
         return $this->hasMany('App\Voucher');
     }
+
+    public function delivery()
+    {
+        return $this->hasMany('App\Delivery');
+    }
 }

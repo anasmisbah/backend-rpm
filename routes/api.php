@@ -44,6 +44,14 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/voucher/{id}','API\VoucherController@detail');
 
     Route::get('/coupon','API\CouponController@index');
+
+    // Driver
+    Route::get('/driver/arrival','API\DriverController@arrival');
+    Route::get('/driver/history','API\DriverController@history');
+
+    // distributor
+    Route::post('/delivery/code','API\DistributorController@approve');
+    Route::get('/delivery/history','API\DistributorController@history');
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

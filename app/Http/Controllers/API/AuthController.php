@@ -22,7 +22,7 @@ class AuthController extends Controller
             $result = ([
                 'id'=>$user->id,
                 'email'=>$user->email,
-                'role'=>$user->role->nama,
+                'role'=>$user->role->name,
                 'access_token'=>$authToken
             ]);
             return response()->json([

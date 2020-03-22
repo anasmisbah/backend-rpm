@@ -14,4 +14,14 @@ class Driver extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function code()
+    {
+        return $this->hasOne('App\DriverCode');
+    }
+
+    public function delivery()
+    {
+        return $this->hasMany('App\Delivery');
+    }
 }
