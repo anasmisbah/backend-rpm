@@ -11,6 +11,7 @@ use App\User;
 use App\Transaction;
 use App\Coupon;
 use App\Voucher;
+use App\Delivery;
 
 class HomeController extends Controller
 {
@@ -52,5 +53,12 @@ class HomeController extends Controller
         $vouchers = Voucher::orderBy('created_at','desc')->get();
 
         return view('voucher',compact('vouchers'));
+    }
+
+    public function delivery()
+    {
+        $deliveries = Delivery::orderBy('created_at','desc')->get();
+
+        return view('delivery',compact('deliveries'));
     }
 }

@@ -134,7 +134,7 @@
   </div>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="card">
             <div class="card-header border-0">
                 <div class="d-flex justify-content-between">
@@ -157,34 +157,6 @@
                 <div class="d-flex flex-row justify-content-end">
                 <span class="mr-2">
                     <i class="fas fa-square text-primary"></i> This year
-                </span>
-                </div>
-            </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-            <div class="card-header border-0">
-                <div class="d-flex justify-content-between">
-                <h3 class="card-title">Revenue</h3>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="d-flex">
-                <p class="d-flex flex-column">
-                    <span class="text-bold text-lg">{{$revenue}} IDR</span>
-                    <span>Total Revenue</span>
-                </p>
-                </div>
-                <!-- /.d-flex -->
-
-                <div class="position-relative mb-4">
-                <canvas id="revenue-chart" height="200"></canvas>
-                </div>
-
-                <div class="d-flex flex-row justify-content-end">
-                <span class="mr-2">
-                    <i class="fas fa-square text-success"></i> This year
                 </span>
                 </div>
             </div>
@@ -255,7 +227,7 @@
                       callback: function (value, index, values) {
                         if (value >= 1000) {
                           value /= 1000
-                          value += 'k'
+                          value += 'KL'
                         }
                         return value
                       }
