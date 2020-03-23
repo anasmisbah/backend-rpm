@@ -19,72 +19,17 @@
 @endsection
 @section('content')
 <div class="row">
-    <div class="col-lg-3 col-6">
-      <!-- small box -->
-      <div class="small-box bg-info">
-        <div class="inner">
-          <h3>{{$promo}}</h3>
-
-          <p>Promos</p>
-        </div>
-        <div class="icon">
-          <i class="ion ion-bag"></i>
-        </div>
-      </div>
-    </div>
-    <!-- ./col -->
-    <div class="col-lg-3 col-6">
-      <!-- small box -->
-      <div class="small-box bg-success">
-        <div class="inner">
-          <h3>{{$news}}</h3>
-
-          <p>News</p>
-        </div>
-        <div class="icon">
-          <i class="ion ion-ios-paper"></i>
-        </div>
-      </div>
-    </div>
-    <!-- ./col -->
-    <div class="col-lg-3 col-6">
-      <!-- small box -->
-      <div class="small-box bg-warning">
-        <div class="inner">
-          <h3>{{$event}}</h3>
-
-          <p>Events</p>
-        </div>
-        <div class="icon">
-          <i class="ion ion-android-calendar"></i>
-        </div>
-      </div>
-    </div>
-    <!-- ./col -->
-    <div class="col-lg-3 col-6">
-      <!-- small box -->
-      <div class="small-box bg-danger">
-        <div class="inner">
-          <h3>{{$distributor}}</h3>
-
-          <p>Distributor</p>
-        </div>
-        <div class="icon">
-          <i class="ion ion-ios-people"></i>
-        </div>
-      </div>
-    </div>
-    <!-- ./col -->
+    @if (auth()->user()->role_id ==1 )
     <div class="col-lg-3 col-6">
         <!-- small box -->
         <div class="small-box bg-info">
           <div class="inner">
-            <h3>{{$user}}</h3>
+            <h3>{{$promo}}</h3>
 
-            <p>Users</p>
+            <p>Promos</p>
           </div>
           <div class="icon">
-            <i class="ion ion-android-person"></i>
+            <i class="ion ion-bag"></i>
           </div>
         </div>
       </div>
@@ -93,12 +38,12 @@
         <!-- small box -->
         <div class="small-box bg-success">
           <div class="inner">
-            <h3>{{$transaction}}</h3>
+            <h3>{{$news}}</h3>
 
-            <p>Transaction</p>
+            <p>News</p>
           </div>
           <div class="icon">
-            <i class="ion ion-stats-bars"></i>
+            <i class="ion ion-ios-paper"></i>
           </div>
         </div>
       </div>
@@ -107,12 +52,12 @@
         <!-- small box -->
         <div class="small-box bg-warning">
           <div class="inner">
-            <h3>{{$coupon}}</h3>
+            <h3>{{$event}}</h3>
 
-            <p>Coupons</p>
+            <p>Events</p>
           </div>
           <div class="icon">
-            <i class="ion ion-ios-pricetag"></i>
+            <i class="ion ion-android-calendar"></i>
           </div>
         </div>
       </div>
@@ -123,16 +68,102 @@
           <div class="inner">
             <h3>{{$distributor}}</h3>
 
-            <p>Voucher</p>
+            <p>Distributor</p>
           </div>
           <div class="icon">
-            <i class="ion ion-card"></i>
+            <i class="ion ion-ios-people"></i>
           </div>
         </div>
       </div>
       <!-- ./col -->
+      <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-info">
+            <div class="inner">
+              <h3>{{$user}}</h3>
+
+              <p>Users</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-android-person"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-success">
+            <div class="inner">
+              <h3>{{$transaction}}</h3>
+
+              <p>Transaction</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-warning">
+            <div class="inner">
+              <h3>{{$coupon}}</h3>
+
+              <p>Coupons</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-ios-pricetag"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-danger">
+            <div class="inner">
+              <h3>{{$distributor}}</h3>
+
+              <p>Voucher</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-card"></i>
+            </div>
+          </div>
+        </div>
+    @else
+    <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-success">
+          <div class="inner">
+            <h3>{{$news}}</h3>
+
+            <p>News</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-ios-paper"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-warning">
+          <div class="inner">
+            <h3>{{$event}}</h3>
+
+            <p>Events</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-android-calendar"></i>
+          </div>
+        </div>
+      </div>
+    @endif
+
+      <!-- ./col -->
   </div>
 
+  @if (auth()->user()->role_id == 1)
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -163,6 +194,7 @@
             </div>
         </div>
     </div>
+  @endif
 @endsection
 
 @push('script')

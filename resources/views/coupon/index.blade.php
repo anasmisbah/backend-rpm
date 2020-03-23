@@ -35,10 +35,13 @@
                     <a class="btn btn-info" href="{{route('distributor.coupon.print',$distributor->id)}}"><i class="fas fa-print"></i></a>
                     </li>
                     <li class="nav-item mr-5">
-                        <a class="btn btn-danger" href="{{route('distributor.coupon.deleteall',$distributor->id)}}"><i class="fas fa-trash"></i></a>
+                        <a class="btn btn-warning" href="{{route('distributor.coupon.deleteall',$distributor->id)}}"><i class="fas fa-trash"></i></a>
                       </li>
-                  <li class="nav-item">
+                  <li class="nav-item mr-1">
                     <a class="btn btn-primary" href="{{route('distributor.coupon.create',$distributor->id)}}"><i class="fas fa-plus"></i></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="btn btn-danger" href="{{ route('distributor.index') }}"><i class=" fas fa-times"></i></a>
                   </li>
                 </ul>
               </div>

@@ -31,8 +31,11 @@
               <h3 class="card-title">Data Employee {{$distributor->name}}</h3>
               <div class="card-tools">
                 <ul class="nav nav-pills ml-auto">
+                  <li class="nav-item mr-1">
+                    <a class="btn btn-primary" href="{{route('employee.distributor.create',$distributor->id)}}"><i class="fas fa-plus"></i></a>
+                  </li>
                   <li class="nav-item">
-                    <a class="nav-link active" href="{{route('employee.distributor.create',$distributor->id)}}"><i class="fas fa-plus"></i></a>
+                    <a class="btn btn-danger" href="{{ route('distributor.index') }}"><i class=" fas fa-times"></i></a>
                   </li>
                 </ul>
               </div>
