@@ -81,6 +81,14 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a href="{{route('video.index')}}" class="nav-link {{ Request::segment(1) == 'video'?'active':'' }}">
+                    <i class="nav-icon far fa-file-video"></i>
+                    <p>
+                    Video
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="{{route('category.index')}}" class="nav-link {{ Request::segment(1) == 'category'?'active':'' }}">
                     <i class="nav-icon fas fa-tags"></i>
                     <p>
