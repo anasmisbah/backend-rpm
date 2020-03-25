@@ -12,7 +12,6 @@ class CompanyController extends Controller
     public function profile()
     {
         $company = Company::first();
-        $company->logo = url('/uploads/' . $company->logo );
         $company->profile =  url('/uploads/' . $company->profile );
         $company->profiledownload = url('/company/profile/download');
         return response()->json($company, 200);
@@ -21,7 +20,6 @@ class CompanyController extends Controller
     public function contact()
     {
         $company = Company::first();
-        $company->logo = url('/uploads/' . $company->logo );
         $company->profile =  url('/uploads/' . $company->profile );
         $company->profiledownload = url('/company/profile/download');
         return response()->json($company, 200);

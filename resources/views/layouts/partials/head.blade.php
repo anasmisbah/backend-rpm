@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
-    <link rel="shortcut icon" href="{{asset('/uploads/'.$company->logo)}}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{asset('/uploads/img/favico.jpg')}}" type="image/x-icon">
     @stack('css')
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -24,6 +24,9 @@
         height: 100%;
         z-index: 9999;
         background: url("<?php echo e(url('/gif/' . 'Preloader_3.gif')); ?>") center no-repeat #fff;
+    }
+    .sidebar{
+        height: calc(100% - 1rem);
     }
     </style>
   </head>

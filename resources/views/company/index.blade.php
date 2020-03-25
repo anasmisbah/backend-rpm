@@ -33,10 +33,6 @@
           <table class="table table-striped">
             <tbody>
                 <tr>
-                    <td style="width:15%">Logo</td>
-                    <td><img class="img-thumbnail" width="150px" src="{{asset("uploads/".$company->logo)}}" alt=""></td>
-                </tr>
-                <tr>
                     <td style="width:10%">Name</td>
                     <td> <strong>{{$company->name}}</strong></td>
                 </tr>

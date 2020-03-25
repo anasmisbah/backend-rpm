@@ -81,20 +81,6 @@ class CompanyController extends Controller
             'email'=>'required'
         ]);
 
-        if ($request->file('logo')) {
-            $request->validate([
-                'logo'=>'mimes:jpeg,bmp,png,jpg,ico',
-            ]);
-            if (!($company->logo == "logos/default.jpg") && file_exists('uploads/'.$company->logo)) {
-                File::delete('uploads/'.$company->logo);
-            }
-            $logo = 'logos/'.time().$request->file('logo')->getClientOriginalName();
-            $request->file('logo')->move('uploads/logos', $logo);
-            $company->update([
-                'logo'=> $logo
-            ]);
-        }
-
         if ($request->file('profile')) {
             $request->validate([
                 'profile'=>'mimes:pdf',

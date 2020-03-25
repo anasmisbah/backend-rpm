@@ -34,13 +34,6 @@
                     @method('PUT')
                   <div class="card-body">
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Logo</label>
-                        <div class="col-sm-6 col-lg-6 col-md-6">
-                            <img class="img-thumbnail" id="image_con" width="150px" src="{{asset('uploads/'.$company->logo)}}" alt="">
-                          <input type="file" class="form-control" id="image" name="logo">
-                        </div>
-                      </div>
-                    <div class="form-group row">
                       <label for="name" class="col-sm-2 col-form-label">Name</label>
                       <div class="col-sm-6 col-lg-6 col-md-6">
                         <input type="text" class="form-control" value="{{$company->name}}" id="name" name="name" placeholder="Company Name">

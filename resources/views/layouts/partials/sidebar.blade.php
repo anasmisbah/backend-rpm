@@ -12,7 +12,7 @@
     <div class="sidebar">
         <div class="user-panel mt-3 pb-3 mb-3 d-flex justify-content-center">
             <div class="image">
-              <img src="{{asset('/uploads/'.$company->logo)}}" class="brand-image elevation-2" alt="User Image" style="width:7rem">
+              <img src="{{asset('/uploads/img/logo.jpg')}}" class="brand-image elevation-2" alt="Logo" style="width:7rem">
             </div>
           </div>
       <!-- Sidebar user panel (optional) -->
