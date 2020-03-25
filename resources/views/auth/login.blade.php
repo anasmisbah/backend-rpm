@@ -11,7 +11,7 @@ $company = Company::first();
   <title>Login | Reward Point Management</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="{{asset('/uploads/'.$company->logo)}}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{asset('img/favico.jpg')}}" type="image/x-icon">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Ionicons -->
@@ -29,7 +29,7 @@ $company = Company::first();
     <div class="card">
         <div class="card-body login-card-body rounded">
             <div class="login-logo">
-                <img src="{{asset('/uploads/'.$company->logo)}}" class="brand-image elevation-2" alt="User Image" style="width:10rem">
+                <img src="{{asset('/img/logo.jpg')}}" class="brand-image elevation-2" alt="Logo" style="width:10rem">
               </div>
               <div class="text-center mt-2">
                 <h3>Reward Point Management</h3>
