@@ -32,6 +32,10 @@ Route::get('home','API\HomeController@home');
 Route::get('company/profile','API\CompanyController@profile');
 Route::get('company/contact','API\CompanyController@contact');
 
+// Videos
+Route::get('videos','API\VideoController@allvideos');
+Route::get('videos/{id}','API\VideoController@detail');
+
 Route::group(['middleware' => ['auth:api']], function () {
     Route::get('user/home','API\HomeController@homelogin');
     Route::get('/me','API\UserController@me');

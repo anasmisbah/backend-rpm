@@ -8,6 +8,7 @@ use App\News;
 use App\Event;
 use App\Promo;
 use App\Company;
+use App\Video;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -83,6 +84,17 @@ class HomeController extends Controller
                 'created_by'=>$promo->createdby->admin->name,
             ];
         }
+        $videos = Video::limit(8)->get();
+        $data['videos']=[];
+        foreach ($videos as $key => $video) {
+            $data['videos'][]=[
+                'id'=> $video->id,
+                'title'=> $video->title,
+                'url'=> $video->url,
+                'image'=> url('/uploads/' . $video->image),
+                'created_at'=>$video->created_at->format('d F Y'),
+            ];
+        }
         $company = Company::first();
         $company->logo = url('/uploads/' . $company->logo );
         $company->profile =  url('/uploads/' . $company->profile );
@@ -98,6 +110,7 @@ class HomeController extends Controller
         $data = [];
         $user = Auth::user();
         if ($user->role_id ==3) {
+
             $user->employee->avatar = url('/uploads/' . $user->employee->avatar);
             $user->role;
             $user->employee->distributor->coupon = $user->employee->distributor->coupons()->count();
@@ -184,6 +197,17 @@ class HomeController extends Controller
                     'created_by'=>$promo->createdby->admin->name,
                 ];
             }
+            $videos = Video::limit(8)->get();
+            $data['videos']=[];
+            foreach ($videos as $key => $video) {
+                $data['videos'][]=[
+                    'id'=> $video->id,
+                    'title'=> $video->title,
+                    'url'=> $video->url,
+                    'image'=> url('/uploads/' . $video->image),
+                    'created_at'=>$video->created_at->format('d F Y'),
+                ];
+            }
             $company = Company::first();
             $company->logo = url('/uploads/' . $company->logo );
             $company->profile =  url('/uploads/' . $company->profile );
@@ -191,7 +215,9 @@ class HomeController extends Controller
             $data['company'] = $company;
             $data['contact'] = $company;
             return response()->json($data, 200);
+
         }else{
+
             $user->driver->avatar = url('/uploads/' . $user->driver->avatar);
             $user->role;
             $user->driver->delivery;
@@ -201,6 +227,7 @@ class HomeController extends Controller
             }
             $data['user']=$user;
             return response()->json($data, 200);
+
         }
 
     }
