@@ -37,6 +37,8 @@
                     <td style="width:15%">Avatar</td>
                     @if ($user->employee)
                         <td><img class="img-thumbnail" width="150px" src="{{asset("/uploads/".$user->employee->avatar)}}" alt=""></td>
+                    @elseif ($user->driver)
+                        <td><img class="img-thumbnail" width="150px" src="{{asset("/uploads/".$user->driver->avatar)}}" alt=""></td>
                     @else
                         <td><img class="img-thumbnail" width="150px" src="{{asset("/uploads/".$user->admin->avatar)}}" alt=""></td>
                     @endif
@@ -45,6 +47,8 @@
                 <td style="width:15%">Name</td>
                 @if ($user->employee)
                     <td>{{$user->employee->name}}</td>
+                @elseif ($user->driver)
+                    <td>{{$user->driver->name}}</td>
                 @else
                     <td>{{$user->admin->name}}</td>
                 @endif
