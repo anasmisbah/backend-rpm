@@ -34,22 +34,37 @@
                     @method('PUT')
                   <div class="card-body">
                     <div class="form-group row">
-                      <label for="title" class="col-sm-2 col-form-label">Title</label>
-                      <div class="col-sm-6 col-lg-6 col-md-6">
-                        <input type="text" class="form-control" value="{{$video->title}}" id="title" name="title" placeholder="Title video">
-                      </div>
+                        <label for="title" class="col-sm-2 col-form-label">Title</label>
+                        <div class="col-sm-6 col-lg-6 col-md-6">
+                            <input type="text" class="form-control  @error('title') is-invalid @enderror" value="{{old('title')?old('title'):$video->title}}" id="title" name="title" placeholder="Title video">
+                            @error('title')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
                     </div>
                     <div class="form-group row">
                         <label for="url" class="col-sm-2 col-form-label">Url</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                          <input type="url" class="form-control" value="{{$video->url}}" id="url" name="url" placeholder="Url Video">
+                            <input type="url" class="form-control  @error('url') is-invalid @enderror" value="{{old('url')?old('url'):$video->url}}" id="url" name="url" placeholder="Url Video">
+                            @error('url')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Image</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
                             <img class="img-thumbnail" id="image_con" width="500" src="{{asset("/uploads/".$video->image)}}" alt=""><br>
-                          <input type="file" id="image" class="form-control mt-2" id="image" name="image">
+                            <input type="file" id="image" class="form-control @error('image') is-invalid @enderror mt-2" id="image" name="image">
+                            @error('image')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                       </div>
                   </div>

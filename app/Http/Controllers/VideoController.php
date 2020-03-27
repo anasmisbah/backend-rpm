@@ -37,15 +37,13 @@ class VideoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'=>'required',
-            'url'=>'required',
+            'title'=>'required|max:255',
+            'url'=>'required|url',
+            'image'=>'required|mimes:jpeg,bmp,png,jpg,ico',
         ]);
 
         $image='';
         if ($request->file('image')) {
-            $request->validate([
-                'image'=>'mimes:jpeg,bmp,png,jpg,ico',
-            ]);
             $image = 'images/'.time().$request->file('image')->getClientOriginalName();
             $request->file('image')->move('uploads/images', $image);
         }
@@ -96,8 +94,8 @@ class VideoController extends Controller
     {
         $video = Video::findOrFail($id);
         $request->validate([
-            'title'=>'required',
-            'url'=>'required',
+            'title'=>'required|max:255',
+            'url'=>'required|url',
         ]);
         if ($request->file('image')) {
             $request->validate([

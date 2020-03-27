@@ -33,22 +33,37 @@
                     @csrf
                   <div class="card-body">
                     <div class="form-group row">
-                      <label for="title" class="col-sm-2 col-form-label">Title</label>
-                      <div class="col-sm-6 col-lg-6 col-md-6">
-                        <input type="text" class="form-control" id="title" name="title" placeholder="Title video">
-                      </div>
+                        <label for="title" class="col-sm-2 col-form-label">Title<span class="text-danger">*</span></label>
+                        <div class="col-sm-6 col-lg-6 col-md-6">
+                            <input value="{{old('title')}}" type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" placeholder="Title video">
+                            @error('title')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
                     </div>
                     <div class="form-group row">
-                        <label for="url" class="col-sm-2 col-form-label">Url</label>
+                        <label for="url" class="col-sm-2 col-form-label">Url<span class="text-danger">*</span></label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                          <input type="url" class="form-control" id="url" name="url" placeholder="Url video">
+                          <input value="{{old('url')}}" type="url" class="form-control @error('url') is-invalid @enderror" id="url" name="url" placeholder="Url video">
+                          @error('url')
+                          <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
                         </div>
                       </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Image</label>
+                        <label class="col-sm-2 col-form-label">Image<span class="text-danger">*</span></label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                            <img class="img-thumbnail mb-2" id="image_con" width="500" src="{{asset('/uploads/images/default.jpg')}}" alt="">
-                            <input type="file" class="form-control" id="image" name="image">
+                            <img class="img-thumbnail mb-2" id="image_con" width="300" src="{{asset('/uploads/images/default.jpg')}}" alt="">
+                            <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
+                            @error('image')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                     </div>
                   </div>
@@ -100,6 +115,14 @@
             Toast.fire({
                 type: 'success',
                 title: status
+            })
+        }
+
+        const error = '{{ $errors->first() }}'
+        if (error) {
+            Toast.fire({
+                type: 'error',
+                title: 'Video create failed'
             })
         }
     });
