@@ -33,10 +33,15 @@
                     @csrf
                   <div class="card-body">
                     <div class="form-group row">
-                      <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
-                      <div class="col-sm-6 col-lg-6 col-md-6">
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Category Name">
-                      </div>
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-6 col-lg-6 col-md-6">
+                            <input value="{{old('name')}}" type="text" class="form-control  @error('name') is-invalid @enderror" id="name" name="name" placeholder="Category Name">
+                            @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
                     </div>
                   </div>
                   <!-- /.card-body -->
@@ -69,6 +74,14 @@
             Toast.fire({
                 type: 'success',
                 title: status
+            })
+        }
+
+        const error = '{{ $errors->first() }}'
+        if (error) {
+            Toast.fire({
+                type: 'error',
+                title: 'Category create failed'
             })
         }
     });
