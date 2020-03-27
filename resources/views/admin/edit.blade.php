@@ -1,10 +1,6 @@
 @extends('layouts.master')
 
 @push('css')
-    <!-- Select2 -->
-    <link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
-    <!-- summernote -->
-    <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.css')}}">
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="{{asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
 @endpush
@@ -138,19 +134,8 @@
 @endsection
 
 @push('script')
-<!-- Select2 -->
-<script src="{{asset('plugins/select2/js/select2.full.min.js')}}"></script>
-<!-- Summernote -->
-<script src="{{asset('plugins/summernote/summernote-bs4.min.js')}}"></script>
 <!-- SweetAlert2 -->
 <script src="{{asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
-<script>
-  $(function () {
-    //Initialize Select2 Elements
-    $('#select-category').select2()
-    $('#description').summernote()
-  });
-</script>
 <script>
     //menampilkan foto setiap ada perubahan pada modal tambah
     $('#image').on('change', function() {
@@ -189,7 +174,7 @@
         if (error) {
             Toast.fire({
                 type: 'error',
-                title: 'admin create failed'
+                title: 'Admin update failed'
             })
         }
     });

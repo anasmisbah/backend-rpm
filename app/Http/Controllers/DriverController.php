@@ -42,16 +42,10 @@ class DriverController extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'address'=>'required',
-            'phone'=>'required',
-            'email'=>'required',
-            'password'=>'required',
-        ]);
-
-        $user = User::create([
-            'email'=>$request->email,
-            'password'=>Hash::make($request->password),
-            'role_id'=>4
+            'address'=>'required|min:5',
+            'phone'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'email'=>'required|email|unique:users',
+            'password'=>'required|min:6',
         ]);
 
         $avatar='';
@@ -62,6 +56,12 @@ class DriverController extends Controller
             $avatar = 'avatars/'.time().$request->file('avatar')->getClientOriginalName();
             $request->file('avatar')->move('uploads/avatars', $avatar);
         }
+
+        $user = User::create([
+            'email'=>$request->email,
+            'password'=>Hash::make($request->password),
+            'role_id'=>4
+        ]);
 
         $user->driver()->create([
             'name'=>$request->name,
@@ -111,9 +111,9 @@ class DriverController extends Controller
         $driver = Driver::findOrFail($id);
         $request->validate([
             'name'=>'required',
-            'address'=>'required',
-            'phone'=>'required',
-            'email'=>'required',
+            'address'=>'required|min:5',
+            'phone'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'email'=>'required|email|unique:users,email,'.$driver->user->id,
         ]);
 
         if ($request->file('avatar')) {
@@ -130,6 +130,14 @@ class DriverController extends Controller
             ]);
         }
 
+        if ($request->password) {
+            $request->validate([
+                'password'=>'min:6',
+            ]);
+            $driver->user()->update([
+                'password'=>Hash::make($request->password),
+            ]);
+        }
         $driver->update([
             'name'=>$request->name,
             'address'=>$request->address,
@@ -140,11 +148,6 @@ class DriverController extends Controller
             'email'=>$request->email,
         ]);
 
-        if ($request->password) {
-            $driver->user()->update([
-                'password'=>Hash::make($request->password),
-            ]);
-        }
         return redirect()->back()->with('status','successfully Updated Driver');
     }
 

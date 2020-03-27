@@ -188,7 +188,7 @@
         if (error) {
             Toast.fire({
                 type: 'error',
-                title: 'admin create failed'
+                title: 'Admin create failed'
             })
         }
     });
