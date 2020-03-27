@@ -37,45 +37,75 @@
                     @csrf
                   <div class="card-body">
                     <div class="form-group row">
-                      <label for="name" class="col-sm-2 col-form-label">name <span class="text-danger">*</span> </label>
-                      <div class="col-sm-6 col-lg-6 col-md-6">
-                        <input type="text" class="form-control" id="name" name="name" placeholder="name">
-                      </div>
+                        <label for="name" class="col-sm-2 col-form-label">name <span class="text-danger">*</span> </label>
+                        <div class="col-sm-6 col-lg-6 col-md-6">
+                            <input value="{{old('name')}}" type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="name">
+                            @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
                     </div>
                     <div class="form-group row">
                         <label for="email" class="col-sm-2 col-form-label">Email<span class="text-danger">*</span></label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                            <input type="email" class="form-control" id="email" name="email" placeholder="email">
+                            <input value="{{old('email')}}" type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="email">
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="password" class="col-sm-2 col-form-label">Password <span class="text-danger">*</span></label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                            <input type="password" class="form-control" id="password" name="password" placeholder="password">
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="password">
+                            @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="phone" class="col-sm-2 col-form-label">Phone Number <span class="text-danger">*</span></label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                            <input type="text" class="form-control" id="phone" name="phone" placeholder="phone">
+                            <input value="{{old('phone')}}" type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" placeholder="phone">
+                            @error('phone')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="address" class="col-sm-2 col-form-label">Address <span class="text-danger">*</span></label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                            <input type="text" class="form-control" id="address" name="address" placeholder="address">
+                            <input value="{{old('address')}}" type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" placeholder="address">
+                            @error('address')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Role <span class="text-danger">*</span></label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
                             <div class="custom-control custom-radio">
-                                <input class="custom-control-input" type="radio" id="admin" name="role_id" value="1">
+                                <input class="custom-control-input @error('role_id') is-invalid @enderror" {{old('role_id') == '1'?'checked':''}} type="radio" id="admin" name="role_id" value="1">
                                 <label for="admin" class="custom-control-label">Admin</label>
                             </div>
                             <div class="custom-control custom-radio">
-                                <input class="custom-control-input" type="radio" id="adminsub" name="role_id" value="2">
+                                <input class="custom-control-input @error('role_id') is-invalid @enderror" {{old('role_id') == '2'?'checked':''}} type="radio" id="adminsub" name="role_id" value="2">
                                 <label for="adminsub" class="custom-control-label">Admin Sub</label>
+                                @error('role_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                         </div>
                       </div>
@@ -83,7 +113,12 @@
                         <label class="col-sm-2 col-form-label">Avatar</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
                             <img class="img-thumbnail mb-2" id="image_con" width="150px" src="{{asset('/uploads/images/default.jpg')}}" alt="">
-                          <input type="file" class="form-control" id="image" name="avatar">
+                            <input type="file" class="form-control @error('avatar') is-invalid @enderror" id="image" name="avatar">
+                            @error('avatar')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                       </div>
                   </div>
@@ -146,6 +181,14 @@
             Toast.fire({
                 type: 'success',
                 title: status
+            })
+        }
+
+        const error = '{{ $errors->first() }}'
+        if (error) {
+            Toast.fire({
+                type: 'error',
+                title: 'admin create failed'
             })
         }
     });

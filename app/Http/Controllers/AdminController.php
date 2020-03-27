@@ -43,10 +43,10 @@ class AdminController extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'address'=>'required',
-            'phone'=>'required',
-            'email'=>'required',
-            'password'=>'required',
+            'address'=>'required|min:5',
+            'phone'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'email'=>'required|email|unique:users',
+            'password'=>'required|min:6',
             'role_id'=>'required'
         ]);
 
@@ -113,9 +113,9 @@ class AdminController extends Controller
         $admin = Admin::findOrFail($id);
         $request->validate([
             'name'=>'required',
-            'address'=>'required',
-            'phone'=>'required',
-            'email'=>'required',
+            'address'=>'required|min:5',
+            'phone'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'email'=>'required|email|unique:users,email,'.$admin->user->id,
             'role_id'=>'required'
         ]);
 
