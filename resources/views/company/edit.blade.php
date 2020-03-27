@@ -34,10 +34,15 @@
                     @method('PUT')
                   <div class="card-body">
                     <div class="form-group row">
-                      <label for="name" class="col-sm-2 col-form-label">Name</label>
-                      <div class="col-sm-6 col-lg-6 col-md-6">
-                        <input type="text" class="form-control" value="{{$company->name}}" id="name" name="name" placeholder="Company Name">
-                      </div>
+                        <label for="name" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-6 col-lg-6 col-md-6">
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{$company->name}}" id="name" name="name" placeholder="Company Name">
+                            @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
                     </div>
                     <div class="form-group row">
                         <label for="description" class="col-sm-2 col-form-label">Description</label>
@@ -48,7 +53,12 @@
                     <div class="form-group row">
                         <label for="email" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                            <input type="email" class="form-control" value="{{$company->email}}" id="email" name="email" placeholder="Company email">
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" value="{{$company->email}}" id="email" name="email" placeholder="Company email">
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group row">
@@ -100,6 +110,14 @@
             Toast.fire({
                 type: 'success',
                 title: status
+            })
+        }
+
+        const error = '{{ $errors->first() }}'
+        if (error) {
+            Toast.fire({
+                type: 'error',
+                title: 'company update failed'
             })
         }
     });

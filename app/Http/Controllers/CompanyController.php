@@ -104,7 +104,7 @@ class CompanyController extends Controller
             'website'=>$request->website
         ]);
 
-        return redirect()->route('company.index')->with('status','successfully update');
+        return redirect()->route('company.index')->with('status','successfully updated company');
     }
 
     /**
