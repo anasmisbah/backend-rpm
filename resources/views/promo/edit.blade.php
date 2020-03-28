@@ -34,50 +34,84 @@
                     @method('PUT')
                   <div class="card-body">
                     <div class="form-group row">
-                      <label for="name" class="col-sm-2 col-form-label">Name</label>
-                      <div class="col-sm-6 col-lg-6 col-md-6">
-                        <input type="text" class="form-control" value="{{$promo->name}}" id="name" name="name" placeholder="name promo">
-                      </div>
+                        <label for="name" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-6 col-lg-6 col-md-6">
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{old('name')?old('name'):$promo->name}}" id="name" name="name" placeholder="name promo">
+                            @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
                     </div>
                     <div class="form-group row">
                         <label for="point" class="col-sm-2 col-form-label">Point Required</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                          <input type="number" class="form-control" value="{{$promo->point}}" id="point" name="point" placeholder="point">
+                            <input type="number" class="form-control @error('point') is-invalid @enderror" value="{{old('point')?old('point'):$promo->point}}" id="point" name="point" placeholder="point">
+                            @error('point')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="total" class="col-sm-2 col-form-label">Total Promo Available</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                          <input type="number" class="form-control" value="{{$promo->total}}" id="total" name="total" placeholder="total">
+                            <input type="number" class="form-control @error('total') is-invalid @enderror" value="{{old('total')?old('total'):$promo->total}}" id="total" name="total" placeholder="total">
+                            @error('total')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="description" class="col-sm-2 col-form-label">Description</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                          <textarea id="description" class="form-control" id="description" name="description">{{ $promo->description }}</textarea>
+                            <textarea id="description" class="form-control @error('description') is-invalid @enderror" id="description" name="description">{{ old('description')?old('description'):$promo->description }}</textarea>
+                            @error('description')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="terms" class="col-sm-2 col-form-label">Terms & Condition</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                          <textarea id="terms" class="form-control" id="terms" name="terms">{{ $promo->terms }}</textarea>
+                            <textarea id="terms" class="form-control @error('terms') is-invalid @enderror" id="terms" name="terms">{{ old('terms')?old('terms'):$promo->terms }}</textarea>
+                            @error('terms')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="status" class="col-sm-2 col-form-label">Status</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                          <select class="form-control"  name="status" id="status">
-                            <option value="normal" {{$promo->status == "normal"?'selected':''}}>Normal</option>
-                            <option value="hot" {{$promo->status == "hot"?'selected':''}}>Hot</option>
-                          </select>
+                            <select class="form-control @error('status') is-invalid @enderror"  name="status" id="status">
+                                <option value="normal" {{$promo->status == "normal"?'selected':''}}>Normal</option>
+                                <option value="hot" {{$promo->status == "hot"?'selected':''}}>Hot</option>
+                            </select>
+                            @error('status')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Image</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                            <img class="img-thumbnail" id="image_con" width="150px" src="{{asset("/uploads/".$promo->image)}}" alt=""><br>
-                            <span class="mt-2">kosongkan jika tidak ingin mengubah image</span>
-                          <input type="file" id="image" class="form-control" id="image" name="image">
+                            <img class="img-thumbnail mb-2" id="image_con" width="150px" src="{{asset("/uploads/".$promo->image)}}" alt=""><br>
+                            <input type="file" id="image" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
+                            @error('image')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                       </div>
                   </div>
@@ -135,7 +169,7 @@
         if (error) {
             Toast.fire({
                 type: 'error',
-                title: error
+                title: 'Promo update failed'
             })
         }
     });

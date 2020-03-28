@@ -33,49 +33,84 @@
                     @csrf
                   <div class="card-body">
                     <div class="form-group row">
-                      <label for="name" class="col-sm-2 col-form-label">Name</label>
-                      <div class="col-sm-6 col-lg-6 col-md-6">
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Name Promo">
-                      </div>
+                        <label for="name" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-6 col-lg-6 col-md-6">
+                            <input value="{{old('name')}}" type="text" class="form-control  @error('name') is-invalid @enderror" id="name" name="name" placeholder="Name Promo">
+                            @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
                     </div>
                     <div class="form-group row">
                         <label for="point" class="col-sm-2 col-form-label">Point Required</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                          <input type="number" class="form-control" id="point" name="point" placeholder="point">
+                            <input value="{{old('point')}}" type="number" class="form-control  @error('point') is-invalid @enderror" id="point" name="point" placeholder="point">
+                            @error('point')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="total" class="col-sm-2 col-form-label">Total Promo Available</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                          <input type="number" class="form-control" id="total" name="total" placeholder="total">
+                            <input value="{{old('total')}}" type="number" class="form-control  @error('total') is-invalid @enderror" id="total" name="total" placeholder="total">
+                            @error('total')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="description" class="col-sm-2 col-form-label">Description</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                          <textarea id="description" class="form-control" id="description" name="description"></textarea>
+                            <textarea id="description" placeholder="description promo" class="form-control  @error('description') is-invalid @enderror" id="description" name="description">{{old('description')}}</textarea>
+                            @error('description')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="terms" class="col-sm-2 col-form-label">Terms & Condition</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                          <textarea id="terms" class="form-control" id="terms" name="terms"></textarea>
+                            <textarea id="terms" placeholder="Terms & Condition promo" class="form-control  @error('terms') is-invalid @enderror" id="terms" name="terms">{{old('terms')}}</textarea>
+                            @error('terms')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="status" class="col-sm-2 col-form-label">Status</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                          <select class="form-control"  name="status" id="status">
-                            <option value="normal">Normal</option>
-                            <option value="hot">Hot</option>
-                          </select>
+                            <select class="form-control  @error('status') is-invalid @enderror"  name="status" id="status">
+                                <option value="normal" {{old('status') == 'normal'?'selected':''}}>Normal</option>
+                                <option value="hot" {{old('status')== 'hot'?'selected':''}}>Hot</option>
+                            </select>
+                            @error('status')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                       </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Image</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                            <img class="img-thumbnail" id="image_con" width="150px" src="{{asset('/uploads/images/default.jpg')}}" alt="">
-                            <input type="file" class="form-control" id="image" name="image">
+                            <img class="img-thumbnail mb-2" id="image_con" width="150px" src="{{asset('/uploads/images/default.jpg')}}" alt="">
+                            <input type="file" class="form-control  @error('image') is-invalid @enderror" id="image" name="image">
+                            @error('image')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                     </div>
                   </div>
@@ -127,6 +162,13 @@
             Toast.fire({
                 type: 'success',
                 title: status
+            })
+        }
+        const error = '{{ $errors->first() }}'
+        if (error) {
+            Toast.fire({
+                type: 'error',
+                title: 'Promo create failed'
             })
         }
     });
