@@ -15,4 +15,5 @@
         $(".se-pre-con").fadeOut('slow');
     });
 </script>
+<script src="{{asset('plugins/moment/moment.min.js')}}"></script>
 @stack('script')

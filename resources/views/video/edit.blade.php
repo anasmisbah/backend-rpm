@@ -122,7 +122,7 @@
         if (error) {
             Toast.fire({
                 type: 'error',
-                title: error
+                title: 'Video update failed'
             })
         }
     });

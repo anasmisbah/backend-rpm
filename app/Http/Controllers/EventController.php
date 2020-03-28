@@ -44,12 +44,13 @@ class EventController extends Controller
     {
         $request->validate([
             'title'=>'required',
-            'description'=>'required',
+            'description'=>'required|min:10',
             'startdate'=>'required',
-            'enddate'=>'required'
+            'enddate'=>'required',
+            'category'=>'required|array'
         ]);
 
-        $image='';
+        $image='images/default.jpg';
         if ($request->file('image')) {
             $request->validate([
                 'image'=>'mimes:jpeg,bmp,png,jpg,ico',
@@ -112,9 +113,10 @@ class EventController extends Controller
         $event = Event::findOrFail($id);
         $request->validate([
             'title'=>'required',
-            'description'=>'required',
+            'description'=>'required|min:10',
             'startdate'=>'required',
-            'enddate'=>'required'
+            'enddate'=>'required',
+            'category'=>'required|array'
         ]);
         if ($request->file('image')) {
             $request->validate([

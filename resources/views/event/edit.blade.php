@@ -38,36 +38,56 @@
                     @method('PUT')
                   <div class="card-body">
                     <div class="form-group row">
-                      <label for="title" class="col-sm-2 col-form-label">title  <span class="text-danger">*</span></label>
-                      <div class="col-sm-6 col-lg-6 col-md-6">
-                        <input type="text" class="form-control" value="{{$event->title}}" id="title" name="title" placeholder="title">
-                      </div>
+                        <label for="title" class="col-sm-2 col-form-label">title  <span class="text-danger">*</span></label>
+                        <div class="col-sm-6 col-lg-6 col-md-6">
+                            <input type="text" class="form-control @error('title') is-invalid @enderror" value="{{old('title')?old('title'):$event->title}}" id="title" name="title" placeholder="title">
+                            @error('title')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
                     </div>
                     <div class="form-group row">
                         <label for="image" class="col-sm-2 col-form-label">Image</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                            <img class="img-thumbnail" id="image_con" width="150px" src="{{asset("/uploads/".$event->image)}}" alt="">
-                          <input type="file" id="image" class="form-control" id="image" name="image">
+                            <img class="img-thumbnail mb-2" id="image_con" width="150px" src="{{asset("/uploads/".$event->image)}}" alt="">
+                            <input type="file" id="image" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
+                            @error('image')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Category</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                          <select class="select2" id="select-category" multiple="multiple" name="category[]" data-placeholder="Select Category" style="width: 100%;">
+                          <select class="select2 @error('category') is-invalid @enderror" id="select-category" multiple="multiple" name="category[]" data-placeholder="Select Category" style="width: 100%;">
                             @foreach ($categories as $category)
                                 <option value="{{$category->id}}">{{$category->name}}</option>
                             @endforeach
                           </select>
+                          @error('category')
+                          <span class="text-sm text-danger" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="startdate" class="col-sm-2 col-form-label">Start Date <span class="text-danger">*</span> </label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
                             <div class="input-group date" id="startdate" data-target-input="nearest">
-                                <input value="{{$event->startdate}}" type="text" class="form-control datetimepicker-input" data-target="#startdate" name="startdate"/>
+                                <input value="{{old('startdate')?old('startdate'):$event->startdate}}" type="text" class="form-control @error('startdate') is-invalid @enderror datetimepicker-input" data-target="#startdate" name="startdate"/>
                                 <div class="input-group-append" data-target="#startdate" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
+                                @error('startdate')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -75,17 +95,27 @@
                         <label for="enddate" class="col-sm-2 col-form-label">End Date <span class="text-danger">*</span> </label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
                             <div class="input-group date" id="enddate" data-target-input="nearest">
-                                <input value="{{$event->enddate}}" type="text" class="form-control datetimepicker-input" data-target="#enddate" name="enddate"/>
+                                <input value="{{old('enddate')?old('enddate'):$event->enddate}}" type="text" class="form-control @error('enddate') is-invalid @enderror datetimepicker-input" data-target="#enddate" name="enddate"/>
                                 <div class="input-group-append" data-target="#enddate" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
+                                @error('enddate')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                         </div>
                     </div>
                       <div class="form-group row">
                         <label for="description" class="col-sm-2 col-form-label">Description  <span class="text-danger">*</span></label>
                         <div class="col-sm-12 col-lg-10 col-md-10">
-                          <textarea id="description" class="form-control" id="description" name="description">{!! $event->description !!}</textarea>
+                            <textarea id="description" class="form-control @error('description') is-invalid @enderror" id="description" name="description">{!! old('description')?old('description'):$event->description !!}</textarea>
+                            @error('description')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                       </div>
                   </div>
@@ -158,6 +188,14 @@
             Toast.fire({
                 type: 'success',
                 title: status
+            })
+        }
+
+        const error = '{{ $errors->first() }}'
+        if (error) {
+            Toast.fire({
+                type: 'error',
+                title: 'Event update failed'
             })
         }
     });
