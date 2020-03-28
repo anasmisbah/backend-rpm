@@ -48,11 +48,11 @@ class EmployeeController extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'address'=>'required',
-            'phone'=>'required',
             'type'=>'required',
-            'email'=>'required',
-            'password'=>'required'
+            'address'=>'required|min:5',
+            'phone'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'email'=>'required|email|unique:users',
+            'password'=>'required|min:6',
         ]);
 
         $user = User::create([
@@ -61,7 +61,7 @@ class EmployeeController extends Controller
             'role_id'=>3
         ]);
 
-        $avatar='';
+        $avatar='avatars/default.jpg';
         if ($request->file('avatar')) {
             $request->validate([
                 'avatar'=>'mimes:jpeg,bmp,png,jpg,ico',
@@ -121,10 +121,10 @@ class EmployeeController extends Controller
         $employee = Employee::findOrFail($id);
         $request->validate([
             'name'=>'required',
-            'address'=>'required',
-            'phone'=>'required',
+            'address'=>'required|min:5',
             'type'=>'required',
-            'email'=>'required'
+            'phone'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'email'=>'required|email|unique:users,email,'.$employee->user->id,
         ]);
 
         if ($request->file('avatar')) {
@@ -142,6 +142,14 @@ class EmployeeController extends Controller
             ]);
         }
 
+        if ($request->password) {
+            $request->validate([
+                'password'=>'min:6',
+            ]);
+            $employee->user()->update([
+                'password'=>Hash::make($request->password),
+            ]);
+        }
         $employee->update([
             'name'=>$request->name,
             'address'=>$request->address,
@@ -153,11 +161,6 @@ class EmployeeController extends Controller
             'email'=>$request->email
         ]);
 
-        if ($request->password) {
-            $employee->user()->update([
-                'password'=>Hash::make($request->password),
-            ]);
-        }
         return redirect()->back()->with('status','successfully Updated employee');
     }
 
