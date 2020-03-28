@@ -56,14 +56,14 @@
                 <td>{{$distributor->phone}}</td>
               </tr>
               <tr>
-                <td style="width:15%">Emailr</td>
-                <td>{{$distributor->phone}}</td>
+                <td style="width:15%">Email</td>
+                <td>{{$distributor->email}}</td>
               </tr>
               <tr>
                 <td style="width:15%">Website</td>
                 <td>{{$distributor->website}}</td>
               </tr>
-              
+
             </tbody>
           </table>
         </div>

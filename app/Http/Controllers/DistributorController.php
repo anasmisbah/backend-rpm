@@ -44,9 +44,10 @@ class DistributorController extends Controller
             'name'=>'required',
             'address'=>'required',
             'member'=>'required',
-            'phone'=>'required'
+            'phone'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'email'=>'required|email|unique:distributors'
         ]);
-        $logo='';
+        $logo='logos/default.jpg';
         if ($request->file('logo')) {
             $request->validate([
                 'logo'=>'mimes:jpeg,bmp,png,jpg,ico',
@@ -109,7 +110,8 @@ class DistributorController extends Controller
             'name'=>'required',
             'address'=>'required',
             'member'=>'required',
-            'phone'=>'required'
+            'phone'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'email'=>'required|email|unique:distributors,email,'.$distributor->id,
         ]);
 
         if ($request->file('logo')) {
