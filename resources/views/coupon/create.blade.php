@@ -29,10 +29,15 @@
                     @csrf
                   <div class="card-body">
                     <div class="form-group row">
-                      <label for="coupon" class="col-sm-2 col-form-label">Total Coupon <span class="text-danger">*</span> </label>
-                      <div class="col-sm-6 col-lg-6 col-md-6">
-                        <input type="number" class="form-control" id="coupon" name="coupon" placeholder="coupon">
-                      </div>
+                        <label for="coupon" class="col-sm-2 col-form-label">Total Coupon <span class="text-danger">*</span> </label>
+                        <div class="col-sm-6 col-lg-6 col-md-6">
+                            <input value="{{old('coupon')}}" type="number" class="form-control  @error('coupon') is-invalid @enderror" id="coupon" name="coupon" placeholder="coupon">
+                            @error('coupon')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
                     </div>
                   </div>
 
