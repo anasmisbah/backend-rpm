@@ -43,7 +43,7 @@ class EventController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'=>'required',
+            'title'=>'required|max:100',
             'description'=>'required|min:10',
             'startdate'=>'required',
             'enddate'=>'required',
@@ -112,7 +112,7 @@ class EventController extends Controller
     {
         $event = Event::findOrFail($id);
         $request->validate([
-            'title'=>'required',
+            'title'=>'required|max:100',
             'description'=>'required|min:10',
             'startdate'=>'required',
             'enddate'=>'required',

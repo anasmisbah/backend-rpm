@@ -46,11 +46,12 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'=>'required',
-            'description'=>'required'
+            'title'=>'required|max:100',
+            'description'=>'required:min:10',
+            'category'=>'required|array'
         ]);
 
-        $image='';
+        $image='images/default.jpg';
         if ($request->file('image')) {
             $request->validate([
                 'image'=>'mimes:jpeg,bmp,png,jpg,ico',
@@ -109,8 +110,9 @@ class NewsController extends Controller
     {
         $news = News::findOrFail($id);
         $request->validate([
-            'title'=>'required',
-            'description'=>'required'
+            'title'=>'required|max:100',
+            'description'=>'required:min:10',
+            'category'=>'required|array'
         ]);
         if ($request->file('image')) {
             $request->validate([

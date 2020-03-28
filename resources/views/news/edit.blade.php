@@ -38,32 +38,52 @@
                     @method('PUT')
                   <div class="card-body">
                     <div class="form-group row">
-                      <label for="title" class="col-sm-2 col-form-label">title</label>
-                      <div class="col-sm-6 col-lg-6 col-md-6">
-                        <input type="text" class="form-control" value="{{$news->title}}" id="title" name="title" placeholder="title">
-                      </div>
+                        <label for="title" class="col-sm-2 col-form-label">title</label>
+                        <div class="col-sm-6 col-lg-6 col-md-6">
+                            <input type="text" class="form-control @error('title') is-invalid @enderror" value="{{old('title')?old('title'):$news->title}}" id="title" name="title" placeholder="title">
+                            @error('title')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Image</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
                             <img class="img-thumbnail" id="image_con" width="150px" src="{{asset("/uploads/".$news->image)}}" alt="">
-                          <input type="file" id="image" class="form-control" id="image" name="image">
+                            <input type="file" id="image" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
+                            @error('image')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Category</label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                          <select class="select2" id="select-category" multiple="multiple" name="category[]" data-placeholder="Select Category" style="width: 100%;">
+                          <select class="select2 @error('category') is-invalid @enderror" id="select-category" multiple="multiple" name="category[]" data-placeholder="Select Category" style="width: 100%;">
                             @foreach ($categories as $category)
                                 <option value="{{$category->id}}">{{$category->name}}</option>
                             @endforeach
                           </select>
+                          @error('category')
+                          <span class="text-sm text-danger" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="description" class="col-sm-2 col-form-label">Description</label>
                         <div class="col-sm-12 col-lg-10 col-md-10">
-                          <textarea id="description" class="form-control" id="description" name="description">{!! $news->description !!}</textarea>
+                            <textarea id="description" class="form-control @error('description') is-invalid @enderror" id="description" name="description">{!! old('description')?old('description'):$news->description !!}</textarea>
+                            @error('description')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                       </div>
                   </div>
@@ -126,6 +146,13 @@
             Toast.fire({
                 type: 'success',
                 title: status
+            })
+        }
+        const error = '{{ $errors->first() }}'
+        if (error) {
+            Toast.fire({
+                type: 'error',
+                title: 'News update failed'
             })
         }
     });
