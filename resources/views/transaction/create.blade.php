@@ -37,31 +37,51 @@
                     <div class="form-group row">
                         <label for="no_so" class="col-sm-2 col-form-label">No SO <span class="text-danger">*</span> </label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                          <input type="text" class="form-control" id="no_so" name="no_so" placeholder="No SO">
+                            <input value="{{old('no_so')}}" type="text" class="form-control  @error('no_so') is-invalid @enderror" id="no_so" name="no_so" placeholder="No SO">
+                            @error('no_so')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                       </div>
                     <div class="form-group row">
                         <label for="billing_date" class="col-sm-2 col-form-label">Billing Date <span class="text-danger">*</span> </label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
                             <div class="input-group date" id="billing_date" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input" data-target="#billing_date" name="billing_date"/>
+                                <input type="text" class="form-control  @error('billing_date') is-invalid @enderror datetimepicker-input" data-target="#billing_date" name="billing_date"/>
                                 <div class="input-group-append" data-target="#billing_date" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
+                                @error('billing_date')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                      <label for="quantity" class="col-sm-2 col-form-label">Quantity <span class="text-danger">*</span> </label>
-                      <div class="col-sm-6 col-lg-6 col-md-6">
-                        <input type="number" class="form-control" id="quantity" name="quantity" placeholder="quantity">
-                      </div>
+                        <label for="quantity" class="col-sm-2 col-form-label">Quantity <span class="text-danger">*</span> </label>
+                        <div class="col-sm-6 col-lg-6 col-md-6">
+                            <input value="{{old('quantity')}}" type="number" class="form-control  @error('quantity') is-invalid @enderror" id="quantity" name="quantity" placeholder="quantity">
+                            @error('quantity')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
                     </div>
                     <div class="form-group row">
                         <label for="total" class="col-sm-2 col-form-label">Total<span class="text-danger">*</span></label>
                         <div class="col-sm-6 col-lg-6 col-md-6">
-                            <input type="number" class="form-control" id="total" name="total" placeholder="total">
+                            <input value="{{old('total')}}" type="number" class="form-control  @error('total') is-invalid @enderror" id="total" name="total" placeholder="total">
+                            @error('total')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                     </div>
                   </div>
@@ -88,13 +108,10 @@
 
 <script>
   $(function () {
-        $('#pricing_date').datetimepicker({
-                format: 'L',
-                format: 'YYYY-MM-D'
-        });
         $('#billing_date').datetimepicker({
                 format: 'L',
-                format: 'YYYY-MM-D'
+                format: 'YYYY-MM-D',
+                defaultDate: moment()
         });
     });
 </script>
@@ -112,6 +129,14 @@
             Toast.fire({
                 type: 'success',
                 title: status
+            })
+        }
+
+        const error = '{{ $errors->first() }}'
+        if (error) {
+            Toast.fire({
+                type: 'error',
+                title: 'Transaction create failed'
             })
         }
     });
